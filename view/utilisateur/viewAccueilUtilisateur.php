@@ -19,7 +19,7 @@ EOT;
                     <div class="main">
 
                         <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+                        <div class="col-xs-12 col-sm-6 col-sm-offset-1 cadre">
 
                             <h1>La ludothèque</h1>
                             <h2>Tous vos jeux en un seul endroit</h2>
