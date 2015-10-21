@@ -13,7 +13,7 @@ class Model {
             // Connexion à la base de données            
             // Le dernier argument sert à ce que toutes les chaines de charactères 
             // en entrée et sortie de MySql soit dans le codage UTF-8
-            self::$pdo = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+            self::$pdo = new PDO('mysql:host=localhost;dbname=ludotheque;charset=utf8', 'root', '');
 
             // On active le mode d'affichage des erreurs, et le lancement d'exception en cas d'erreur
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

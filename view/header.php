@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+        <link rel="icon" type="image/png" href="./favicon.ico" />
+        <link rel="shortcut icon" href="./favicon.ico">
         <title>Ludothèque</title>
     </head>
     <body>
@@ -29,7 +31,7 @@
                             <h1>La ludothèque</h1>
                             <h2>Tous vos jeux en un seul endroit</h2>
 
-                            <form action="/users/login" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                            <form action="." name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                 <div class="form-group">
                                 <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
                                 </div> 
@@ -39,7 +41,10 @@
                                 </div> 
 
                                 <div class="form-group">
-                                <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
+                                <div class="col-md-offset-0 col-md-8">
+                                    <input type="hidden" name="action" value="connected" />
+                                    <input type="hidden" name="controller" value="utilisateur" />   
+                                    <input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
                                 </div>
 
                             </form>
