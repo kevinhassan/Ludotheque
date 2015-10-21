@@ -9,7 +9,7 @@ switch ($action) {
      default:
 
     case "accueil":
-        $view='Accueil';
+        $view='Login';
         $pagetitle='Accueil';
         break;
 }

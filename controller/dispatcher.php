@@ -32,12 +32,6 @@ switch ($controller) {
     case "utilisateur":
         require_once "ControllerUtilisateur.php";
         break;
-    case "louer":
-        require_once "ControllerLouer.php";
-        break;
-    case "loueur":
-        require_once "ControllerLoueur.php";
-        break;
     default:
 }
 ?>
