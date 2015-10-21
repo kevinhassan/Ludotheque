@@ -32,5 +32,13 @@ switch ($action) {
         $pagetitle = 'Profil';
         break;
         
+        case "disconnect":
+        session_unset();
+        session_destroy();
+        $view = 'Login';
+        $pagetitle = 'Accueil';
+        break;
+
+        
 }
 require VIEW_PATH . "view.php";

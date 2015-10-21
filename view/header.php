@@ -70,6 +70,9 @@ EOT;
                           <li><a href="#">Page 2</a></li>
                           <li><a href="#">Page 3</a></li>
                         </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                          <li><a href="?action=disconnect">Se déconnecter</a></li>
+                       </ul>
                       </div>
                     </div>
                 </nav>
