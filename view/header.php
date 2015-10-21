@@ -71,6 +71,13 @@ EOT;
                           <li><a href="#">Page 3</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+EOT;
+            if(Session::is_admin()){
+                echo <<< EOT
+                        <li><a href="?action=inscription">Inscrire un utilisateur</a></li>
+EOT;
+            }
+                echo <<< EOT
                           <li><a href="?action=disconnect">Se déconnecter</a></li>
                        </ul>
                       </div>

@@ -23,11 +23,13 @@ switch ($action) {
             "username" => myGet("username"),
         );
         $tab_u = ModelUtilisateur::selectwhere($data);
+        $admin=$tab_u[0]->admin;
         $data = array(
             "username" => myGet("username"),
             "password" => hash('sha256', myGet('password') . Conf::getSeed())
         );
         $_SESSION['login'] = myGet('username');
+        $_SESSION['admin'] = $admin;
         $view = 'Login';
         $pagetitle = 'Profil';
         break;
