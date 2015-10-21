@@ -40,6 +40,45 @@ switch ($action) {
         $view = 'Login';
         $pagetitle = 'Accueil';
         break;
+    case "create":
+        $pagetitle = "Création d'un utilisateur";
+        $view = "create";
+        break;
+       
+    case "save":
+        if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
+            $view = "error";
+            $pagetitle = "Erreur";
+            break;
+        }
+        if (myGet('password')!= myGet('confpassword')){
+            $view = "error";
+            $pagetitle = "Erreur";
+            break;
+        }
+        if(!is_null(myGet('admin'))){
+            $admin=true;
+        }else{
+            $admin=false;
+        }
+        $mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
+        $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
+        $clef = md5(microtime(TRUE)*100000);
+        
+        $data = array(
+            "username" => myGet("username"),
+            "password" => $mot_passe_crypte,
+            "admin" => $admin,
+        );
+        
+        ModelUtilisateur::insert($data);        
+        // Initialisation des variables pour la vue
+        $login = myGet('password');
+        // Chargement de la vue
+        $view = "Login";
+        $pagetitle = "Accueil";
+        break;
+    
 
         
 }

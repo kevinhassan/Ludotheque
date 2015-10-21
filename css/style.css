@@ -9,11 +9,13 @@ body{
 .footer{
     padding-top:700px;
 }
-.li > a:hover{
-    color:#A0815F
+.navbar-default .navbar-nav > li > a {
+  color: black;
 }
-.li > a{
-    color:black
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #A0815F;
+  background-color: transparent;
 }
 .cadre{
   border-radius: 10px;

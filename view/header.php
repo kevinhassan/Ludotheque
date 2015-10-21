@@ -74,7 +74,7 @@ EOT;
 EOT;
             if(Session::is_admin()){
                 echo <<< EOT
-                        <li><a href="?action=inscription">Inscrire un utilisateur</a></li>
+                        <li><a href="?action=create">Inscrire un utilisateur</a></li>
 EOT;
             }
                 echo <<< EOT

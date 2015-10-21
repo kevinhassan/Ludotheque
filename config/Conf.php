@@ -2,7 +2,7 @@
 require_once 'Session.php';
 class Conf {
 
-    private static $seed = '';
+    private static $seed = 'seedaleatoire';
     
     private static $debug = true;
     
