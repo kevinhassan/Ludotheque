@@ -29,9 +29,13 @@ else
 
 
 switch ($controller) {
+    default:
     case "utilisateur":
         require_once"ControllerUtilisateur.php";
         break;
-    default:
+    case "jeux":
+        require_once"ControllerJeux.php";
+        break;
+    
 }
 ?>

@@ -1,14 +1,12 @@
 
 body{
     /* color:#000000; */
-    background-color:#A0815F;
+    background-color:#346488;
     font-family: 'Open Sans';
     font-weight: 300;
     color:black;
 }
-.footer{
-    padding-top:700px;
-}
+
 .navbar-default .navbar-nav > li > a {
   color: black;
 }
@@ -62,4 +60,20 @@ input.form-control , input[type="submit"] , .btn {
 }
 .credits a {
     color: inherit;
+}
+.tableJeux{
+    width: 50%;
+    background-color: #507C9D;
+    border-collapse: collapse;
+    margin-left:25%;
+}
+.tableJeux > thead > tr > th{
+        text-align: center;
+        width:25%;
+        color:black;
+}
+.tableJeux > tbody > tr > td{
+        text-align: center;
+        width:25%;
+        color:white;
 }

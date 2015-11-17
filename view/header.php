@@ -3,13 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/bootstrap/style.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
-        <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
         <link rel="icon" type="image/png" href="./favicon.ico" />
-        <link rel="shortcut icon" href="./favicon.ico">
         <title>Ludothèque</title>
     </head>
     <body>

@@ -4,6 +4,7 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
+require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
      default:
@@ -30,14 +31,16 @@ switch ($action) {
         );
         $_SESSION['login'] = myGet('username');
         $_SESSION['admin'] = $admin;
-        $view = 'Login';
-        $pagetitle = 'Profil';
+        $tab_util = ModelJeux::selectAll();
+            // Chargement de la vue
+        $pagetitle='Accueil';
+        $view='List';
         break;
         
         case "disconnect":
         session_unset();
         session_destroy();
-        $view = 'Login';
+        $view="Login";
         $pagetitle = 'Accueil';
         break;
     case "create":
