@@ -17,6 +17,18 @@ class ModelJeux extends Model {
         die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
         }
     }
+    public static function search($data) {
+        try {
+            var_dump($data["field"]);
+        $sql = "SELECT * FROM " . static::$table." WHERE ".$data["field"]." LIKE %".$data["word"]."%";
+        $req = self::$pdo->prepare($sql);
+        // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
+        return $req->execute($data);
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+    }
 
 }
 

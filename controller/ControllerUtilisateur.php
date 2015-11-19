@@ -57,6 +57,15 @@ switch ($action) {
        $tab_jeux = ModelJeux::selectAll();
        $view='ListJeux';
        break;
+    case "search":
+        $data = array(
+            "field" => myGet("field"),
+            "word" => myGet("word"),
+        );
+        $tab_jeux = ModelJeux::search($data);
+        $view = 'ListJeux';
+        break;
+    
     case "save":
         if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
             $view = "error";

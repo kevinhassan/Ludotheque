@@ -19,13 +19,19 @@ EOT;
     $i++;
     }
 }
-function nbPagesJeux($tab_jeux){
+function nbPagesJeux($tab_jeux,$page){
     $nbpages=  floor(sizeof($tab_jeux)/20)+1;
     $j=1;
     while($j<=$nbpages){
+    if($j==$page){  
     echo <<< EOT
+    <li class="active"><a href="?action=liste&page=$j">$j</a></li>
+EOT;
+    }else{
+            echo <<< EOT
     <li><a href="?action=liste&page=$j">$j</a></li>
 EOT;
+    }
     $j++;
     }
 }
@@ -36,6 +42,21 @@ if(isset($_SESSION['login'])){
     echo <<<EOT
 <div>
     <h1>Liste des jeux :</h1>
+            <form method="post" action=".">
+                <p>
+                    <label for="id_login">Recherche</label> :
+                    <input type="text" name="word" id="id_word"/>
+                </p>
+                    <select name="field">
+                           <option>gameName</option>
+                           <option>Second</option>
+                           <option>Third</option>
+                    </select>
+                    <input type="hidden" name="action" value="search" />
+                <input type="hidden" name="controller" value="utilisateur" />                
+                <p>
+                    <input class="btn btn-success btn btn-success" type="submit" value="Confirmation" />
+                </p>
 <div class="containt-Jeux">
     <table class="table-striped tableJeux" id="tableJeux"><thead>
       <tr>
@@ -55,7 +76,7 @@ tabJeux($tab_jeux,$page);
 </table>
 <div class="lienPages pagination">
 EOT;
-nbPagesJeux($tab_jeux);
+nbPagesJeux($tab_jeux,$page);
 echo <<<EOT
 </div>
 </div>
