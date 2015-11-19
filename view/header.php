@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
         <link rel="icon" type="image/png" href="./favicon.ico" />
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <title>Ludothèque</title>
     </head>
     <body>
@@ -18,11 +20,11 @@
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
                       <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Ludothèque</a>
+                        <a class="navbar-brand" href="?action=liste">Ludothèque</a>
                       </div>
                       <div>
                         <ul class="nav navbar-nav">
-                          <li class="active"><a href="#">Home</a></li>
+                          <li class="active"><a href="">Home</a></li>
                           <li><a href="#">Page 1</a></li>
                           <li><a href="#">Page 2</a></li>
                           <li><a href="#">Page 3</a></li>

@@ -10,7 +10,7 @@ switch ($action) {
      default:
 
     case "accueil":
-        $view='Login';
+        $view='LoginUtilisateur';
         $pagetitle='Accueil';
         break;
     
@@ -31,23 +31,32 @@ switch ($action) {
         );
         $_SESSION['login'] = myGet('username');
         $_SESSION['admin'] = $admin;
-        $tab_util = ModelJeux::selectAll();
             // Chargement de la vue
         $pagetitle='Accueil';
-        $view='List';
+        $tab_jeux = ModelJeux::selectAll();
+        $view='ListJeux';
         break;
         
         case "disconnect":
         session_unset();
         session_destroy();
-        $view="Login";
+        $view="LoginUtilisateur";
         $pagetitle = 'Accueil';
         break;
     case "create":
         $pagetitle = "Création d'un utilisateur";
-        $view = "create";
+        $view = "createUtilisateur";
         break;
-       
+    case "liste":
+        if(is_null(myGet('page'))){
+            $page=1;
+        }else{
+            $page=myGet('page');
+        }
+       $pagetitle='Accueil';
+       $tab_jeux = ModelJeux::selectAll();
+       $view='ListJeux';
+       break;
     case "save":
         if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
             $view = "error";
@@ -75,7 +84,7 @@ switch ($action) {
         
         ModelUtilisateur::insert($data);        
         // Chargement de la vue
-        $view = "Login";
+        $view = "LoginUtilisateur";
         $pagetitle = "Accueil";
         break;
     

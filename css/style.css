@@ -61,11 +61,13 @@ input.form-control , input[type="submit"] , .btn {
 .credits a {
     color: inherit;
 }
-.tableJeux{
+.containt-Jeux{
     width: 50%;
+    margin-left:25%;
+}
+.tableJeux{ 
     background-color: #507C9D;
     border-collapse: collapse;
-    margin-left:25%;
 }
 .tableJeux > thead > tr > th{
         text-align: center;
@@ -76,4 +78,6 @@ input.form-control , input[type="submit"] , .btn {
         text-align: center;
         width:25%;
         color:white;
+}
+.lienPages{
 }
