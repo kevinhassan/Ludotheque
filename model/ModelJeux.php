@@ -19,11 +19,10 @@ class ModelJeux extends Model {
     }
     public static function search($data) {
         try {
-            var_dump($data["field"]);
-        $sql = "SELECT * FROM " . static::$table." WHERE ".$data["field"]." LIKE %".$data["word"]."%";
+        $sql = "SELECT * FROM " . static::$table." WHERE ".$data["field"]." LIKE '".$data["word"]."%'";
         $req = self::$pdo->prepare($sql);
-        // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
-        return $req->execute($data);
+        $req->execute($data);
+         return $req->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
         echo $e->getMessage();
         die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);

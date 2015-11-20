@@ -42,7 +42,8 @@ if(isset($_SESSION['login'])){
     echo <<<EOT
 <div>
     <h1>Liste des jeux :</h1>
-            <form method="post" action=".">
+            <form method="post" action="." class="navbar-form pull-left">
+                <div class="input-group">
                 <p>
                     <label for="id_login">Recherche</label> :
                     <input type="text" name="word" id="id_word"/>
@@ -57,6 +58,8 @@ if(isset($_SESSION['login'])){
                 <p>
                     <input class="btn btn-success btn btn-success" type="submit" value="Confirmation" />
                 </p>
+                </div>
+    </form>
 <div class="containt-Jeux">
     <table class="table-striped tableJeux" id="tableJeux"><thead>
       <tr>

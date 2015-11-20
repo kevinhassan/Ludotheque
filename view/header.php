@@ -2,12 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="icon" type="image/png" href="./favicon.ico" />
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <title>Ludothèque</title>
     </head>
     <body>
@@ -17,7 +15,7 @@
         </nav>
         <?php if(!empty($_SESSION['login'])){
             echo <<< EOT
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container-fluid">
                       <div class="navbar-header">
                         <a class="navbar-brand" href="?action=liste">Ludothèque</a>
@@ -42,8 +40,9 @@ EOT;
                       </div>
                     </div>
                 </nav>
+                <div style="height:50px">
+                </div>
 EOT;
          
    }
 ?>
-    </body>
