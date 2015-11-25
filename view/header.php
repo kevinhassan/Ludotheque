@@ -5,7 +5,10 @@
         <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="js/jquery.dataTables.min.js">
         <link rel="icon" type="image/png" href="./favicon.ico" />
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <title>Ludothèque</title>
     </head>
     <body>
