@@ -24,6 +24,7 @@ EOT;
 
 if(isset($_SESSION['login'])){
     echo <<<EOT
+
 <div>
     <h1>Liste des jeux :</h1>
 <div class="containt-Jeux">

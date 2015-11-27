@@ -21,12 +21,12 @@
                 <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container-fluid">
                       <div class="navbar-header">
-                        <a class="navbar-brand" href="?action=liste">Ludothèque</a>
+                        <a class="navbar-brand" href="?action=accueil">Ludothèque</a>
                       </div>
                       <div>
                         <ul class="nav navbar-nav">
-                          <li class="active"><a href="">Home</a></li>
-                          <li><a href="#">Page 1</a></li>
+                          <li class="active"><a href="?action=accueil">Accueil</a></li>
+                          <li><a href="?action=liste">Jeux</a></li>
                           <li><a href="#">Page 2</a></li>
                           <li><a href="#">Page 3</a></li>
                         </ul>

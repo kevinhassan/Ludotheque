@@ -10,7 +10,7 @@ switch ($action) {
      default:
 
     case "accueil":
-        $view='LoginUtilisateur';
+        $view='AccueilUtilisateur';
         $pagetitle='Accueil';
         break;
     
@@ -33,8 +33,7 @@ switch ($action) {
         $_SESSION['admin'] = $admin;
             // Chargement de la vue
         $pagetitle='Accueil';
-        $tab_jeux = ModelJeux::selectAll();
-        $view='ListJeux';
+        $view='AccueilUtilisateur';
         break;
         
         case "disconnect":
@@ -48,11 +47,6 @@ switch ($action) {
         $view = "createUtilisateur";
         break;
     case "liste":
-        if(is_null(myGet('page'))){
-            $page=1;
-        }else{
-            $page=myGet('page');
-        }
        $pagetitle='Accueil';
        $tab_jeux = ModelJeux::selectAll();
        $view='ListJeux';
