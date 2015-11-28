@@ -1,6 +1,6 @@
 <?php
 echo<<<EOT
-    <footer class="footer-distributed-fixed">
+    <footer class="footer-distributed">
 			<div class="footer-left">
 
 				<h3>Company<span>logo</span></h3>
