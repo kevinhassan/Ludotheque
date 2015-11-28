@@ -35,7 +35,6 @@ switch ($controller) {
         break;
     case "jeux":
         require_once"ControllerJeux.php";
-        break;
-    
+        break;    
 }
 ?>

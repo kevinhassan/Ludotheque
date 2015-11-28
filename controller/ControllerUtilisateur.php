@@ -36,15 +36,19 @@ switch ($action) {
         $view='AccueilUtilisateur';
         break;
         
-        case "disconnect":
+    case "disconnect":
         session_unset();
         session_destroy();
         $view="LoginUtilisateur";
         $pagetitle = 'Accueil';
         break;
-    case "create":
+    case "createUser":
         $pagetitle = "Création d'un utilisateur";
         $view = "createUtilisateur";
+        break;
+    case "administration":
+        $pagetitle = "Administration";
+        $view = "Admin";
         break;
     case "liste":
        $pagetitle='Accueil';
@@ -87,7 +91,7 @@ switch ($action) {
         
         ModelUtilisateur::insert($data);        
         // Chargement de la vue
-        $view = "LoginUtilisateur";
+        $view = "AccueilUtilisateur";
         $pagetitle = "Accueil";
         break;
     
