@@ -87,6 +87,10 @@ echo<<<EOT
                                                 <input type="text" name="ville" class="form-control" id="ville">
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                             <label for="id_loueur" class="col-sm-3 control-label">Admin ? </label> :
+                                                <input type="checkbox" value="true" name="admin" id="admin"/>
+                                        </div>
                                         <div class="pull-right">
 	                                        <input type="hidden" name="action" value="save" />
 	                                        <input type="hidden" name="controller" value="utilisateur" /> 
