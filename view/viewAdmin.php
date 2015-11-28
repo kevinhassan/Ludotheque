@@ -8,6 +8,8 @@ echo <<< EOT
                 </div>
             </div>
 </div>
-
 EOT;
+/*
+ * Il reste à finir le visuel avec un contenant pour l'ensemble des liens
+ */
 ?>

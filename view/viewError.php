@@ -28,5 +28,8 @@ EOT;
         </body>
     </html>
 EOT;
+    /*
+     * Pas très fonctionnelle
+     */
 ?>
 

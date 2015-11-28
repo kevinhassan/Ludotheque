@@ -35,24 +35,27 @@ switch ($action) {
         $pagetitle='Accueil';
         $view='AccueilUtilisateur';
         break;
-       
-    case "error":
-        $view = "error";
-        $pagetitle = "Erreur";
-        break;
     case "disconnect":
         session_unset();
         session_destroy();
         $view="LoginUtilisateur";
         $pagetitle = 'Accueil';
+        break;   
+    case "error":
+        $view = "error";
+        $pagetitle = "Erreur";
+        break;
+    case "administration":
+        $view = "Admin";
+        $pagetitle = "Administration";
         break;
     case "createUser":
         $view = "createUtilisateur";
         $pagetitle = "Création d'un utilisateur";
         break;
-    case "administration":
-        $view = "Admin";
-        $pagetitle = "Administration";
+    case "modifyUser":
+        $view = "modifyUtilisateur";
+        $pagetitle = "Modifier un utilisateur";
         break;
     case "liste":
        $pagetitle='Accueil';
@@ -67,7 +70,6 @@ switch ($action) {
         $tab_jeux = ModelJeux::search($data);
         $view = 'ListJeux';
         break;
-    
     case "save":
         if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
             $view = "error";

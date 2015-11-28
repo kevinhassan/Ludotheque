@@ -24,10 +24,10 @@
                       </div>
                       <div>
                         <ul class="nav navbar-nav">
-                          <li class="active"><a href="?action=accueil">Accueil</a></li>
+                          <li><a href="?action=accueil">Accueil</a></li>
                           <li><a href="?action=liste">Jeux</a></li>
-                          <li><a href="#">Page 2</a></li>
-                          <li><a href="#">Page 3</a></li>
+                          <li><a href="#">Mes réservations</a></li>
+                          <li><a href="#">Contact</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 EOT;
@@ -49,6 +49,9 @@ EOT;
                 </nav>
          <div class="container">
 EOT;
-         
+         /*
+          * Probleme en cas de diminution de la largeur de la page 
+          * =>chevauchement du nav
+          */
    }
 ?>
