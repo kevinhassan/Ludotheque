@@ -17,7 +17,7 @@
     <body>
         <?php if(!empty($_SESSION['login'])){
             echo <<< EOT
-                <nav class="navbar navbar-inverse navbar-fixed-top">
+                <nav class="navbar navbar-inverse navbar-top"> <!--Le fixed ne permet pas de travailler en taille réduite--!>
                     <div class="container-fluid">
                       <div class="navbar-header">
                         <a class="navbar-brand" href="?action=accueil">Ludothèque</a>

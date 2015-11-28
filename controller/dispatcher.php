@@ -26,8 +26,6 @@ if (!is_null(myGet('action')))
 else
     $action = "accueil";                //à modifier
 
-
-
 switch ($controller) {
     default:
     case "utilisateur":

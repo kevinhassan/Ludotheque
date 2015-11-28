@@ -13,7 +13,6 @@
                         <div class="error-template">
                             <h1>Oops ! </h1>
 EOT;
-                            echo"<h2>".$messageErreur."</h2>";
     echo <<< EOT
                             <div class="error-details">
                                 Sorry, an error has occured, Requested page not found!

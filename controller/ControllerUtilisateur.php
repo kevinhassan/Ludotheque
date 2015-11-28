@@ -35,7 +35,11 @@ switch ($action) {
         $pagetitle='Accueil';
         $view='AccueilUtilisateur';
         break;
-        
+       
+    case "error":
+        $view = "error";
+        $pagetitle = "Erreur";
+        break;
     case "disconnect":
         session_unset();
         session_destroy();
@@ -43,12 +47,12 @@ switch ($action) {
         $pagetitle = 'Accueil';
         break;
     case "createUser":
-        $pagetitle = "Création d'un utilisateur";
         $view = "createUtilisateur";
+        $pagetitle = "Création d'un utilisateur";
         break;
     case "administration":
-        $pagetitle = "Administration";
         $view = "Admin";
+        $pagetitle = "Administration";
         break;
     case "liste":
        $pagetitle='Accueil';
@@ -93,9 +97,6 @@ switch ($action) {
         // Chargement de la vue
         $view = "AccueilUtilisateur";
         $pagetitle = "Accueil";
-        break;
-    
-
-        
+        break;   
 }
 require VIEW_PATH . "view.php";

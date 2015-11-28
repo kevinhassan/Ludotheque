@@ -3,8 +3,7 @@ body{
     background-color:#346488;
     font-family: 'Open Sans';
     font-weight: 300;
-    color:black;
-    margin-top:10px;
+    color:black;    
 }
 .navbar-default .navbar-nav > li > a {
   color: black;
@@ -19,7 +18,7 @@ body{
   background-color:white;
 }
 .main {
-    background: url(./image/logo.png) right top no-repeat;
+    background: url(../image/logo.png) right top no-repeat;
     background-size: contain;
     padding: 80px 20px 20px;
     margin-top: 120px;
