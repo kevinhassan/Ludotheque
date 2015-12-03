@@ -31,7 +31,7 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="sexe" class="col-sm-3 control-label" >Sexe :</label>
                             <div class="col-sm-8">
-                                <select class="form-control" >
+                                <select class="form-control" name=id_sex>
                                     <option>Masculin</option>
                                     <option>Feminin</option>
                                 </select>
@@ -40,19 +40,19 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Nom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" id="name">
+                                <input type="text" class="form-control" name="name" id="id_name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="col-sm-3 control-label">Prenom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="prenom" id="prenom">
+                                <input type="text" class="form-control" name="nickname" id="id_prenom">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mail" class="col-sm-3 control-label">Email :</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" name="user_email">
+                                <input type="email" class="form-control" name="email" id="id_email">
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,36 +64,36 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="mobile" class="col-sm-3 control-label">Mobile :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="mobile" id="mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="adresse" class="col-sm-3 control-label">Adresse :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="adresse" id="adresse">
+                                <input type="text" class="form-control" name="address" id="id_adress">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cp" class="col-sm-3 control-label">Code Postal :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="cp" id="cp">
+                                <input type="text" class="form-control" name="cp" id="id_cp">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ville" class="col-sm-3 control-label">Ville :</label>
                             <div class="col-sm-8">
-                                <input type="text" name="ville" class="form-control" id="ville">
+                                <input type="text" name="city" class="form-control" id="id_city">
                             </div>
                         </div>
                         <div class="form-group">
                              <label for="id_loueur" class="col-sm-3 control-label">Admin ? </label> :
-                                <input type="checkbox" value="true" name="admin" id="admin"/>
+                                <input type="checkbox" value="true" name="admin" id="id_admin"/>
                             </div>
                         </div>
                         <div class="pull-right">
                             <input type="hidden" name="action" value="save" />
                             <input type="hidden" name="controller" value="utilisateur" /> 
-                            <button class="btn btn-success btn btn-success" id="submit" type="submit" value="Confirmation">Confirmation</button>
+                            <button class="btn btn-success btn btn-success" type="submit" value="Confirmation">Confirmation</button>
                         </div>
             	    </div>
                 </div>
@@ -102,4 +102,5 @@ echo<<<EOT
     </div>
 </div>
 EOT;
+//Problème au niveau des passages des paramètres qui deviennent visible (même le mot de passe)
 ?>

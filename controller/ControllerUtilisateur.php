@@ -57,6 +57,10 @@ switch ($action) {
         $view = "modifyUtilisateur";
         $pagetitle = "Modifier un utilisateur";
         break;
+    case "addGame":
+        $view = "addGame";
+        $pagetitle = "Ajouter un jeux";
+        break;
     case "liste":
        $pagetitle='Accueil';
        $tab_jeux = ModelJeux::selectAll();
@@ -93,6 +97,15 @@ switch ($action) {
             "username" => myGet("username"),
             "password" => $mot_passe_crypte,
             "admin" => $admin,
+            "sexUser" => myGet("sex"),
+            "nameUser" => myGet("name"),
+            "nicknameUser" => myGet("nickname"),   
+            "emailUser" => myGet("email"),
+            "telUser" => myGet("tel"), 
+            "mobileUser" => myGet("mobile"),
+            "addressUser" => myGet("address"),  
+            "cpUser" => myGet("cp"),
+            "cityUser" => myGet("city"),  
         );
         
         ModelUtilisateur::insert($data);        

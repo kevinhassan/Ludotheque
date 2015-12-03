@@ -9,44 +9,9 @@ echo<<<EOT
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="id_login" class="col-sm-3 control-label">Login :</label> 
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="username" id="id_login"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="id_mdp" class="col-sm-3 control-label">Mot de passe :</label>
                             <div class="col-sm-8">
                                 <input type="password" class="form-control" name="password" id="id_mdp"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_confmdp" class="col-sm-3 control-label">Confirmation mot de passe :</label>
-                            <div class="col-sm-8">
-                                <input type="password" class="form-control" name="confpassword" id="id_confmdp"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="sexe" class="col-sm-3 control-label" >Sexe :</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" >
-                                    <option>Masculin</option>
-                                    <option>Feminin</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nom" class="col-sm-3 control-label">Nom :</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" id="name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="prenom" class="col-sm-3 control-label">Prenom :</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="prenom" id="prenom">
                             </div>
                         </div>
                         <div class="form-group">
@@ -86,9 +51,8 @@ echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
-                             <label for="id_loueur" class="col-sm-3 control-label">Admin ? </label> :
-                                <input type="checkbox" value="true" name="admin" id="admin"/>
-                            </div>
+                            <label for="id_loueur" class="col-sm-3 control-label">Admin ? </label> :
+                            <input type="checkbox" value="true" name="admin" id="admin"/>
                         </div>
                         <div class="pull-right">
                             <input type="hidden" name="action" value="save" />
@@ -112,6 +76,11 @@ EOT;
  * de l'user
  * 
  * Sinon une liste à la manière des jeux (pour remplacer le menu combo sur le login
+ */
+
+/*
+ * Faire un update sur BDD des infos saisies
+ * 
  */
 ?>
 
