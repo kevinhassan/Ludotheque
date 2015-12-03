@@ -81,3 +81,6 @@ input.form-control , input[type="submit"] , .btn {
 .container{
     margin-top:50px;//Eviter que la nav chevauche le contenant
 }
+a .img-circle:hover{
+    opacity:0.8;
+}
