@@ -7,11 +7,7 @@ body{
 }
 html, body {height: 100%; min-height: 100%}
  
-#main {
-    overflow:auto;
-    padding-bottom: 150px
-}
- 
+
 #footer {
     position: relative;
     clear:both;
@@ -93,6 +89,8 @@ input.form-control , input[type="submit"] , .btn {
 }
 .container{
     margin-top:50px;//Eviter que la nav chevauche le contenant
+    overflow:auto;
+    padding-bottom: 150px
 }
 a .img-circle:hover{
     opacity:0.8;
