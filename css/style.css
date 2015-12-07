@@ -5,6 +5,19 @@ body{
     font-weight: 300;
     color:black;    
 }
+html, body {height: 100%; min-height: 100%}
+ 
+#main {
+    overflow:auto;
+    padding-bottom: 150px
+}
+ 
+#footer {
+    position: relative;
+    clear:both;
+    margin-top: -150px;
+    height: 150px
+}
 .navbar-default .navbar-nav > li > a {
   color: black;
 }

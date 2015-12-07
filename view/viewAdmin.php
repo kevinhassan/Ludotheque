@@ -1,4 +1,9 @@
 <?php
+            if(!Session::is_admin()){
+                echo <<< EOT
+                        Vous n'avez pas accès à cette page du site
+EOT;
+            }else{
 echo <<< EOT
             <div class="row">
                 <div class="col-xs-12">
@@ -9,6 +14,7 @@ echo <<< EOT
             </div>
 </div>
 EOT;
+            }
 /*
  * Il reste à finir le visuel avec un contenant pour l'ensemble des liens
  */

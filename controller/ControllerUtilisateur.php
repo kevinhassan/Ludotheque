@@ -7,8 +7,11 @@ require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
-     default:
-
+    default:
+        $view='AccueilUtilisateur';
+        $pagetitle='Accueil';
+        break;
+    
     case "accueil":
         $view='AccueilUtilisateur';
         $pagetitle='Accueil';
