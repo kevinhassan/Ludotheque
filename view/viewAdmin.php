@@ -5,14 +5,16 @@
 EOT;
             }else{
 echo <<< EOT
-            <div class="row">
-                <div class="col-xs-12">
+
+                <div class="bouton col-lg-4">
                     <p><a href="?action=createUser" title="Créer un utilisateur">Créer utilisateur</a></p>
+                </div><div class="bouton col-lg-4">
                     <p><a href="?action=modifyUser" title="Modifier un utilisateur">Modifier Utilisateur</a></p>
+                </div><div class="bouton col-lg-4">
                     <p><a href="?action=addGame" title="Ajouter un jeux">Ajouter jeux</a></p>                    
                 </div>
-            </div>
 </div>
+                
 EOT;
             }
 /*

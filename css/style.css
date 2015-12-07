@@ -85,7 +85,18 @@ input.form-control , input[type="submit"] , .btn {
         width:25%;
         color:white;
 }
-.lienPages{
+.bouton a {
+display:block;
+width:150px;
+line-height:50px;
+text-align:center;
+vertical-align:middle;
+background:url(../image/boutonnoir.png) no-repeat;
+color:white;
+text-decoration:none;
+}
+.bouton a:hover {
+background:url(../image/boutonnoir2.png) no-repeat;
 }
 .container{
     margin-top:50px;//Eviter que la nav chevauche le contenant
@@ -102,3 +113,4 @@ a .img-circle:hover{
 .col-lg-4 h2{
     font-weight: bold;
 }
+

@@ -3,8 +3,9 @@ if(isset($_SESSION['login'])){
     echo <<<EOT
     <div class="text-center" style="margin-top: 15%;">
       <div id="index">
-      <div class="style row-img">
-        <div class="col-lg-4">
+
+      <div class="row-img ">
+        <div class="col-lg-4 ">
             <a title="Afficher la liste des jeux" href="?action=liste" role="button"><img class="img-circle" src="./image/jeux.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
           <h2>Jeux</h2>
           <p><a title="Afficher la liste des jeux" href="?action=liste" role="button">Voir »</a></p>
@@ -40,6 +41,7 @@ else{
             <title>Accueil</title>
         </head>
         <body>
+    
              <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
