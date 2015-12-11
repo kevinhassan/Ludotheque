@@ -3,7 +3,7 @@ echo<<<EOT
     <footer class="footer-distributed footer">
 			<div class="footer-left">
 
-				<h3>Company<span>logo</span></h3>
+				<h3>Homo<span>ludens</span></h3>
 
 				<p class="footer-links">
 					<a href="?action=accueil">Accueil</a>
@@ -15,24 +15,24 @@ echo<<<EOT
 					<a href="#">Contact</a>
 				</p>
 
-				<p class="footer-company-name">Company Name &copy; 2015</p>
+				<p class="footer-company-name">Homoludens &copy; 2015</p>
 			</div>
 
 			<div class="footer-center">
 
 				<div>
 					<i class="fa fa-map-marker"></i>
-					<p><span>Ludothèque</span> Montpellier, France</p>
+					<p><span>Homoludens associés</span> Plaissan, France</p>
 				</div>
 
 				<div>
 					<i class="fa fa-phone"></i>
-					<p>04 67 55 21 45</p>
+					<p>09.82.51.40.31</p>
 				</div>
 
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:support@company.com">support@ludotheque.com</a></p>
+					<p><a href="mailto:contact@homoludensassocies.fr">contact@homoludensassocies.fr</a></p>
 				</div>
 
 			</div>
@@ -46,7 +46,7 @@ echo<<<EOT
 
 				<div class="footer-icons">
 
-					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="https://www.facebook.com/Association-Homo-Ludens-Associ%C3%A9s-551661738228967/"><i class="fa fa-facebook"></i></a>
 					<a href="#"><i class="fa fa-twitter"></i></a>
 					<a href="#"><i class="fa fa-linkedin"></i></a>
 				</div>

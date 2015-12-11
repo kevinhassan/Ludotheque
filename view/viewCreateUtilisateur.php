@@ -5,7 +5,7 @@ echo<<<EOT
             <div class='row' style="text-align : center;">
                 <h1>Inscrire un utilisateur</h1>
             </div>
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method="post" action=".">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">

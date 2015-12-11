@@ -6,12 +6,12 @@ EOT;
             }else{
 echo <<< EOT
 
-                <div class="bouton col-lg-4">
-                    <p><a href="?action=createUser" title="Créer un utilisateur">Créer utilisateur</a></p>
-                </div><div class="bouton col-lg-4">
-                    <p><a href="?action=modifyUser" title="Modifier un utilisateur">Modifier Utilisateur</a></p>
-                </div><div class="bouton col-lg-4">
-                    <p><a href="?action=addGame" title="Ajouter un jeux">Ajouter jeux</a></p>                    
+                <div class="boutonrotate">
+                <ul>
+  <li><a href="?action=createUser" class="round red">Inscrire Utilisateur<span class="round">Ici, vous pouvez ajouter un nouvel utilisateur.</span></a></li>
+  <li><a href="?action=modifyUser" class="round red">Modifier Utilisateur<span class="round">Ici, vous pouvez modifier un utilisateur. </span></a></li>
+	<li><a href="?action=addGame" class="round red">Ajouter jeux<span class="round">Ici, vous pouvez ajouter un nouveau jeux.</span></a></li>
+</ul>
                 </div>
 </div>
                 
