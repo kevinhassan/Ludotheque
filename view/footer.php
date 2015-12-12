@@ -54,7 +54,4 @@ echo<<<EOT
 		</footer>
 	</body>
 EOT;
-/*
- * La completer et la bloquer en bas
- */
 ?>
