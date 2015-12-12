@@ -64,6 +64,10 @@ switch ($action) {
         $view = "addGame";
         $pagetitle = "Ajouter un jeux";
         break;
+    case "informations":
+        $view = "informations";
+        $pagetitle = "A Propos";
+        break;      
     case "liste":
        $pagetitle='Accueil';
        $tab_jeux = ModelJeux::selectAll();

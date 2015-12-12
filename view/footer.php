@@ -11,8 +11,7 @@ echo<<<EOT
 					<a href="?action=liste">Jeux</a>
 					·
 					<a href="#">Mes réservations</a>·
-					·
-					<a href="#">Contact</a>
+					<a href="?action=informations">A propos</a>
 				</p>
 
 				<p class="footer-company-name">Homoludens &copy; 2015</p>
@@ -21,7 +20,7 @@ echo<<<EOT
 			<div class="footer-center">
 
 				<div>
-					<i class="fa fa-map-marker"></i>
+					<a href="https://www.google.com/maps/d/embed?mid=zhRUSu3O4t2A.kzY6DWXSWDHw" title="localiser"><i class="fa fa-map-marker"></i></a>
 					<p><span>Homoludens associés</span> Plaissan, France</p>
 				</div>
 
@@ -52,6 +51,7 @@ echo<<<EOT
 				</div>
 			</div>
 		</footer>
-	</body>
+        </body>
+    </html>
 EOT;
 ?>
