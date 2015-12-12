@@ -242,3 +242,7 @@ a .img-circle:hover{
         select, input{ //Eviter d'écrire en blanc sur les fonds blancs
             color: black;
         }
+        .main h1{
+            color: black;
+        }
+        

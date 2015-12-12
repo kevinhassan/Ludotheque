@@ -40,7 +40,9 @@ echo<<<EOT
 
 				<p class="footer-company-about">
 					<span>A propos de la ludothèque</span>
-					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+					Notre association offre la possibilité de jouer dans plusieurs communes du Pays de l'Hérault.
+                                        Tous les joueurs peuvent nous rejoindre, à partir de 6 ans.
+                                        La réservation des jeux n'est possible que pour les adhérants de l'association.
 				</p>
 
 				<div class="footer-icons">
