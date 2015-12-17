@@ -11,9 +11,9 @@ if(isset($_SESSION['login'])){
           <p><a title="Afficher la liste des jeux" href="?action=liste" role="button">Voir »</a></p>
         </div>
         <div class="col-lg-4">
-            <a title="Afficher mes informations personnelles" href="/match" role="button"><img class="img-circle" src="./image/informations.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
+            <a title="Afficher mes informations personnelles" href="?action=myProfile" role="button"><img class="img-circle" src="./image/informations.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
           <h2>Informations Personnelles</h2>
-          <p><a title="Afficher mes informations personnelles" href="/match" role="button">Voir »</a></p>
+          <p><a title="Afficher mes informations personnelles" href="?action=myProfile" role="button">Voir »</a></p>
         </div>
 EOT;
 if(Session::is_admin()){

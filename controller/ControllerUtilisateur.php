@@ -120,5 +120,13 @@ switch ($action) {
         $view = "AccueilUtilisateur";
         $pagetitle = "Accueil";
         break;   
+    case "myProfile":
+        $data = array(
+            "username" => $_SESSION['login'],
+        );
+        $tab_u=  ModelUtilisateur::selectWhere($data);
+        $view = "MyProfile";
+        $pagetitle = "Mon profil";
+        break;
 }
 require VIEW_PATH . "view.php";
