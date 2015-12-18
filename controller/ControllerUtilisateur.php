@@ -128,5 +128,13 @@ switch ($action) {
         $view = "MyProfile";
         $pagetitle = "Mon profil";
         break;
+    case "infoJeux":
+        $data=array(
+            "gameName" => myGet('jeux'),
+        );
+        $tab_j= ModelJeux::selectWhere($data);
+        $view = "InfoJeux";
+        $pagetitle= myGet('jeux');
+        break;
 }
 require VIEW_PATH . "view.php";

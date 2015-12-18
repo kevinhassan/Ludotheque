@@ -85,6 +85,9 @@ input.form-control , input[type="submit"] , .btn {
         width:25%;
         color:white;
 }
+.tableJeux > tbody > tr > td > a{
+    color:white;
+}
 .bouton a {
 display:block;
 width:150px;
