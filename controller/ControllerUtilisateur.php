@@ -104,7 +104,7 @@ switch ($action) {
             "username" => myGet("username"),
             "password" => $mot_passe_crypte,
             "admin" => $admin,
-            "sexUser" => myGet("sex"),
+            "genderUser" => myGet("gender"),
             "nameUser" => myGet("name"),
             "nicknameUser" => myGet("nickname"),   
             "emailUser" => myGet("email"),

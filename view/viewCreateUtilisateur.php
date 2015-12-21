@@ -1,7 +1,7 @@
 <?php
 echo<<<EOT
     <div class="row">
-        <div class="col-lg-12">     
+        <div class="col-lg-12">
             <div class='row' style="text-align : center;">
                 <h1>Inscrire un utilisateur</h1>
             </div>
@@ -9,7 +9,7 @@ echo<<<EOT
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="id_login" class="col-sm-3 control-label">Login :</label> 
+                            <label for="id_login" class="col-sm-3 control-label">Login :</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="username" id="id_login"/>
                             </div>
@@ -29,11 +29,11 @@ echo<<<EOT
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="sexe" class="col-sm-3 control-label" >Sexe :</label>
+                            <label for="gender" class="col-sm-3 control-label">Sexe :</label>
                             <div class="col-sm-8">
-                                <select class="form-control" name=id_sex>
-                                    <option>Masculin</option>
-                                    <option>Feminin</option>
+                                <select name="gender" class="form-control" id="id_gender" required="required"> 
+                                    <option value="Masculin" selected>Masculin</option>
+                                    <option value="Feminin">Feminin</option>
                                 </select>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="prenom" class="col-sm-3 control-label">Prenom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="nickname" id="id_prenom">
+                                <input type="text" class="form-control" name="nickname" id="id_nickname">
                             </div>
                         </div>
                         <div class="form-group">
@@ -92,7 +92,7 @@ echo<<<EOT
                         </div>
                         <div class="pull-right">
                             <input type="hidden" name="action" value="save" />
-                            <input type="hidden" name="controller" value="utilisateur" /> 
+                            <input type="hidden" name="controller" value="utilisateur" />
                             <button class="btn btn-success btn btn-success" type="submit" value="Confirmation">Confirmation</button>
                         </div>
             	    </div>
@@ -102,5 +102,4 @@ echo<<<EOT
     </div>
 </div>
 EOT;
-//Problème au niveau des passages des paramètres qui deviennent visible (même le mot de passe)
 ?>

@@ -48,8 +48,6 @@ echo<<<EOT
 				<div class="footer-icons">
 
 					<a href="https://www.facebook.com/Association-Homo-Ludens-Associ%C3%A9s-551661738228967/"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
 				</div>
 			</div>
 		</footer>
