@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 21 Décembre 2015 à 03:09
+-- Généré le :  Lun 21 Décembre 2015 à 17:28
 -- Version du serveur :  10.1.9-MariaDB
 -- Version de PHP :  5.5.30
 
@@ -495,7 +495,7 @@ CREATE TABLE `utilisateur` (
   `username` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
   `admin` tinyint(1) NOT NULL,
-  `genderUser` varchar(8) DEFAULT NULL,
+  `sexUser` varchar(8) DEFAULT NULL,
   `nameUser` varchar(32) NOT NULL,
   `nicknameUser` varchar(32) NOT NULL,
   `emailUser` varchar(32) NOT NULL,
@@ -510,9 +510,10 @@ CREATE TABLE `utilisateur` (
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`username`, `password`, `admin`, `genderUser`, `nameUser`, `nicknameUser`, `emailUser`, `telUser`, `mobileUser`, `addressUser`, `cpUser`, `cityUser`) VALUES
+INSERT INTO `utilisateur` (`username`, `password`, `admin`, `sexUser`, `nameUser`, `nicknameUser`, `emailUser`, `telUser`, `mobileUser`, `addressUser`, `cpUser`, `cityUser`) VALUES
 ('admin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 1, NULL, '', '', '', '0', '0', '', '0', ''),
-('nonAdmin', 'eda7148f3e590b366932cbfc797f2431455c4b28053599711655949f5fe95542', 0, 'Masculin', '', '', '', '', '', '', '', '');
+('kevin.hassan', 'dae40eac183b358c8cd69a091749a491a5512474a9dd109c4eff7a01e7830127', 1, 'Homme', 'Hassan', 'Kévin', 'kevin.hassan13400@gmail.com', '0442710895', '0781415911', '1409 rue du Professeur Joseph Anglada', '34090', 'Montpellier'),
+('nonAdmin', 'eda7148f3e590b366932cbfc797f2431455c4b28053599711655949f5fe95542', 0, 'Homme', '', '', '', '', '', '', '', '');
 
 --
 -- Index pour les tables exportées

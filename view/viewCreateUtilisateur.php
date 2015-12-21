@@ -5,7 +5,7 @@ echo<<<EOT
             <div class='row' style="text-align : center;">
                 <h1>Inscrire un utilisateur</h1>
             </div>
-            <form class="form-horizontal" role="form" method="post" action=".">
+            <form class="form-horizontal" role="form" method="post" action="." onsubmit="return checkForm();">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -29,11 +29,11 @@ echo<<<EOT
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="gender" class="col-sm-3 control-label">Sexe :</label>
+                            <label for="sex" class="col-sm-3 control-label">Sexe :</label>
                             <div class="col-sm-8">
-                                <select name="gender" class="form-control" id="id_gender" required="required"> 
-                                    <option value="Masculin" selected>Masculin</option>
-                                    <option value="Feminin">Feminin</option>
+                                <select name="sex" class="form-control" id="id_sex" required="required">
+                                    <option value="Homme" selected>Homme</option>
+                                    <option value="Femme">Femme</option>
                                 </select>
                             </div>
                         </div>
@@ -97,9 +97,10 @@ echo<<<EOT
                         </div>
             	    </div>
                 </div>
-        	</form>
+            </form>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="js/checkForms.js"></script>
 EOT;
 ?>
