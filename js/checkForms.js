@@ -1,11 +1,11 @@
 function checkForm(){
     var estValide = true;
     var inputsForm = $("form .form-group input[type!='checkbox']")
-    inputsForm.css("background-color","white");
+    inputsForm.css("background-color","white").css("color","black");
     var i = 0;
     inputsForm.each(function(){             //On parcourt tous les formulaires
         if($(this).val() == ""){
-            $(this).css("background-color","red");
+            $(this).css("background-color","red").css("color","white");
             estValide = false;
             i++;                            //Nombre de inputs vides 
         }     
@@ -21,6 +21,5 @@ function checkForm(){
             estValide = false;
         } 
     }
- 
-    return estValide;
+    return estValide; // Si false le formulaire ne sera pas commit
 }

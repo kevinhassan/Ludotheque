@@ -99,9 +99,9 @@ switch ($action) {
         }
         $mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
         $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
-        
+        $username = myGet("nickname").".".myGet("name");    //L'utilisateur aura comme identifiant "prenom.nom"
         $data = array(
-            "username" => myGet("username"),
+            "username" => $username,
             "password" => $mot_passe_crypte,
             "admin" => $admin,
             "sexUser" => myGet("sex"),

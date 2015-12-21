@@ -8,12 +8,12 @@ echo<<<EOT
             <form class="form-horizontal" role="form" method="post" action="." onsubmit="return checkForm();">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="id_login" class="col-sm-3 control-label">Login :</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="username" id="id_login"/>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="id_mdp" class="col-sm-3 control-label">Mot de passe :</label>
                             <div class="col-sm-8">
