@@ -101,6 +101,5 @@ echo<<<EOT
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/checkForms.js"></script>
 EOT;
 ?>

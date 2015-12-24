@@ -41,7 +41,7 @@ switch ($action) {
     case "disconnect":
         session_unset();
         session_destroy();
-        $view="LoginUtilisateur";
+        $view="AccueilUtilisateur";
         $pagetitle = 'Accueil';
         break;   
     case "error":

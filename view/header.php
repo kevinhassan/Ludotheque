@@ -12,6 +12,7 @@
      	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/checkForms.js"></script>
         <title>Ludothèque</title>
     </head>
     <body>
@@ -49,9 +50,5 @@ EOT;
                 </nav>
          <div class="container">
 EOT;
-         /*
-          * Probleme en cas de diminution de la largeur de la page 
-          * =>chevauchement du nav
-          */
-   }
+        }
 ?>
