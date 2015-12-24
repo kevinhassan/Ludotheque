@@ -102,9 +102,9 @@ text-decoration:none;
 background:url(../image/boutonnoir2.png) no-repeat;
 }
 .container{
-    margin-top:50px;//Eviter que la nav chevauche le contenant
+    margin-top:50px;/*Eviter que la nav chevauche le contenant*/
     overflow:auto;
-    padding-bottom: 150px
+    padding-bottom: 150px;
 }
 a .img-circle:hover{
     opacity:0.8;
@@ -242,7 +242,7 @@ a .img-circle:hover{
 		background: rgba(161,145,0,.7);	
 
 	}
-        select, input{ //Eviter d'écrire en blanc sur les fonds blancs
+        select, input{ /*Eviter d'écrire en blanc sur les fonds blancs*/
             color: black;
         }
         .main h1{
