@@ -1,6 +1,7 @@
 <?php
 if(isset($_SESSION['login'])){
     echo <<<EOT
+    <div class="container">
     <div class="text-center" style="margin-top: 15%;">
       <div id="index">
 

@@ -1,6 +1,6 @@
 <?php
 echo<<<EOT
-    <div>
+    <div class="container">
       <div id="index">
 	<h1>Ludothèque et antennes</h1>
         <p style="margin-top:2%">L'idée du projet Ludo Pays d'Hérault est de créer des temps de jeux dans les communes appartenant au Pays Coeur d'Hérault. 
@@ -124,7 +124,7 @@ echo<<<EOT
                      </tr>
                  </tbody>
              </table>
-         </div>
+        </div>
 
         <h3>Localisation : <h3>
         <iframe src="https://www.google.com/maps/d/embed?mid=zhRUSu3O4t2A.kzY6DWXSWDHw" height=500px width=100%></iframe>

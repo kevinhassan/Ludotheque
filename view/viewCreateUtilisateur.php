@@ -1,5 +1,6 @@
 <?php
 echo<<<EOT
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class='row' style="text-align : center;">
