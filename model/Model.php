@@ -98,6 +98,24 @@ class Model {
             die("Erreur lors de la mise à jour dans la BDD " . static::$table);
         }
     }
+        public static function delete($data) {
+        try {
+            $table = static::$table;
+            $primary = static::$primary_index;
+            foreach ($data as $key => $value)
+                $update .= "$key=:$key, ";
+            $update = rtrim($update, ', ');
+            $sql = "SELECT $table SET $update WHERE $primary=:$primary";           
+            
+            // Preparation de la requete
+            $req = self::$pdo->prepare($sql);
+            // execution de la requete
+            return $req->execute($data);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Erreur lors de la mise à jour dans la BDD " . static::$table);
+        }
+    }
 }
 
 // On initiliase la connexion $pdo un fois pour toute

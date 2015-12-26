@@ -41,8 +41,8 @@ switch ($action) {
     case "disconnect":
         session_unset();
         session_destroy();
-        $view="AccueilUtilisateur";
-        $pagetitle = 'Accueil';
+        $view="LoginUtilisateur";
+        $pagetitle = 'Ludothèque';
         break;   
     case "error":
         $view = "error";
@@ -54,7 +54,7 @@ switch ($action) {
         break;
     case "createUser":
         $view = "createUtilisateur";
-        $pagetitle = "Création d'un utilisateur";
+        $pagetitle = "Ajouter un utilisateur";
         break;
     case "modifyUser":
         $view = "modifyUtilisateur";
@@ -69,9 +69,9 @@ switch ($action) {
         $pagetitle = "A Propos";
         break;      
     case "liste":
-       $pagetitle='Accueil';
        $tab_jeux = ModelJeux::selectAll();
        $view='ListJeux';
+       $pagetitle='Liste des jeux';
        break;
     case "search":
         $data = array(

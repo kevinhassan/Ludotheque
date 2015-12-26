@@ -13,7 +13,7 @@
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/checkForms.js"></script>
-        <title>Ludothèque</title>
+        <?php echo "<title>".$pagetitle."</title>" ?>
     </head>
     <body>
         <?php if(!empty($_SESSION['login'])){
