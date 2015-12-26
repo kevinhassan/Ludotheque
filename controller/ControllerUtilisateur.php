@@ -56,9 +56,23 @@ switch ($action) {
         $view = "createUtilisateur";
         $pagetitle = "Ajouter un utilisateur";
         break;
+    case "listUser":
+        $view = "listUtilisateur";
+        $pagetitle = "Liste des utilisateurs";
+        $tab_user = ModelUtilisateur::selectAll();
+        break;
     case "modifyUser":
-        $view = "modifyUtilisateur";
+        $view = "ModifyUser";
         $pagetitle = "Modifier un utilisateur";
+        $data=array(
+            "username" => myGet('user'),
+        );
+        $tab_u= ModelUtilisateur::selectWhere($data);
+        break;
+    case "banUser":
+        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        $user = myGet("user");
+        ModelUtilisateur::banUser($user); 
         break;
     case "addGame":
         $view = "addGame";
@@ -68,7 +82,7 @@ switch ($action) {
         $view = "informations";
         $pagetitle = "A Propos";
         break;      
-    case "liste":
+    case "listJeux":
        $tab_jeux = ModelJeux::selectAll();
        $view='ListJeux';
        $pagetitle='Liste des jeux';
@@ -82,7 +96,7 @@ switch ($action) {
         $view = 'ListJeux';
         break;
     case "save":
-        if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
+        /*if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
             $view = "error";
             $pagetitle = "Erreur";
             break;
@@ -91,18 +105,20 @@ switch ($action) {
             $view = "error";
             $pagetitle = "Erreur";
             break;
-        }
+        }*/
         if(!is_null(myGet('admin'))){
             $admin=true;
         }else{
             $admin=false;
         }
-        $mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
+        //$mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();        
+        $mot_passe_en_clair = myGet("nickname").".".myGet("name");//mot de passe par default
         $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
         $username = myGet("nickname").".".myGet("name");    //L'utilisateur aura comme identifiant "prenom.nom"
         $data = array(
             "username" => $username,
-            "password" => $mot_passe_crypte,
+            //"password" => $mot_passe_crypte,
+            "password" => $mot_passe_en_clair,
             "admin" => $admin,
             "sexUser" => myGet("sex"),
             "nameUser" => myGet("name"),

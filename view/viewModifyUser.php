@@ -1,110 +1,129 @@
 <?php
+$user=$tab_u[0];
 echo<<<EOT
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class='row' style="text-align : center;">
-                <h1>Inscrire un utilisateur</h1>
-            </div>
+EOT;
+echo ("<h1>Modifier l'utilisateur : <span style='color:red'>".$user->username."</span></h1>");
+echo<<<EOT
+        </div>
             <form class="form-horizontal" role="form" method="post" action="." onsubmit="return checkForm();">
                 <div class="row">
-                    <!--<div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="id_login" class="col-sm-3 control-label">Login :</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="username" id="id_login"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_mdp" class="col-sm-3 control-label">Mot de passe :</label>
-                            <div class="col-sm-8">
-                                <input type="password" class="form-control" name="password" id="id_mdp"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_confmdp" class="col-sm-3 control-label">Confirmation mot de passe :</label>
-                            <div class="col-sm-8">
-                                <input type="password" class="form-control" name="confpassword" id="id_confmdp"/>
-                            </div>
-                        </div>
-                    </div>-->
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="sex" class="col-sm-3 control-label">Sexe :</label>
                             <div class="col-sm-8">
                                 <select name="sex" class="form-control" id="id_sex" required="required">
-                                    <option value="Homme" selected>Homme</option>
-                                    <option value="Femme">Femme</option>
+EOT;
+                                if($user->sexUser == "Homme"){
+                                    echo '<option value="Homme"selected>Homme</option>';
+                                    echo '<option value="Femme">Femme</option>';
+                                }
+                                else{
+                                    echo '<option value="Homme">Homme</option>';
+                                    echo '<option value="Femme"selected>Femme</option>';
+                                }
+echo<<<EOT
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Nom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" id="id_name">
+EOT;
+                                echo'<input type="text" class="form-control" name="name" id="id_name" value="'. $user->nameUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="col-sm-3 control-label">Prenom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="nickname" id="id_nickname">
-                            </div>
+EOT;
+                                echo'<input type="text" class="form-control" name="nickname" id="id_nickname" value="'.$user->nicknameUser.'">';
+echo<<<EOT
+                                </div>
                         </div>
                         <div class="form-group">
                             <label for="mail" class="col-sm-3 control-label">Email :</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" name="email" id="id_email">
+EOT;
+                                echo'<input type="email" class="form-control" name="email" id="id_email" value="'.$user->emailUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="tel" class="col-sm-3 control-label">T&eacute;l&eacute;phone :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+EOT;
+                                echo'<input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="'.$user->telUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mobile" class="col-sm-3 control-label">Mobile :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+EOT;
+
+                                echo'<input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="'.$user->mobileUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="adresse" class="col-sm-3 control-label">Adresse :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="address" id="id_adress">
+EOT;
+                                 echo'<input type="text" class="form-control" name="address" id="id_adress" value="'.$user->addressUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cp" class="col-sm-3 control-label">Code Postal :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="cp" id="id_cp">
+EOT;
+                                echo'<input type="text" class="form-control" name="cp" id="id_cp" value="'.$user->cpUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ville" class="col-sm-3 control-label">Ville :</label>
                             <div class="col-sm-8">
-                                <input type="text" name="city" class="form-control" id="id_city">
+EOT;
+                                echo'<input type="text" name="city" class="form-control" id="id_city" value="'.$user->cityUser.'">';
+echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">
-                                <input type="checkbox" value="true" name="admin" id="id_admin"/>
+EOT;
+
+                            if($user->admin == 1){
+                                echo'<input type="checkbox" value="true" name="admin" id="id_admin" checked/>';
+                            }
+                            else{
+                                echo'<input type="checkbox" value="true" name="admin" id="id_admin"/>';
+                            }
+echo<<<EOT
                             </div>
                         </div>
                         <div class="pull-right">
                             <input type="hidden" name="action" value="save" />
                             <input type="hidden" name="controller" value="utilisateur" />
-                            <button class="btn btn-success btn btn-success" type="submit" value="Confirmation">Confirmation</button>
-                        </div>
+EOT;
+                            echo'<a href="?action=resetPwd&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
+                            echo'<a href="?action=supprUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
+                            echo'<a href="?action=banUser&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
+echo<<<EOT
+                            <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        </div>
             	    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<div class="alert alert-info">
-  <strong>Info!</strong> Le mot de passe par défault et le nom d'utilisateur sont : "prénom.nom".
 </div>
 EOT;
+
 ?>

@@ -26,8 +26,8 @@
                       <div>
                         <ul class="nav navbar-nav">
                           <li><a href="?action=accueil">Accueil</a></li>
-                          <li><a href="?action=liste">Jeux</a></li>
-                          <li><a href="?action=resa">Mes réservations</a></li>
+                          <li><a href="?action=listJeux">Jeux</a></li>
+                          <li><a href="?action=listResa">Mes réservations</a></li>
                           <li><a href="?action=informations">A Propos</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

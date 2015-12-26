@@ -10,7 +10,7 @@ echo <<< EOT
   <div class="boutonrotate">
     <ul>
         <li><a href="?action=createUser" class="round red">Inscrire Utilisateur<span class="round">Ici, vous pouvez ajouter un nouvel utilisateur.</span></a></li>
-        <li><a href="?action=modifyUser" class="round red">Modifier Utilisateur<span class="round">Ici, vous pouvez modifier un utilisateur. </span></a></li>
+        <li><a href="?action=listUser" class="round red">Modifier Utilisateur<span class="round">Ici, vous pouvez modifier un utilisateur. </span></a></li>
         <li><a href="?action=addGame" class="round red">Ajouter jeux<span class="round">Ici, vous pouvez ajouter un nouveau jeux.</span></a></li>
     </ul>
   </div>
