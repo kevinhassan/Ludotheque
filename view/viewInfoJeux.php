@@ -5,8 +5,6 @@ echo <<< EOT
 <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-
-   
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">$u->gameName</h3>
@@ -46,7 +44,15 @@ echo <<< EOT
                      
                     </tbody>
                   </table>
-                  <a href="#" class="btn btn-primary">Réserver</a>
+                  <a href="?action=resa" class="btn btn-primary">Réserver</a>  
+EOT;
+if(Session::is_admin()){
+echo<<<EOT
+                  <a href="?action=modify" class="btn btn-success">Modifier</a>
+                  <a href="?action=suppr" class="btn btn-danger">Supprimer</a>
+EOT;
+}
+echo<<<EOT
                 </div>
               </div>
             </div>
