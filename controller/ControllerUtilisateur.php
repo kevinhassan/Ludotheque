@@ -109,8 +109,13 @@ switch ($action) {
         
         break;
     case "update":
-        if( $_SESSION['admin']==1){
-                if(!is_null(myGet('admin'))){
+        if (is_null(myGet('user'))) {
+            $view = "error";
+            $pagetitle = "Erreur";
+            break;
+        }
+        if( $_SESSION['admin']==1 || $_SESSION['login']==myGet('user')){
+        if(!is_null(myGet('admin'))){
             $admin=true;
         }else{
             $admin=false;
@@ -130,9 +135,19 @@ switch ($action) {
             "cityUser" => myGet("city"),  
         );
         ModelUtilisateur::update($data);
-        $pagetitle = "Liste des utilisateurs";
-        $tab_user = ModelUtilisateur::selectAll();
-        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        $user=myGet("user");
+        if(!is_null(myGet("profile"))){
+            $data = array(
+                "username" => $_SESSION['login'],
+            );
+             $tab_u=  ModelUtilisateur::selectWhere($data);
+            $view = "MyProfile";
+            $pagetitle = "Mon profil";
+        }else{
+            $pagetitle = "Liste des utilisateurs";
+            $tab_user = ModelUtilisateur::selectAll();
+            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        }
         }else{
             $view="Error";
         }

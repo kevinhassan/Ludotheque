@@ -76,15 +76,19 @@ echo<<<EOT
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
+EOT;
+if($_SESSION['admin']==1){
+echo<<<EOT
+    <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">
 EOT;
-
+                
                             if($user->admin == 1){
                                 echo'<input type="checkbox" value="true" name="admin" id="id_admin" checked/>';
                             }
                             else{
-                                echo'<input type="checkbox" value="true" name="admin" id="id_admin"/>';
+                                  echo'<input type="checkbox" value="true" name="admin" id="id_admin"/>';
+                                }
                             }
 echo<<<EOT
                             </div>
@@ -92,13 +96,19 @@ echo<<<EOT
                         <div class="pull-right">
                             <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="controller" value="utilisateur" />
+                            <input type="hidden" name="user" value="$user->username" />
 EOT;
+                            if(!is_null(myGet("profile"))){
+                                echo '<input type="hidden" name="profile" value="1" /> ';
+                            }
                             echo'<a href="?action=resetPwd&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
+                        if($_SESSION['login']!=$user->username){
                             echo'<a href="?action=supprUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
                            if($user->banUser==0){ echo'<a href="?action=banUser&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
                            }else{
                                echo'<a href="?action=debanUser&user='.$user->username.'"class="btn btn-warning">Débannir</a>';
                            }
+                        }
 echo<<<EOT
                             <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        </div>
             	    </div>

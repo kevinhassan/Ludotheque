@@ -32,6 +32,7 @@ EOT;
 <?php
 
 if(isset($_SESSION['login']) && Session::is_admin()){ //Il faut être admin pour voir la liste des utilisateurs
+
     echo <<<EOT
   <div class="container">
     <h1>Liste des utilisateurs :</h1>
