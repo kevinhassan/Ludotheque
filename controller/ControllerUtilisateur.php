@@ -62,18 +62,83 @@ switch ($action) {
         $tab_user = ModelUtilisateur::selectAll();
         break;
     case "modifyUser":
-        $view = "ModifyUser";
-        $pagetitle = "Modifier un utilisateur";
-        $data=array(
+                $data=array(
             "username" => myGet('user'),
         );
         $tab_u= ModelUtilisateur::selectWhere($data);
+        $view = "ModifyUser";
+        $pagetitle = "Modifier un utilisateur";
         break;
     case "banUser":
+        if( $_SESSION['admin']==1){
+        $data=array(
+            "username" => myGet('user'),
+        );
+       $tab_u= ModelUtilisateur::selectWhere($data);
+       $data = array(
+            "username" => myGet('user'),
+            "banUser"=>1
+        );
+        ModelUtilisateur::update($data);
+                $pagetitle = "Liste des utilisateurs";
+        $tab_user = ModelUtilisateur::selectAll();
         $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
-        $user = myGet("user");
-        ModelUtilisateur::banUser($user); 
+        }else{
+            $view="Error";
+        }
+        
         break;
+        
+    case "debanUser":
+        if( $_SESSION['admin']==1){
+        $data=array(
+            "username" => myGet('user'),
+        );
+       $tab_u= ModelUtilisateur::selectWhere($data);
+       $data = array(
+            "username" => myGet('user'),
+            "banUser"=>0
+        );
+        ModelUtilisateur::update($data);
+                $pagetitle = "Liste des utilisateurs";
+        $tab_user = ModelUtilisateur::selectAll();
+        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        }else{
+            $view="Error";
+        }
+        
+        break;
+    case "update":
+        if( $_SESSION['admin']==1){
+                if(!is_null(myGet('admin'))){
+            $admin=true;
+        }else{
+            $admin=false;
+        }
+        $data = array(
+            "username" => myGet("user"),
+            //"password" => $mot_passe_en_clair,
+            "admin" => $admin,
+            "sexUser" => myGet("sex"),
+            "nameUser" => myGet("name"),
+            "nicknameUser" => myGet("nickname"),   
+            "emailUser" => myGet("email"),
+            "telUser" => myGet("tel"), 
+            "mobileUser" => myGet("mobile"),
+            "addressUser" => myGet("address"),  
+            "cpUser" => myGet("cp"),
+            "cityUser" => myGet("city"),  
+        );
+        ModelUtilisateur::update($data);
+        $pagetitle = "Liste des utilisateurs";
+        $tab_user = ModelUtilisateur::selectAll();
+        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        }else{
+            $view="Error";
+        }
+        
+        break;
+    
     case "addGame":
         $view = "addGame";
         $pagetitle = "Ajouter un jeux";
@@ -117,8 +182,8 @@ switch ($action) {
         $username = myGet("nickname").".".myGet("name");    //L'utilisateur aura comme identifiant "prenom.nom"
         $data = array(
             "username" => $username,
-            //"password" => $mot_passe_crypte,
-            "password" => $mot_passe_en_clair,
+            "password" => $mot_passe_crypte,
+            //"password" => $mot_passe_en_clair,
             "admin" => $admin,
             "sexUser" => myGet("sex"),
             "nameUser" => myGet("name"),

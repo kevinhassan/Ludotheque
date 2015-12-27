@@ -30,17 +30,6 @@ class ModelUtilisateur extends Model {
             die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
         }
     }
-      public static function banUser($username) {
-        try {
-            $sql = "UPDATE " . static::$table." SET banUser=1 WHERE username=".$username;
-            $req = self::$pdo->query($sql);
-            // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
-            return $req->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
-        }
-    }
 }
 /*
  * La fonction ban ne marche pas 

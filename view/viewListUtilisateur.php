@@ -16,7 +16,11 @@ function tabUser($tab_user)
         $cp = $u->cpUser;
         $city = $u->cityUser;
         $ban = $u->banUser;
-
+        if($ban==0){
+            $ban='Autorisé';
+        }  else {
+            $ban='Banni';
+        }
         echo <<< EOT
         <tr><td><a href="?action=modifyUser&user=$username">$username</a></td><td>$sex</td><td>$name</td><td>$nickname</td><td>$email</td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$ban</td></tr>
 </div>
