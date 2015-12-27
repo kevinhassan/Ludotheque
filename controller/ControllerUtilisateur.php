@@ -108,6 +108,20 @@ switch ($action) {
         }
         
         break;
+    case "deleteUser":
+                if( $_SESSION['admin']==1){
+        $data=array(
+            "username" => myGet('user'),
+        );
+        ModelUtilisateur::delete($data);
+        $tab_user = ModelUtilisateur::selectAll();
+        $pagetitle = "Liste des utilisateurs";
+        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        }else{
+            $view="Error";
+        }
+        break;
+        
     case "update":
         if (is_null(myGet('user'))) {
             $view = "error";

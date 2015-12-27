@@ -103,7 +103,7 @@ EOT;
                             }
                             echo'<a href="?action=resetPwd&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
                         if($_SESSION['login']!=$user->username){
-                            echo'<a href="?action=supprUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
+                            echo'<a href="?action=deleteUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
                            if($user->banUser==0){ echo'<a href="?action=banUser&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
                            }else{
                                echo'<a href="?action=debanUser&user='.$user->username.'"class="btn btn-warning">Débannir</a>';

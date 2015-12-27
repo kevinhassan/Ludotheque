@@ -78,6 +78,19 @@ class Model {
         die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
         }
     }
+        public static function delete($data) {
+        try {
+        $table = static::$table;
+        $primary = static::$primary_index;
+        $sql = "DELETE FROM $table WHERE $primary=:$primary";
+            $req = self::$pdo->prepare($sql);
+            // execution de la requete
+            return $req->execute($data);
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+    }
     public static function update($data) {
         try {
             $table = static::$table;
