@@ -7,9 +7,9 @@ if(isset($_SESSION['login'])){
 
       <div class="row-img ">
         <div class="col-lg-4 ">
-            <a title="Afficher la liste des jeux" href="?action=liste" role="button"><img class="img-circle" src="./image/jeux.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
+            <a title="Afficher la liste des jeux" href="?action=listJeux" role="button"><img class="img-circle" src="./image/jeux.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
           <h2>Jeux</h2>
-          <p><a title="Afficher la liste des jeux" href="?action=liste" role="button">Voir »</a></p>
+          <p><a title="Afficher la liste des jeux" href="?action=listJeux" role="button">Voir »</a></p>
         </div>
         <div class="col-lg-4">
             <a title="Afficher mes informations personnelles" href="?action=myProfile" role="button"><img class="img-circle" src="./image/informations.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>

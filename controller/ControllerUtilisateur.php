@@ -91,38 +91,38 @@ switch ($action) {
         
     case "debanUser":
         if( $_SESSION['admin']==1){
-        $data=array(
-            "username" => myGet('user'),
-        );
-       $tab_u= ModelUtilisateur::selectWhere($data);
-       $data = array(
-            "username" => myGet('user'),
-            "banUser"=>0
-        );
-        ModelUtilisateur::update($data);
-                $pagetitle = "Liste des utilisateurs";
-        $tab_user = ModelUtilisateur::selectAll();
-        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+            $data=array(
+                "username" => myGet('user'),
+            );
+           $tab_u= ModelUtilisateur::selectWhere($data);
+           $data = array(
+                "username" => myGet('user'),
+                "banUser"=>0
+            );
+            ModelUtilisateur::update($data);
+            $pagetitle = "Liste des utilisateurs";
+            $tab_user = ModelUtilisateur::selectAll();
+            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }else{
             $view="Error";
         }
         
         break;
     case "deleteUser":
-                if( $_SESSION['admin']==1){
-        $data=array(
-            "username" => myGet('user'),
-        );
-        ModelUtilisateur::delete($data);
-        $tab_user = ModelUtilisateur::selectAll();
-        $pagetitle = "Liste des utilisateurs";
-        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+        if( $_SESSION['admin']==1){
+            $data=array(
+                "username" => myGet('user'),
+            );
+            ModelUtilisateur::delete($data);
+            $tab_user = ModelUtilisateur::selectAll();
+            $pagetitle = "Liste des utilisateurs";
+            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }else{
             $view="Error";
         }
         break;
         
-    case "update":
+    case "updateUser":
         if (is_null(myGet('user'))) {
             $view = "error";
             $pagetitle = "Erreur";
@@ -132,11 +132,10 @@ switch ($action) {
         if(!is_null(myGet('admin'))){
             $admin=true;
         }else{
-            $admin=false;
+            $admin=false;                 
         }
         $data = array(
             "username" => myGet("user"),
-            //"password" => $mot_passe_en_clair,
             "admin" => $admin,
             "sexUser" => myGet("sex"),
             "nameUser" => myGet("name"),
@@ -150,22 +149,21 @@ switch ($action) {
         );
         ModelUtilisateur::update($data);
         $user=myGet("user");
-        if(!is_null(myGet("profile"))){
+        if(!is_null(myGet("profile"))){//Si on a éditer à partir de notre fiche on retourne à notre fiche
             $data = array(
                 "username" => $_SESSION['login'],
             );
-             $tab_u=  ModelUtilisateur::selectWhere($data);
+            $tab_u=  ModelUtilisateur::selectWhere($data);
             $view = "MyProfile";
             $pagetitle = "Mon profil";
-        }else{
+        }else{                         //Sinon on affiche la nouvelle liste des utilisateurs
             $pagetitle = "Liste des utilisateurs";
             $tab_user = ModelUtilisateur::selectAll();
-            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+            $view="ListUtilisateur";
         }
         }else{
             $view="Error";
         }
-        
         break;
     
     case "addGame":

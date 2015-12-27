@@ -45,7 +45,7 @@ echo <<< EOT
                           <td><a href="$u->emailUser">$u->emailUser</a></td>
                         </tr>
                           <td>Numéro de téléphone</td>
-                          <td>$u->mobileUser(Fixe)<br><br>$u->telUser(Mobile)
+                          <td>$u->mobileUser(Mobile)<br><br>$u->telUser(Fixe)
                           </td>
                         </tr>
                       </tbody>

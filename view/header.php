@@ -37,11 +37,10 @@ EOT;
                         <li><a href="?action=administration">Administration</a></li>
 EOT;
             }
-            else{
+
                 echo <<< EOT
-                        <li><a href="?action=profil">Mon Profil</a></li>
+                        <li><a href="?action=myProfile">Mon Profil</a></li>
 EOT;
-            }
                 echo <<< EOT
                           <li><a href="?action=disconnect">Se déconnecter</a></li>
                        </ul>

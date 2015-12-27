@@ -30,7 +30,7 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Nom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" id="id_name" value=" $user->nameUser">
+                                <input type="text" class="form-control" name="name" id="id_name" value="$user->nameUser">
                             </div>
                         </div>
                         <div class="form-group">
@@ -77,12 +77,11 @@ echo<<<EOT
                         </div>
                         <div class="form-group">
 EOT;
-if($_SESSION['admin']==1){
+if($_SESSION['admin']==1 && $_SESSION['login']!= $user->username){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
     <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">
 EOT;
-                
                             if($user->admin == 1){
                                 echo'<input type="checkbox" value="true" name="admin" id="id_admin" checked/>';
                             }
@@ -94,7 +93,7 @@ echo<<<EOT
                             </div>
                         </div>
                         <div class="pull-right">
-                            <input type="hidden" name="action" value="update" />
+                            <input type="hidden" name="action" value="updateUser" />
                             <input type="hidden" name="controller" value="utilisateur" />
                             <input type="hidden" name="user" value="$user->username" />
 EOT;
@@ -102,7 +101,7 @@ EOT;
                                 echo '<input type="hidden" name="profile" value="1" /> ';
                             }
                             echo'<a href="?action=resetPwd&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
-                        if($_SESSION['login']!=$user->username){
+                        if($_SESSION['login']!=$user->username){//On ne peut pas se supprimer ou se bannir nous-même
                             echo'<a href="?action=deleteUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
                            if($user->banUser==0){ echo'<a href="?action=banUser&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
                            }else{
