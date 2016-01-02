@@ -34,7 +34,6 @@ echo <<<EOT
 EOT;
 }
 //Dans ce cas login est vide on propose de se logger
-else{
+else
     require VIEW_PATH . "viewLoginUtilisateur.php";
-}
 ?>

@@ -6,20 +6,20 @@ session_name('tktpoto');
 session_start();
 
 function myGet($nomvar){
-    if(isset($_GET[$nomvar])){
+    if(isset($_GET[$nomvar]))
         return $_GET[$nomvar];
-    }
-    else if(isset($_POST[$nomvar])){
+
+    else if(isset($_POST[$nomvar]))
         return $_POST[$nomvar];
-    }
-    else { return NULL;
-    }
+
+    else
+        return NULL;
 }
 
 if (!is_null(myGet('controller')))
     $controller = myGet('controller'); //recupere le controlleur passe dans l'url
 else
-    $controller = "utilisateur";        
+    $controller = "utilisateur";       //Par défaut, on charge celui de l'utilisateur
 
 if (!is_null(myGet('action')))
     $action = myGet('action');    //recupere l'action  passee dans l'url
@@ -33,6 +33,6 @@ switch ($controller) {
         break;
     case "jeux":
         require_once"ControllerJeux.php";
-        break;    
+        break;
 }
 ?>

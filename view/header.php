@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
-        <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="js/jquery.dataTables.min.js">
-        <link rel="icon" type="image/png" href="./favicon.ico" />
-        <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
-        <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-     	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <meta charset="UTF-8"/>
+        <link rel="icon" type="image/png" href="image/logo.png" />
+        <?php echo "<title>".$pagetitle.__FILE__."</title>" ?>
+
+        <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css"/>
+        <link rel="stylesheet" href="css/bootstrap/bootstrap.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css"/>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cookie"/>
+     	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/checkForms.js"></script>
-        <?php echo "<title>".$pagetitle."</title>" ?>
     </head>
     <body>
         <?php if(!empty($_SESSION['login'])){
@@ -32,16 +33,11 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 EOT;
-            if(Session::is_admin()){
-                echo <<< EOT
-                        <li><a href="?action=administration">Administration</a></li>
-EOT;
-            }
+            if(Session::is_admin())
+                echo '<li><a href="?action=administration">Administration</a></li>';
 
                 echo <<< EOT
-                        <li><a href="?action=myProfile">Mon Profil</a></li>
-EOT;
-                echo <<< EOT
+                          <li><a href="?action=myProfile">Mon Profil</a></li>
                           <li><a href="?action=disconnect">Se déconnecter</a></li>
                        </ul>
                       </div>

@@ -11,18 +11,20 @@ switch ($action) {
         $view='AccueilUtilisateur';
         $pagetitle='Accueil';
         break;
-    
+
     case "accueil":
         $view='AccueilUtilisateur';
         $pagetitle='Accueil';
         break;
-    
+
     case "connected":
-        if (is_null(myGet('username')) || is_null(myGet('password'))) {
+        if (is_null(myGet('username')) || is_null(myGet('password')))
+        {
             $view = "error";
             $pagetitle = "Erreur";
             break;
         }
+
         $data = array(
             "username" => myGet("username"),
         );
@@ -38,78 +40,89 @@ switch ($action) {
         $pagetitle='Accueil';
         $view='AccueilUtilisateur';
         break;
+
     case "disconnect":
         session_unset();
         session_destroy();
         $view="LoginUtilisateur";
         $pagetitle = 'Ludothèque';
-        break;   
+        break;
+
     case "error":
         $view = "error";
         $pagetitle = "Erreur";
         break;
+
     case "administration":
         $view = "Admin";
         $pagetitle = "Administration";
         break;
+
     case "createUser":
         $view = "createUtilisateur";
         $pagetitle = "Ajouter un utilisateur";
         break;
+
     case "listUser":
         $view = "listUtilisateur";
         $pagetitle = "Liste des utilisateurs";
         $tab_user = ModelUtilisateur::selectAll();
         break;
+
     case "modifyUser":
-                $data=array(
+        $data=array(
             "username" => myGet('user'),
         );
         $tab_u= ModelUtilisateur::selectWhere($data);
         $view = "ModifyUser";
         $pagetitle = "Modifier un utilisateur";
         break;
+
     case "banUser":
-        if( $_SESSION['admin']==1){
-        $data=array(
-            "username" => myGet('user'),
-        );
-       $tab_u= ModelUtilisateur::selectWhere($data);
-       $data = array(
-            "username" => myGet('user'),
-            "banUser"=>1
-        );
-        ModelUtilisateur::update($data);
-                $pagetitle = "Liste des utilisateurs";
-        $tab_user = ModelUtilisateur::selectAll();
-        $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
-        }else{
-            $view="Error";
+        if( $_SESSION['admin']==1)
+        {
+          $data=array(
+              "username" => myGet('user'),
+          );
+          $tab_u= ModelUtilisateur::selectWhere($data);
+          $data = array(
+              "username" => myGet('user'),
+              "banUser"  => 1
+          );
+          ModelUtilisateur::update($data);
+                  $pagetitle = "Liste des utilisateurs";
+          $tab_user = ModelUtilisateur::selectAll();
+          $view="ListUtilisateur";                      //Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
-        
+        else
+            $view="Error";
+
         break;
-        
+
     case "debanUser":
-        if( $_SESSION['admin']==1){
+        if( $_SESSION['admin']==1)
+        {
             $data=array(
                 "username" => myGet('user'),
             );
            $tab_u= ModelUtilisateur::selectWhere($data);
            $data = array(
                 "username" => myGet('user'),
-                "banUser"=>0
+                "banUser"  => 0
             );
             ModelUtilisateur::update($data);
             $pagetitle = "Liste des utilisateurs";
             $tab_user = ModelUtilisateur::selectAll();
             $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
-        }else{
-            $view="Error";
         }
-        
+
+        else
+            $view="Error";
+
         break;
     case "deleteUser":
-        if( $_SESSION['admin']==1){
+        if( $_SESSION['admin']==1)
+        {
             $data=array(
                 "username" => myGet('user'),
             );
@@ -117,68 +130,78 @@ switch ($action) {
             $tab_user = ModelUtilisateur::selectAll();
             $pagetitle = "Liste des utilisateurs";
             $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
-        }else{
-            $view="Error";
         }
+
+        else
+            $view="Error";
+
         break;
-        
+
     case "updateUser":
-        if (is_null(myGet('user'))) {
+        if (is_null(myGet('user')))
+        {
             $view = "error";
             $pagetitle = "Erreur";
             break;
         }
-        if( $_SESSION['admin']==1 || $_SESSION['login']==myGet('user')){
-        if(!is_null(myGet('admin'))){
-            $admin=true;
-        }else{
-            $admin=false;                 
-        }
-        $data = array(
-            "username" => myGet("user"),
-            "admin" => $admin,
-            "sexUser" => myGet("sex"),
-            "nameUser" => myGet("name"),
-            "nicknameUser" => myGet("nickname"),   
-            "emailUser" => myGet("email"),
-            "telUser" => myGet("tel"), 
-            "mobileUser" => myGet("mobile"),
-            "addressUser" => myGet("address"),  
-            "cpUser" => myGet("cp"),
-            "cityUser" => myGet("city"),  
-        );
-        ModelUtilisateur::update($data);
-        $user=myGet("user");
-        if(!is_null(myGet("profile"))){//Si on a éditer à partir de notre fiche on retourne à notre fiche
+        if( $_SESSION['admin']==1 || $_SESSION['login']==myGet('user'))
+        {
+            if(!is_null(myGet('admin'))){
+                $admin=true;
+            }else{
+                $admin=false;
+            }
             $data = array(
-                "username" => $_SESSION['login'],
+                "username" => myGet("user"),
+                "admin" => $admin,
+                "sexUser" => myGet("sex"),
+                "nameUser" => myGet("name"),
+                "nicknameUser" => myGet("nickname"),
+                "emailUser" => myGet("email"),
+                "telUser" => myGet("tel"),
+                "mobileUser" => myGet("mobile"),
+                "addressUser" => myGet("address"),
+                "cpUser" => myGet("cp"),
+                "cityUser" => myGet("city"),
             );
-            $tab_u=  ModelUtilisateur::selectWhere($data);
-            $view = "MyProfile";
-            $pagetitle = "Mon profil";
-        }else{                         //Sinon on affiche la nouvelle liste des utilisateurs
-            $pagetitle = "Liste des utilisateurs";
-            $tab_user = ModelUtilisateur::selectAll();
-            $view="ListUtilisateur";
+            ModelUtilisateur::update($data);
+            $user=myGet("user");
+            if(!is_null(myGet("profile"))){//Si on a éditer à partir de notre fiche on retourne à notre fiche
+                $data = array(
+                    "username" => $_SESSION['login'],
+                );
+                $tab_u=  ModelUtilisateur::selectWhere($data);
+                $view = "MyProfile";
+                $pagetitle = "Mon profil";
+            }
+
+            else{                         //Sinon on affiche la nouvelle liste des utilisateurs
+                $pagetitle = "Liste des utilisateurs";
+                $tab_user = ModelUtilisateur::selectAll();
+                $view="ListUtilisateur";
+            }
         }
-        }else{
+        else
             $view="Error";
-        }
+
         break;
-    
+
     case "addGame":
         $view = "addGame";
-        $pagetitle = "Ajouter un jeux";
+        $pagetitle = "Ajouter un jeu";
         break;
+
     case "informations":
         $view = "informations";
         $pagetitle = "A Propos";
-        break;      
+        break;
+
     case "listJeux":
        $tab_jeux = ModelJeux::selectAll();
        $view='ListJeux';
        $pagetitle='Liste des jeux';
        break;
+
     case "search":
         $data = array(
             "field" => myGet("field"),
@@ -187,6 +210,7 @@ switch ($action) {
         $tab_jeux = ModelJeux::search($data);
         $view = 'ListJeux';
         break;
+
     case "save":
         /*if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
             $view = "error";
@@ -198,15 +222,16 @@ switch ($action) {
             $pagetitle = "Erreur";
             break;
         }*/
-        if(!is_null(myGet('admin'))){
+
+        if(!is_null(myGet('admin')))
             $admin=true;
-        }else{
+        else
             $admin=false;
-        }
-        //$mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();        
+
+        //$mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
         $mot_passe_en_clair = myGet("nickname").".".myGet("name");//mot de passe par default
         $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
-        $username = myGet("nickname").".".myGet("name");    //L'utilisateur aura comme identifiant "prenom.nom"
+        $username = myGet("nickname").".".myGet("name");          //L'utilisateur aura comme identifiant "prenom.nom"
         $data = array(
             "username" => $username,
             "password" => $mot_passe_crypte,
@@ -214,20 +239,21 @@ switch ($action) {
             "admin" => $admin,
             "sexUser" => myGet("sex"),
             "nameUser" => myGet("name"),
-            "nicknameUser" => myGet("nickname"),   
+            "nicknameUser" => myGet("nickname"),
             "emailUser" => myGet("email"),
-            "telUser" => myGet("tel"), 
+            "telUser" => myGet("tel"),
             "mobileUser" => myGet("mobile"),
-            "addressUser" => myGet("address"),  
+            "addressUser" => myGet("address"),
             "cpUser" => myGet("cp"),
-            "cityUser" => myGet("city"),  
+            "cityUser" => myGet("city"),
         );
-        
-        ModelUtilisateur::insert($data);        
+
+        ModelUtilisateur::insert($data);
         // Chargement de la vue
         $view = "AccueilUtilisateur";
         $pagetitle = "Accueil";
-        break;   
+        break;
+
     case "myProfile":
         $data = array(
             "username" => $_SESSION['login'],
@@ -236,6 +262,7 @@ switch ($action) {
         $view = "MyProfile";
         $pagetitle = "Mon profil";
         break;
+
     case "infoJeux":
         $data=array(
             "gameName" => myGet('jeux'),

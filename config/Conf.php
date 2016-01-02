@@ -7,7 +7,7 @@ class Conf {
         return self::$seed;
     }
     static public function getDebug() {
-        return self::null; //Probleme avec Xampp "Conf::getDebug() n'étant pas défini
+        return true; //Probleme avec Xampp "Conf::getDebug() n'étant pas défini
     }
 
 }
