@@ -64,9 +64,16 @@ switch ($action) {
         break;
 
     case "listUser":
-        $view = "listUtilisateur";
-        $pagetitle = "Liste des utilisateurs";
-        $tab_user = ModelUtilisateur::selectAll();
+        if( $_SESSION['admin']==1)
+        {
+            $view = "listUtilisateur";
+            $pagetitle = "Liste des utilisateurs";
+            $tab_user = ModelUtilisateur::selectAll();
+        }
+        else{
+            $view="Error";
+            $pagetitle="Erreur";
+        }
         break;
 
     case "modifyUser":
@@ -81,44 +88,38 @@ switch ($action) {
     case "banUser":
         if( $_SESSION['admin']==1)
         {
-          $data=array(
-              "username" => myGet('user'),
-          );
-          $tab_u= ModelUtilisateur::selectWhere($data);
           $data = array(
               "username" => myGet('user'),
               "banUser"  => 1
           );
           ModelUtilisateur::update($data);
-                  $pagetitle = "Liste des utilisateurs";
+          $pagetitle = "Liste des utilisateurs";
           $tab_user = ModelUtilisateur::selectAll();
           $view="ListUtilisateur";                      //Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
-        else
+        else{
             $view="Error";
-
+            $pagetitle="Erreur";
+        }
         break;
 
     case "debanUser":
         if( $_SESSION['admin']==1)
         {
-            $data=array(
-                "username" => myGet('user'),
-            );
-           $tab_u= ModelUtilisateur::selectWhere($data);
            $data = array(
                 "username" => myGet('user'),
                 "banUser"  => 0
             );
             ModelUtilisateur::update($data);
             $pagetitle = "Liste des utilisateurs";
-            $tab_user = ModelUtilisateur::selectAll();
+            $tab_user = ModelUtilisateur::selectAll();//Remet le tableau à jour
             $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
 
-        else
+        else{
             $view="Error";
-
+            $pagetitle="Erreur";
+        }
         break;
     case "deleteUser":
         if( $_SESSION['admin']==1)
@@ -133,7 +134,8 @@ switch ($action) {
         }
 
         else
-            $view="Error";
+            $view="error";
+            $pagetitle="Erreur";
 
         break;
 

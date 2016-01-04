@@ -1,6 +1,6 @@
 function checkForm(){
     var estValide = true;
-    var inputsForm = $("form .form-group input[type!='checkbox']")
+    var inputsForm = $("form .form-group input[type!='checkbox'][type!='submit']")
     inputsForm.css("background-color","white").css("color","black");
     var i = 0;
     inputsForm.each(function(){             //On parcourt tous les formulaires

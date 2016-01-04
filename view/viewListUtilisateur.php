@@ -43,8 +43,8 @@ if(isset($_SESSION['login']) && $_SESSION['admin']==1){ //Il faut être admin po
 
     echo <<<EOT
     <h1>Liste des utilisateurs :</h1>
-    <div class="containt-Jeux">
-        <table class="table-striped tableJeux" id="tableUser"><thead>
+    <div class="containt-Utilisateur">
+        <table class="table-striped tableUtilisateur" id="tableUser"><thead>
           <tr>
             <th>Utilisateur</th>
             <th>Nom</th>
@@ -70,10 +70,5 @@ echo <<<EOT
 </div>
 <script>$(document).ready(function() { $('#tableUser').DataTable(); } );</script>
 EOT;
-}else{
-    echo "Seul l'administrateur peut voir la liste des utilisateurs !";
 }
 echo '</div>';
-/*
- * Modifier le script DataTable pour l'adapter aux utilisateurs
- */

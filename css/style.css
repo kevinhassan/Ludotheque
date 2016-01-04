@@ -71,26 +71,26 @@ input.form-control , input[type="submit"] , .btn {
 .credits a {
     color: inherit;
 }
-.containt-Jeux{
+.containt-Jeux, .containt-Utilisateur{
     width: 50%;
     margin-left:25%;
 }
-.tableJeux{ 
+.tableJeux, .tableUtilisateur{ 
     background-color: #507C9D;
     border-collapse: collapse;
 }
-.tableJeux > thead > tr > th{
+.tableJeux > thead > tr > th, .tableUtilisateur > thead > tr > th{
     text-align: center;
     width:25%;
     color:black;
 }
-.tableJeux > tbody > tr > td{
+.tableJeux > tbody > tr > td, .tableUtilisateur > tbody > tr > td{
     text-align: center;
     width:25%;
-    color:white;
+    color:black;
 }
-.tableJeux > tbody > tr > td > a{
-    color:white;
+.tableJeux > tbody > tr > td > a, .tableUtilisateur > tbody > tr > td > a{
+    color:black;
 }
 .bouton a {
     display:block;
