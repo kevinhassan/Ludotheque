@@ -6,6 +6,7 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelJeux.php';
 require_once MODEL_PATH . 'ModelEmprunt.php';
+
 switch ($action) {
     default:
         $view='AccueilUtilisateur';

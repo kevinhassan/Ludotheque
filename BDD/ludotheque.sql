@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 03 Janvier 2016 à 19:30
+-- Généré le :  Mer 06 Janvier 2016 à 00:34
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `ludotheque`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `emprunt`
+--
+
+CREATE TABLE IF NOT EXISTS `emprunt` (
+  `idEmprunt` int(11) NOT NULL AUTO_INCREMENT,
+  `dateDebut` date DEFAULT NULL,
+  `dateFin` date DEFAULT NULL,
+  PRIMARY KEY (`idEmprunt`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -273,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `username` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
   `admin` tinyint(1) NOT NULL,
-  `sexUser` varchar(8) DEFAULT NULL,
+  `sexUser` varchar(8) NOT NULL,
   `nameUser` varchar(32) NOT NULL,
   `nicknameUser` varchar(32) NOT NULL,
   `emailUser` varchar(32) NOT NULL,
@@ -291,9 +304,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`username`, `password`, `admin`, `sexUser`, `nameUser`, `nicknameUser`, `emailUser`, `telUser`, `mobileUser`, `addressUser`, `cpUser`, `cityUser`, `banUser`) VALUES
-('admin', '6521bee1ee2dcfdc63fc2fa65baff33e04c2ffa84a546cece4d6bacc77cc6daf', 1, 'Femme', 'blabla', 'lalao', 'fefef@yory.fr', '0222222222', '2222222225', 'dzdz', '0', 'mont', 0),
-('kevin.hassan', 'debde65875c3ec313be20960fbc4122d304063f17af32fe1e84c0001c624a07d', 1, 'Homme', 'hassan', 'kevin', 'kevin.hassan13400@gmail.com', '0781415911', '0781415911', 'Batiment K résidence le Valriant 1 le Charrel RN8', '13400', 'Aubagne', 0),
-('nonadmin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 0, NULL, '', '', '', '0', '0', '', '0', '', 0);
+('admin', '6521bee1ee2dcfdc63fc2fa65baff33e04c2ffa84a546cece4d6bacc77cc6daf', 0, 'Femme', 'blabla', 'lalao', 'fefef@yory.fr', '0222222222', '2222222225', 'dzdz', '0', 'mont', 0),
+('kevin.hassan', 'debde65875c3ec313be20960fbc4122d304063f17af32fe1e84c0001c624a07d', 1, 'Homme', 'hassan', 'kevin', 'kevin.hassan13400@gmail.fr', '0781415911', '0781415911', 'Batiment K résidence le Valriant 1 le Charrel RN8', '13400', 'Aubagne', 0),
+('nonadmin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 0, '', '', '', '', '0', '0', '', '0', '', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

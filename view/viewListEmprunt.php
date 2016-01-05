@@ -42,3 +42,9 @@ echo <<<EOT
 EOT;
 }
 echo '</div>';
+function isInLate(){
+    /*
+     * Si la date actuelle est supérieur à la date de fin mettre en retard
+     */
+}
+?>
