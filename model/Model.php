@@ -145,7 +145,6 @@ class Model {
         }
     }
 }
-
 // On initiliase la connexion $pdo une fois pour toute
 Model::set_static();
 ?>

@@ -6,21 +6,6 @@ class ModelJeux extends Model {
     protected static $table = "jeux";
     protected static $primary_index = "gameName";
 
-     public static function selectAll() {
-        try
-        {
-          $sql = "SELECT * FROM " . static::$table;
-          $req = self::$pdo->query($sql);
-          // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
-          return $req->fetchAll(PDO::FETCH_OBJ);
-        }
-
-        catch (PDOException $e)
-        {
-          echo $e->getMessage();
-          die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
-        }
-    }
     public static function search($data) {
         try
         {
@@ -36,7 +21,5 @@ class ModelJeux extends Model {
           die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
         }
     }
-
 }
-
 ?>

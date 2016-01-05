@@ -5,25 +5,26 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelJeux.php';
-
+require_once MODEL_PATH . 'ModelEmprunt.php';
 switch ($action) {
     default:
         $view='AccueilUtilisateur';
-        $pagetitle='Accueil';
+        $pagetitle='Ludothèque';
         break;
 
     case "accueil":
         $view='AccueilUtilisateur';
-        $pagetitle='Accueil';
+        $pagetitle='Ludothèque';
         break;
 
     case "connected":
-        if (is_null(myGet('username')) || is_null(myGet('password')))
+        /*if (is_null(myGet('username')) || is_null(myGet('password')))
         {
             $view = "error";
             $pagetitle = "Erreur";
             break;
-        }
+        }*/        
+        //Impossible car le script prévient ce risque
 
         $data = array(
             "username" => myGet("username"),
@@ -64,7 +65,7 @@ switch ($action) {
         break;
 
     case "listUser":
-        if( $_SESSION['admin']==1)
+        if( Session::is_admin())
         {
             $view = "listUtilisateur";
             $pagetitle = "Liste des utilisateurs";
@@ -86,15 +87,14 @@ switch ($action) {
         break;
 
     case "banUser":
-        if( $_SESSION['admin']==1)
+        if(Session::is_admin())
         {
           $data = array(
               "username" => myGet('user'),
               "banUser"  => 1
           );
-          ModelUtilisateur::update($data);
+          $tab_user = changeBanUser($data);
           $pagetitle = "Liste des utilisateurs";
-          $tab_user = ModelUtilisateur::selectAll();
           $view="ListUtilisateur";                      //Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
         else{
@@ -104,25 +104,23 @@ switch ($action) {
         break;
 
     case "debanUser":
-        if( $_SESSION['admin']==1)
+        if(Session::is_admin())
         {
            $data = array(
                 "username" => myGet('user'),
                 "banUser"  => 0
             );
-            ModelUtilisateur::update($data);
-            $pagetitle = "Liste des utilisateurs";
-            $tab_user = ModelUtilisateur::selectAll();//Remet le tableau à jour
-            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+           $tab_user = changeBanUser($data);
+           $pagetitle = "Liste des utilisateurs";
+           $view="ListUtilisateur";
         }
-
         else{
             $view="Error";
             $pagetitle="Erreur";
         }
         break;
     case "deleteUser":
-        if( $_SESSION['admin']==1)
+        if(Session::is_admin())
         {
             $data=array(
                 "username" => myGet('user'),
@@ -133,10 +131,10 @@ switch ($action) {
             $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
 
-        else
+        else{
             $view="error";
             $pagetitle="Erreur";
-
+        }
         break;
 
     case "updateUser":
@@ -146,28 +144,9 @@ switch ($action) {
             $pagetitle = "Erreur";
             break;
         }
-        if( $_SESSION['admin']==1 || $_SESSION['login']==myGet('user'))
+        if(Session::is_admin() ||  Session::is_user(myGet('user')))
         {
-            if(!is_null(myGet('admin'))){
-                $admin=true;
-            }else{
-                $admin=false;
-            }
-            $data = array(
-                "username" => myGet("user"),
-                "admin" => $admin,
-                "sexUser" => myGet("sex"),
-                "nameUser" => myGet("name"),
-                "nicknameUser" => myGet("nickname"),
-                "emailUser" => myGet("email"),
-                "telUser" => myGet("tel"),
-                "mobileUser" => myGet("mobile"),
-                "addressUser" => myGet("address"),
-                "cpUser" => myGet("cp"),
-                "cityUser" => myGet("city"),
-            );
-            ModelUtilisateur::update($data);
-            $user=myGet("user");
+            updateUser();
             if(!is_null(myGet("profile"))){//Si on a éditer à partir de notre fiche on retourne à notre fiche
                 $data = array(
                     "username" => $_SESSION['login'],
@@ -183,9 +162,10 @@ switch ($action) {
                 $view="ListUtilisateur";
             }
         }
-        else
+        else{
             $view="Error";
-
+            $pagetitle="Erreur";
+        }
         break;
 
     case "addGame":
@@ -214,22 +194,47 @@ switch ($action) {
         break;
 
     case "save":
-        /*if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
-            $view = "error";
-            $pagetitle = "Erreur";
-            break;
-        }
-        if (myGet('password')!= myGet('confpassword')){
-            $view = "error";
-            $pagetitle = "Erreur";
-            break;
-        }*/
+        saveUser();
+        // Chargement de la vue
+        $view = "AccueilUtilisateur";
+        $pagetitle = "Accueil";
+        break;
 
+    case "myProfile":
+        $data = array(
+            "username" => $_SESSION['login'],
+        );
+        $tab_u=  ModelUtilisateur::selectWhere($data);
+        $view = "MyProfile";
+        $pagetitle = "Mon profil";
+        break;
+    case "infoJeux":
+        $data=array(
+            "gameName" => myGet('jeux'),
+        );
+        $tab_j= ModelJeux::selectWhere($data);
+        $view = "InfoJeux";
+        $pagetitle= myGet('jeux');
+        break;
+    case "listEmprunt":
+        if( Session::is_admin())
+        {
+            $view = "listEmprunt";
+            $pagetitle = "Liste des emprunts";
+            $tab_emp = ModelEmprunt::selectAll();
+        }
+        else{
+            $view="Error";
+            $pagetitle="Erreur";
+        }    
+        break;
+}
+
+function saveUser(){
         if(!is_null(myGet('admin')))
             $admin=true;
         else
             $admin=false;
-
         //$mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
         $mot_passe_en_clair = myGet("nickname").".".myGet("name");//mot de passe par default
         $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
@@ -249,29 +254,35 @@ switch ($action) {
             "cpUser" => myGet("cp"),
             "cityUser" => myGet("city"),
         );
-
         ModelUtilisateur::insert($data);
-        // Chargement de la vue
-        $view = "AccueilUtilisateur";
-        $pagetitle = "Accueil";
-        break;
+}
 
-    case "myProfile":
-        $data = array(
-            "username" => $_SESSION['login'],
-        );
-        $tab_u=  ModelUtilisateur::selectWhere($data);
-        $view = "MyProfile";
-        $pagetitle = "Mon profil";
-        break;
+function updateUser(){
+    if(!is_null(myGet('admin'))){
+        $admin=true;
+    }
+    else{
+        $admin=false;
+    }
+    $data = array(
+        "username" => myGet("user"),
+        "admin" => $admin,
+        "sexUser" => myGet("sex"),
+        "nameUser" => myGet("name"),
+        "nicknameUser" => myGet("nickname"),
+        "emailUser" => myGet("email"),
+        "telUser" => myGet("tel"),
+        "mobileUser" => myGet("mobile"),
+        "addressUser" => myGet("address"),
+        "cpUser" => myGet("cp"),
+        "cityUser" => myGet("city"),
+    );
+    ModelUtilisateur::update($data);
+}
 
-    case "infoJeux":
-        $data=array(
-            "gameName" => myGet('jeux'),
-        );
-        $tab_j= ModelJeux::selectWhere($data);
-        $view = "InfoJeux";
-        $pagetitle= myGet('jeux');
-        break;
+function changeBanUser($data){
+    ModelUtilisateur::update($data);
+    $tab_user = ModelUtilisateur::selectAll();
+    return $tab_user;
 }
 require VIEW_PATH . "view.php";
