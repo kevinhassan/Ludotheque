@@ -19,14 +19,6 @@ switch ($action) {
         break;
 
     case "connected":
-        /*if (is_null(myGet('username')) || is_null(myGet('password')))
-        {
-            $view = "error";
-            $pagetitle = "Erreur";
-            break;
-        }*/        
-        //Impossible car le script prévient ce risque
-
         $data = array(
             "username" => myGet("username"),
         );
@@ -227,7 +219,7 @@ switch ($action) {
         else{
             $view="Error";
             $pagetitle="Erreur";
-        }    
+        }
         break;
 }
 
