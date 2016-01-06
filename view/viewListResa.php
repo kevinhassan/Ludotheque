@@ -1,15 +1,15 @@
 <?php
-function tabEmprunt($tab_emp)
+function tabResa($tab_resa)
 {
-    $max=sizeof($tab_emp);
+    $max=sizeof($tab_resa);
     $i=0;
     while($i<$max){
-    $u=$tab_emp[$i];
-        $idEmprunt = $u->idEmp;
+    $u=$tab_resa[$i];
+        $idReservation = $u->idResa;
         $dateDebut = $u->dateDeb;
-        $dateFin = $u->dateFin;
+        $duree = $u->$duree;
         echo <<< EOT
-        <tr><td><a href="?action=infoEmpa&emp=$idEmp">$idEmp</a><td>$dateDeb</td><td>$dateFin</td></tr>
+        <tr><td><a href="?action=infoEmpa&emp=$idResa">$idResa</a><td>$dateDeb</td><td>$duree</td></tr>
 </div>
 EOT;
     $i++;
@@ -21,7 +21,7 @@ echo '<div class="container">';
 if(isset($_SESSION['login']) && $_SESSION['admin']==1){ //Il faut être admin pour voir la liste des utilisateurs
 
     echo <<<EOT
-    <h1>Liste des Emprunts :</h1>
+    <h1>Liste des Réservations :</h1>
     <div class="containt-Utilisateur">
         <table class="table-striped tableUtilisateur" id="tableUser"><thead>
           <tr>
@@ -31,7 +31,7 @@ if(isset($_SESSION['login']) && $_SESSION['admin']==1){ //Il faut être admin po
           </tr>
         </thead>
 EOT;
-tabEmprunt($tab_emp);
+tabResa($tab_resa);
     echo <<<EOT
     </table>
 EOT;
@@ -42,9 +42,3 @@ echo <<<EOT
 EOT;
 }
 echo '</div>';
-function isInLate(){
-    /*
-     * Si la date actuelle est supérieur à la date de fin mettre en retard
-     */
-}
-?>

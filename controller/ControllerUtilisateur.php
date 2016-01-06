@@ -5,7 +5,7 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelJeux.php';
-require_once MODEL_PATH . 'ModelEmprunt.php';
+require_once MODEL_PATH . 'ModelReservation.php';
 
 switch ($action) {
     default:
@@ -217,12 +217,12 @@ switch ($action) {
         $view = "InfoJeux";
         $pagetitle= myGet('jeux');
         break;
-    case "listEmprunt":
+    case "listResa":
         if( Session::is_admin())
         {
-            $view = "listEmprunt";
-            $pagetitle = "Liste des emprunts";
-            $tab_emp = ModelEmprunt::selectAll();
+            $view = "listResa";
+            $pagetitle = "Liste des réservations";
+            $tab_resa = ModelReservation::selectAll();
         }
         else{
             $view="Error";
@@ -254,6 +254,8 @@ function saveUser(){
             "addressUser" => myGet("address"),
             "cpUser" => myGet("cp"),
             "cityUser" => myGet("city"),
+            "dateInscription" => date('Y-m-d'),
+            "dateNaissance" => myGet("dateNaissance")
         );
         ModelUtilisateur::insert($data);
 }

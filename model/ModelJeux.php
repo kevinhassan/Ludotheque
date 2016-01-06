@@ -4,7 +4,7 @@ require_once 'Model.php';
 
 class ModelJeux extends Model {
     protected static $table = "jeux";
-    protected static $primary_index = "gameName";
+    protected static $primary_index = "idGame";
 
     public static function search($data) {
         try
