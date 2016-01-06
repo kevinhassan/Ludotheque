@@ -279,6 +279,7 @@ function updateUser(){
         "addressUser" => myGet("address"),
         "cpUser" => myGet("cp"),
         "cityUser" => myGet("city"),
+        "dateNaissance" => myGet("dateNaissance")
     );
     ModelUtilisateur::update($data);
 }

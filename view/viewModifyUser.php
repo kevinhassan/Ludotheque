@@ -40,6 +40,12 @@ echo<<<EOT
                                 </div>
                         </div>
                         <div class="form-group">
+                            <label for="prenom" class="col-sm-3 control-label">Date de naissance :</label>
+                            <div class="col-sm-8">
+                                <input type="date" name="dateNaissance", id="id_dNaissance" value="$user->dateNaissance">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="mail" class="col-sm-3 control-label">Email :</label>
                             <div class="col-sm-8">
                                 <input type="email" class="form-control" name="email" id="id_email" value="$user->emailUser">

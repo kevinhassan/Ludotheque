@@ -16,6 +16,9 @@ function tabUser($tab_user)
         $cp = $u->cpUser;
         $city = $u->cityUser;
         $admin = $u->admin;
+        $dateIns = $u->dateInscription;
+        $dateNais = $u->dateNaissance;
+        $nbrRetard = $u->nbrRetard;
         if($admin == 1)
         {
             $admin = 'Oui';
@@ -30,7 +33,7 @@ function tabUser($tab_user)
             $ban='Oui';
         }
         echo <<< EOT
-        <tr><td><a href="?action=modifyUser&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$sex</td><td>$email</td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$admin</td><td>$ban</td></tr>
+        <tr><td><a href="?action=modifyUser&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td>$email</td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
 </div>
 EOT;
     $i++;
@@ -49,6 +52,7 @@ if(isset($_SESSION['login']) && $_SESSION['admin']==1){ //Il faut être admin po
             <th>Utilisateur</th>
             <th>Nom</th>
             <th>Prénom</th>
+            <th>Date Naissance</th>
             <th>Sexe</th>
             <th>Email</th>
             <th>Téléphone</th>            
@@ -56,7 +60,9 @@ if(isset($_SESSION['login']) && $_SESSION['admin']==1){ //Il faut être admin po
             <th>Adresse</th>
             <th>Code Postal</th>
             <th>Ville</th>
+            <th>Date Inscription</th>
             <th>Admin</th>
+            <th>Nombre Retard</th>
             <th>Banni</th>
           </tr>
         </thead>

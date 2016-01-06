@@ -81,7 +81,7 @@ input.form-control , input[type="submit"] , .btn {
 }
 .tableJeux > thead > tr > th, .tableUtilisateur > thead > tr > th{
     text-align: center;
-    width:25%;
+    width:100%;
     color:black;
 }
 .tableJeux > tbody > tr > td, .tableUtilisateur > tbody > tr > td{
