@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 06 Janvier 2016 à 16:13
+-- Généré le :  Mer 06 Janvier 2016 à 16:48
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -313,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`idUser`, `username`, `password`, `admin`, `sexUser`, `nameUser`, `nicknameUser`, `dateNaissance`, `emailUser`, `telUser`, `mobileUser`, `addressUser`, `cpUser`, `cityUser`, `dateInscription`, `banUser`, `nbrRetard`) VALUES
 (0, 'admin', '6521bee1ee2dcfdc63fc2fa65baff33e04c2ffa84a546cece4d6bacc77cc6daf', 0, 'Femme', 'blabla', 'lalao', '0000-00-00', 'fefef@yory.fr', '0222222222', '2222222225', 'dzdz', '0', 'mont', '0000-00-00', 0, 0),
 (0, 'dzd.lol', '3192164a45ca9583f72615dcfeee9b755b04867180a11b7244ec962beddbd1cc', 0, 'Homme', 'lol', 'dzd', '0000-00-00', 'dzda@zfzefz.fr', '0781415911', '0781415911', 'Batiment K résidence le Valriant 1 le Charrel RN8', '13400', 'Aubagne', '2016-01-06', 0, 0),
-(0, 'dzdza.test', 'c61a301faf9f143bfec7a19751d203f7a5a89f0683f5713dfef325745b802ea3', 0, 'Homme', 'test', 'dzdza', '1995-09-09', 'dzda@zfzefz.fr', '0781415911', '0781415911', '1409 rue du Professeur Joseph Anglada', '34090', 'MONTPELLIER', '2016-01-06', 0, 0),
+(0, 'dzdza.test', 'c61a301faf9f143bfec7a19751d203f7a5a89f0683f5713dfef325745b802ea3', 0, 'Homme', 'test', 'dzdza', '1995-09-10', 'dzda@zfzefz.fr', '0781415911', '0781415911', '1409 rue du Professeur Joseph Anglada', '34090', 'MONTPELLIER', '2016-01-06', 0, 0),
 (0, 'kevin.hassan', 'debde65875c3ec313be20960fbc4122d304063f17af32fe1e84c0001c624a07d', 1, 'Homme', 'hassan', 'kevin', '0000-00-00', 'kevin.hassan13400@gmail.fr', '0781415911', '0781415911', 'Batiment K résidence le Valriant 1 le Charrel RN8', '13400', 'Aubagne', '0000-00-00', 0, 0),
 (0, 'nonadmin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 0, '', '', '', '0000-00-00', '', '0', '0', '', '0', '', '0000-00-00', 0, 0);
 
