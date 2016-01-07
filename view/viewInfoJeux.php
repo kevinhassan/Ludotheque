@@ -11,7 +11,7 @@ echo <<< EOT
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class=" col-md-9 col-lg-9 "> 
+                <div class=" col-md-9 col-lg-9 ">
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
@@ -23,7 +23,7 @@ echo <<< EOT
                         <td>$u->editor</td>
                       </tr>
                       <tr>
-                        <td>Age</td>
+                        <td>Age limite</td>
                         <td>$u->age</td>
                       </tr>
                       <tr>
@@ -36,15 +36,15 @@ if($u->extension!=null){
       <tr>
                         <td>Extension</td>
                         <td>$u->extension</td>
-                      </tr>  
+                      </tr>
 EOT;
 }
 echo <<< EOT
-                           
-                     
+
+
                     </tbody>
                   </table>
-                  <a href="?action=resa" class="btn btn-primary">Réserver</a>  
+                  <a href="?action=resa" class="btn btn-primary">Réserver</a>
 EOT;
 if(Session::is_admin()){
 echo<<<EOT

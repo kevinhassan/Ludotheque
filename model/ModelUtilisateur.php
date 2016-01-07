@@ -4,7 +4,7 @@ require_once 'Model.php';
 
 class ModelUtilisateur extends Model {
     protected static $table = "utilisateur";
-    protected static $primary_index = "username";
+    protected static $primary_index = "userId";
 
     public static function findClef($data) {
         try
