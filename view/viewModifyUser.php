@@ -7,7 +7,7 @@ echo<<<EOT
             <div class='row' style="text-align : center;">
                 <h1>Modifier l'utilisateur : <span style='color:red'>$user->username</span></h1>
         </div>
-            <form class="form-horizontal" role="form" method="post" action="."AccueilUtilisateur>
+            <form class="form-horizontal" role="form" method="post" action=".">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -83,7 +83,7 @@ echo<<<EOT
                         </div>
                         <div class="form-group">
 EOT;
-if(Session::is_admin() && $_SESSION['login']!= $user->username){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
+if(Session::is_admin() && Session::is_user($user->username){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
     <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">
@@ -107,7 +107,7 @@ EOT;
                                 echo '<input type="hidden" name="profile" value="1" /> ';
                             }
                             echo'<a href="?action=resetPwd&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
-                        if($_SESSION['login']!=$user->username){//On ne peut pas se supprimer ou se bannir nous-même
+                        if(Session::is_user($user->username)){//On ne peut pas se supprimer ou se bannir nous-même
                             echo'<a href="?action=deleteUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
                            if($user->banUser==0){ echo'<a href="?action=banUser&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
                            }else{
