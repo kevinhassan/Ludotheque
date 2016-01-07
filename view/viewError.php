@@ -5,6 +5,7 @@
         <div class="col-md-12">
             <div class="error-template">
                 <h1>Oops!</h1>
+                <h5 style="color:red;">$message</h5>
                 <div class="error-details">
                     La page demandée n'est pas accessible !
                 </div>

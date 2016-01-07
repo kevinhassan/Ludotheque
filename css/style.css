@@ -279,3 +279,10 @@ select, input{ /*Eviter d'écrire en blanc sur les fonds blancs*/
 .toppad{
     margin-top:20px;
 }
+.table-striped{
+    color: black;
+    border: solid white 1px;
+}
+.table-striped td,.table-striped th {
+    border: solid white 1px;
+}

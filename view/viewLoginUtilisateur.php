@@ -11,14 +11,13 @@ echo <<< EOT
 
                                 <h1>La ludothèque</h1>
                                 <h2>Tous vos jeux en un seul endroit</h2>
-
-                                <form action="." name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8" onsubmit="return checkForm();">
+                                <form action="." name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                     <div class="form-group">
-                                    <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                                    <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername" required="required"/></div>
                                     </div> 
 
                                     <div class="form-group">
-                                    <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                                    <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword" required="required"/></div>
                                     </div> 
 
                                     <div class="form-group">

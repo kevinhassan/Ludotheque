@@ -7,7 +7,7 @@ echo<<<EOT
             <div class='row' style="text-align : center;">
                 <h1>Modifier l'utilisateur : <span style='color:red'>$user->username</span></h1>
         </div>
-            <form class="form-horizontal" role="form" method="post" action="." onsubmit="return checkForm();">
+            <form class="form-horizontal" role="form" method="post" action="."AccueilUtilisateur>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -30,60 +30,60 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Nom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" id="id_name" value="$user->nameUser">
+                                <input type="text" class="form-control" name="name" id="id_name" value="$user->nameUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="col-sm-3 control-label">Prenom :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="nickname" id="id_nickname" value="$user->nicknameUser">
+                                <input type="text" class="form-control" name="nickname" id="id_nickname" value="$user->nicknameUser" required="required">
                                 </div>
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="col-sm-3 control-label">Date de naissance :</label>
                             <div class="col-sm-8">
-                                <input type="date" name="dateNaissance", id="id_dNaissance" value="$user->dateNaissance">
+                                <input type="date" name="dateNaissance", id="id_dNaissance" value="$user->dateNaissance" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mail" class="col-sm-3 control-label">Email :</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" name="email" id="id_email" value="$user->emailUser">
+                                <input type="email" class="form-control" name="email" id="id_email" value="$user->emailUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="tel" class="col-sm-3 control-label">T&eacute;l&eacute;phone :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="$user->telUser">
+                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="$user->telUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mobile" class="col-sm-3 control-label">Mobile :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="$user->mobileUser">
+                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="$user->mobileUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="adresse" class="col-sm-3 control-label">Adresse :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="address" id="id_adress" value="$user->addressUser">
+                                <input type="text" class="form-control" name="address" id="id_adress" value="$user->addressUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cp" class="col-sm-3 control-label">Code Postal :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="cp" id="id_cp" value="$user->cpUser">
+                                <input type="text" class="form-control" name="cp" id="id_cp" value="$user->cpUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ville" class="col-sm-3 control-label">Ville :</label>
                             <div class="col-sm-8">
-                                <input type="text" name="city" class="form-control" id="id_city" value="$user->cityUser">
+                                <input type="text" name="city" class="form-control" id="id_city" value="$user->cityUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
 EOT;
-if($_SESSION['admin']==1 && $_SESSION['login']!= $user->username){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
+if(Session::is_admin() && $_SESSION['login']!= $user->username){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
     <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">

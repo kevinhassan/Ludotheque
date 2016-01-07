@@ -19,12 +19,6 @@ switch ($action) {
         break;
 
     case "connected":
-        if (is_null(myGet('username')) || is_null(myGet('password')))
-        {
-            $view = "error";
-            $pagetitle = "Erreur";
-            break;
-        }
 
         $data = array(
             "username" => myGet("username"),
@@ -34,6 +28,14 @@ switch ($action) {
         if($tab_u[0]->password!=hash('sha256', myGet('password')))
             {
             $view = "error";
+            $message = "Le mot de passe tapé n'est pas correct";
+            $pagetitle = "Erreur";
+            break;
+        }
+        if($tab_u[0]->banUser == 1){
+            //Si l'utilisateur est banni on lui affiche 
+            $view = "error";
+            $message = "Vous avez était banni !";
             $pagetitle = "Erreur";
             break;
         }
@@ -62,6 +64,7 @@ switch ($action) {
 
     case "error":
         $view = "error";
+        $message = "La page demandée est inaccesible";
         $pagetitle = "Erreur";
         break;
 
@@ -76,10 +79,18 @@ switch ($action) {
         break;
 
     case "listUser":
-        $view = "listUtilisateur";
-        $pagetitle = "Liste des utilisateurs";
-        $tab_user = ModelUtilisateur::selectAll();
-        break;
+        if( Session::is_admin())
+        {
+            $view = "listUtilisateur";
+            $pagetitle = "Liste des utilisateurs";
+            $tab_user = ModelUtilisateur::selectAll();
+        }
+        else{
+            $view="Error";
+            $message="Seul l'administrateur peut voir le contenu de cette page";
+            $pagetitle="Erreur";
+        }
+    break;
 
     case "modifyUser":
         $data=array(
@@ -91,7 +102,7 @@ switch ($action) {
         break;
 
     case "banUser":
-        if( $_SESSION['admin']==1)
+        if( Session::is_admin())
         {
           $data=array(
               "username" => myGet('user'),
@@ -103,31 +114,18 @@ switch ($action) {
               "banUser"  => 1
           );
           ModelUtilisateur::update($data);
-                  $pagetitle = "Liste des utilisateurs";
+          $pagetitle = "Liste des utilisateurs";
           $tab_user = ModelUtilisateur::selectAll();
           $view="ListUtilisateur";                      //Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
-        else
-            $view="Error";
-
-        break;
-    case "changeMdp":
-        if(myGet("mdp")==myGet("confmdp")){
-              $data = array(
-              "userId" => $_SESSION['id'],
-              "password"  => hash('sha256', myGet('mdp'))
-          );
-          ModelUtilisateur::update($data);
-          $pagetitle='Accueil';
-        $view='AccueilUtilisateur';
-        }else{
-            $error="Vos mots de passe ne correspondent pas";
-            $pagetitle='Changer mot de passe';
-            $view='ChangeMdp';
+        else{
+          $pagetitle="Erreur";
+          $message="La modification n'a pas était pris en compte";
+          $view="Error";
         }
         break;
     case "debanUser":
-        if( $_SESSION['admin']==1)
+        if( Session::is_admin())
         {
             $data=array(
                 "username" => myGet('user'),
@@ -143,13 +141,29 @@ switch ($action) {
             $tab_user = ModelUtilisateur::selectAll();
             $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
-
-        else
-            $view="Error";
-
+        else{
+          $pagetitle="Erreur";
+          $message="La modification n'a pas était pris en compte";
+          $view="Error";
+        }
+        break;
+    case "changeMdp":
+        if(myGet("mdp")==myGet("confmdp")){
+              $data = array(
+              "userId" => $_SESSION['id'],
+              "password"  => hash('sha256', myGet('mdp'))
+          );
+        ModelUtilisateur::update($data);
+        $pagetitle='Accueil';
+        $view='AccueilUtilisateur';
+        }
+        else{
+            $pagetitle='Changer mot de passe';
+            $view='ChangeMdpUtilisateur';
+        }
         break;
     case "deleteUser":
-        if( $_SESSION['admin']==1)
+        if( Session::is_admin())
         {
             $data = array(
                 "username" => myGet("user"),
@@ -163,20 +177,22 @@ switch ($action) {
             $pagetitle = "Liste des utilisateurs";
             $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
-
-        else
-            $view="Error";
-
+        else{
+            $view="error";          
+            $message="La modification n'a pas était pris en compte";
+            $pagetitle="Erreur";
+        }
         break;
 
     case "updateUser":
         if (is_null(myGet('user')))
         {
             $view = "error";
+            $message="La modification n'a pas était pris en compte";
             $pagetitle = "Erreur";
             break;
         }
-        if( $_SESSION['admin']==1 || $_SESSION['login']==myGet('user'))
+        if( Session::is_admin() || Session::is_user(myGet('user')))
         {
             if(!is_null(myGet('admin'))){
                 $admin=true;
@@ -200,6 +216,7 @@ switch ($action) {
                 "addressUser" => myGet("address"),
                 "cpUser" => myGet("cp"),
                 "cityUser" => myGet("city"),
+                "dateNaissance" => myGet("dateNaissance")
             );
             ModelUtilisateur::update($data);
             $user=myGet("user");
@@ -218,9 +235,11 @@ switch ($action) {
                 $view="ListUtilisateur";
             }
         }
-        else
+        else{
             $view="Error";
-
+            $message="Les modifications n'ont pas étaient pris en compte";
+            $pagetitle="Erreur";
+        }
         break;
 
     case "addGame":
@@ -249,23 +268,11 @@ switch ($action) {
         break;
 
     case "save":
-        /*if (is_null(myGet('username')) && is_null(myGet('password'))&& is_null(myGet('confpassword'))) {
-            $view = "error";
-            $pagetitle = "Erreur";
-            break;
-        }
-        if (myGet('password')!= myGet('confpassword')){
-            $view = "error";
-            $pagetitle = "Erreur";
-            break;
-        }*/
-
         if(!is_null(myGet('admin')))
             $admin=true;
         else
             $admin=false;
 
-        //$mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
         $mot_passe_en_clair = myGet("nickname").".".myGet("name");//mot de passe par default
         $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
         $username = myGet("nickname").".".myGet("name");          //L'utilisateur aura comme identifiant "prenom.nom"
@@ -283,7 +290,6 @@ switch ($action) {
             "userid" => uniqid(rand(), true),
             "username" => $username,
             "password" => $mot_passe_crypte,
-            //"password" => $mot_passe_en_clair,
             "admin" => $admin,
             "sexUser" => myGet("sex"),
             "nameUser" => myGet("name"),
@@ -294,6 +300,8 @@ switch ($action) {
             "addressUser" => myGet("address"),
             "cpUser" => myGet("cp"),
             "cityUser" => myGet("city"),
+            "dateInscription" => date('Y-m-d'),
+            "dateNaissance" => myGet("dateNaissance")
         );
 
         ModelUtilisateur::insert($data);
@@ -329,67 +337,9 @@ switch ($action) {
         }
         else{
             $view="Error";
+            $message="Seul l'administrateur peut voir le contenu de cette page";
             $pagetitle="Erreur";
         }
         break;
-}
-
-function saveUser(){
-        if(!is_null(myGet('admin')))
-            $admin=true;
-        else
-            $admin=false;
-        //$mot_passe_en_clair = myGet('confpassword') . Conf::getSeed();
-        $mot_passe_en_clair = myGet("nickname").".".myGet("name");//mot de passe par default
-        $mot_passe_crypte = hash('sha256', $mot_passe_en_clair);
-        $username = myGet("nickname").".".myGet("name");          //L'utilisateur aura comme identifiant "prenom.nom"
-        $data = array(
-            "username" => $username,
-            "password" => $mot_passe_crypte,
-            //"password" => $mot_passe_en_clair,
-            "admin" => $admin,
-            "sexUser" => myGet("sex"),
-            "nameUser" => myGet("name"),
-            "nicknameUser" => myGet("nickname"),
-            "emailUser" => myGet("email"),
-            "telUser" => myGet("tel"),
-            "mobileUser" => myGet("mobile"),
-            "addressUser" => myGet("address"),
-            "cpUser" => myGet("cp"),
-            "cityUser" => myGet("city"),
-            "dateInscription" => date('Y-m-d'),
-            "dateNaissance" => myGet("dateNaissance")
-        );
-        ModelUtilisateur::insert($data);
-}
-
-function updateUser(){
-    if(!is_null(myGet('admin'))){
-        $admin=true;
-    }
-    else{
-        $admin=false;
-    }
-    $data = array(
-        "username" => myGet("user"),
-        "admin" => $admin,
-        "sexUser" => myGet("sex"),
-        "nameUser" => myGet("name"),
-        "nicknameUser" => myGet("nickname"),
-        "emailUser" => myGet("email"),
-        "telUser" => myGet("tel"),
-        "mobileUser" => myGet("mobile"),
-        "addressUser" => myGet("address"),
-        "cpUser" => myGet("cp"),
-        "cityUser" => myGet("city"),
-        "dateNaissance" => myGet("dateNaissance")
-    );
-    ModelUtilisateur::update($data);
-}
-
-function changeBanUser($data){
-    ModelUtilisateur::update($data);
-    $tab_user = ModelUtilisateur::selectAll();
-    return $tab_user;
 }
 require VIEW_PATH . "view.php";

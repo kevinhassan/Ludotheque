@@ -13,7 +13,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/checkForms.js"></script>
     </head>
     <body>
         <?php if(!empty($_SESSION['login'])){
@@ -28,7 +27,7 @@
                           <li><a href="?action=accueil">Accueil <span class="glyphicon glyphicon-home"></span></a></li>
                           <li><a href="?action=listJeux">Jeux <span class="glyphicon glyphicon-king"></a></li>
                           <li><a href="?action=listResa">Mes réservations <span class="glyphicon glyphicon-th-list"></span></a></li>
-                          <li><a href="?action=informations">A Propos <span class="glyphicon glyphicon-info-sign"></span></a></li>
+                          <li><a href="?action=informations">Informations <span class="glyphicon glyphicon-info-sign"></span></a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 EOT;
