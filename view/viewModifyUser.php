@@ -83,7 +83,7 @@ echo<<<EOT
                         </div>
                         <div class="form-group">
 EOT;
-if(Session::is_admin() && Session::is_user($user->username){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
+if(Session::is_admin() && Session::is_user($user->username)){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
     <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">
