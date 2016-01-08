@@ -5,13 +5,13 @@
         <link rel="icon" type="image/png" href="image/logo.png" />
         <?php echo "<title>".$pagetitle."</title>" ?>
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cookie"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     </head>
     <body>
