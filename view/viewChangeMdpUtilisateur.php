@@ -22,7 +22,7 @@ echo<<<EOT
                             </div>
                         </div>
                         <div class="pull-right">
-                            <input type="hidden" name="action" value="changeMdp" />
+                            <input type="hidden" name="action" value="changerMdp" />
                             <input type="hidden" name="controller" value="utilisateur" />
                             <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        
                         </div>

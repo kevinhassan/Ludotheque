@@ -5,7 +5,7 @@ echo<<<EOT
     <div class="row">
         <div class="col-lg-12">
             <div class='row' style="text-align : center;">
-                <h1>Modifier le jeu : <span style='color:red'>$jeu->gameName</span></h1>
+                <h1>Modifier le jeu : <span style='color:red'>$jeu->nomJeu</span></h1>
         </div>
             <form class="form-horizontal" role="form" method="post" action=".">
                 <div class="row">
@@ -13,15 +13,15 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Nom du jeu :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" id="id_name" value="$jeu->gameName" required="required">
+                                <input type="text" class="form-control" name="name" id="id_name" value="$jeu->nomJeu" required="required">
                             </div>
                             <label for="nom" class="col-sm-3 control-label">Année d'édition :</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="annee" id="id_annee" value="$jeu->editionYear">
+                                <input type="number" class="form-control" name="annee" id="id_annee" value="$jeu->anneeEdition">
                             </div>
                             <label for="nom" class="col-sm-3 control-label">Editeur :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="editor" id="id_editor" value="$jeu->editor">
+                                <input type="text" class="form-control" name="editeur" id="id_editeur" value="$jeu->editeur">
                             </div>
                             <label for="nom" class="col-sm-3 control-label">Age conseillé :</label>
                             <div class="col-sm-8">
@@ -29,7 +29,7 @@ echo<<<EOT
                             </div>   
                             <label for="nom" class="col-sm-3 control-label">Nombre de joueur :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="nbJoueur" id="id_nbJoueur" value="$jeu->players">
+                                <input type="text" class="form-control" name="nbJoueur" id="id_nbJoueur" value="$jeu->nbJoueur">
                             </div>      
                             <label for="nom" class="col-sm-3 control-label">Extensions :</label>
                             <div class="col-sm-8">
@@ -38,9 +38,9 @@ echo<<<EOT
                         </div>
                         
                         <div class="pull-right">
-                            <input type="hidden" name="action" value="updateJeu" />
+                            <input type="hidden" name="action" value="mettreAjourJeu" />
                             <input type="hidden" name="controller" value="utilisateur" />
-                            <input type="hidden" name="jeu" value="$jeu->gameName" />
+                            <input type="hidden" name="jeu" value="$jeu->nomJeu" />
                             <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        
                         </div>
             	    </div>

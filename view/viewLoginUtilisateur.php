@@ -22,7 +22,7 @@ echo <<< EOT
 
                                     <div class="form-group">
                                     <div class="col-md-offset-0 col-md-8">
-                                        <input type="hidden" name="action" value="connected" />
+                                        <input type="hidden" name="action" value="connecte" />
                                         <input type="hidden" name="controller" value="utilisateur" />   
                                         <input class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
                                     </div>

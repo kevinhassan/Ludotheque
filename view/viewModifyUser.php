@@ -85,7 +85,7 @@ echo<<<EOT
                         </div>
                         <div class="form-group">
 EOT;
-if(Session::is_admin() && Session::is_user($user->username)){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
+if(Session::is_admin() && !Session::is_user($user->username)){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
     <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label>
                             <div class="col-sm-8">
@@ -101,19 +101,19 @@ echo<<<EOT
                             </div>
                         </div>
                         <div class="pull-right">
-                            <input type="hidden" name="action" value="updateUser" />
+                            <input type="hidden" name="action" value="mettreAjourUtilisateur" />
                             <input type="hidden" name="controller" value="utilisateur" />
                             <input type="hidden" name="user" value="$user->username" />
 EOT;
                             if(!is_null(myGet("profile"))){
                                 echo '<input type="hidden" name="profile" value="1" /> ';
                             }
-                            echo'<a href="?action=resetPwd&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
-                        if(Session::is_user($user->username)){//On ne peut pas se supprimer ou se bannir nous-même
-                            echo'<a href="?action=deleteUser&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
-                           if($user->banUser==0){ echo'<a href="?action=banUser&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
+                            echo'<a href="?action=reinitialiserMdp&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
+                        if(!Session::is_user($user->username)){//On ne peut pas se supprimer ou se bannir nous-même
+                            echo'<a href="?action=supprimerUtilisateur&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
+                           if($user->banUser==0){ echo'<a href="?action=bannirUtilisateur&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
                            }else{
-                               echo'<a href="?action=debanUser&user='.$user->username.'"class="btn btn-warning">Débannir</a>';
+                               echo'<a href="?action=debannirUtilisateur&user='.$user->username.'"class="btn btn-warning">Débannir</a>';
                            }
                         }
 echo<<<EOT

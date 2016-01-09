@@ -18,7 +18,7 @@ switch ($action) {
         $pagetitle='Accueil';
         break;
 
-    case "connected":
+    case "connecte":
 
         $data = array(
             "username" => myGet("username"),
@@ -64,7 +64,7 @@ switch ($action) {
         {
             //Chargement de la vue pour lui faire canger de mot de passe
             $pagetitle='Changer mot de passe';
-            $view='ChangeMdpUtilisateur';
+            $view='changeMdpUtilisateur';
             break;
         }
 
@@ -76,14 +76,14 @@ switch ($action) {
 
         break;
 
-    case "disconnect":
+    case "deconnecte":
         session_unset();
         session_destroy();
         $view="LoginUtilisateur";
         $pagetitle = 'Ludothèque';
         break;
 
-    case "error":
+    case "erreur":
         $view = "error";
         $message = "La page demandée est inaccesible";
         $pagetitle = "Erreur";
@@ -94,36 +94,37 @@ switch ($action) {
         $pagetitle = "Administration";
         break;
 
-    case "createUser":
+    case "creerUtilisateur":
         $view = "createUtilisateur";
         $pagetitle = "Ajouter un utilisateur";
         break;
 
-    case "listUser":
-        if(Session::is_admin())
+    case "listerUtilisateurs":
+        if( Session::is_admin())
         {
             $view = "listUtilisateur";
             $pagetitle = "Liste des utilisateurs";
-            $tab_user = ModelUtilisateur::selectAll();
+            $tab_u = ModelUtilisateur::selectAll();
         }
+
         else
         {
-            $view="Error";
+            $view="error";
             $message="Seul l'administrateur peut voir le contenu de cette page";
             $pagetitle="Erreur";
         }
         break;
 
-    case "modifyUser":
+    case "modifierUtilisateur":
         $data=array(
             "username" => myGet('user'),
         );
         $tab_u= ModelUtilisateur::selectWhere($data);
-        $view = "ModifyUser";
+        $view = "modifyUser";
         $pagetitle = "Modifier un utilisateur";
         break;
 
-    case "banUser":
+    case "bannirUtilisateur":
         if( Session::is_admin())
         {
           $data=array(
@@ -137,18 +138,18 @@ switch ($action) {
           );
           ModelUtilisateur::update($data);
           $pagetitle = "Liste des utilisateurs";
-          $tab_user = ModelUtilisateur::selectAll();
-          $view="ListUtilisateur";                      //Après avoir banni quelqu'un on remontre la liste des utilisateurs
+          $tab_u = ModelUtilisateur::selectAll();
+          $view="listUtilisateur";                      //Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
         else
         {
           $pagetitle="Erreur";
           $message="La modification n'a pas était pris en compte";
-          $view="Error";
+          $view="error";
         }
         break;
 
-    case "debanUser":
+    case "debannirUtilisateur":
         if( Session::is_admin())
         {
             $data=array(
@@ -162,19 +163,19 @@ switch ($action) {
             );
             ModelUtilisateur::update($data);
             $pagetitle = "Liste des utilisateurs";
-            $tab_user = ModelUtilisateur::selectAll();
-            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+            $tab_u = ModelUtilisateur::selectAll();
+            $view="listUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
         else
         {
           $pagetitle="Erreur";
           $message="La modification n'a pas était pris en compte";
-          $view="Error";
+          $view="error";
         }
         break;
 
-    case "changeMdp"://A utiliser aussi pour réinitialiser un mdp d'adhérent
-        if(myGet("mdp") == myGet("confmdp"))
+    case "changerMdp"://A utiliser aussi pour réinitialiser un mdp d'adhérent
+        if(myGet("mdp")==myGet("confmdp"))
         {
               $data = array(
                     "userId" => $_SESSION['id'],
@@ -189,11 +190,11 @@ switch ($action) {
         else
         {
             $pagetitle='Changer mot de passe';
-            $view='ChangeMdpUtilisateur';
+            $view='changeMdpUtilisateur';
         }
         break;
 
-    case "deleteUser":
+    case "supprimerUtilisateur":
         if( Session::is_admin())
         {
             $data = array(
@@ -204,9 +205,9 @@ switch ($action) {
                 "userId" => $tab_u[0]->userId,
             );
             ModelUtilisateur::delete($data);
-            $tab_user = ModelUtilisateur::selectAll();
+            $tab_u = ModelUtilisateur::selectAll();
             $pagetitle = "Liste des utilisateurs";
-            $view="ListUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
+            $view="listUtilisateur";//Après avoir banni quelqu'un on remontre la liste des utilisateurs
         }
 
         else
@@ -217,7 +218,7 @@ switch ($action) {
         }
         break;
 
-    case "updateUser":
+    case "mettreAjourUtilisateur":
         if (is_null(myGet('user')))
         {
             $view = "error";
@@ -256,31 +257,51 @@ switch ($action) {
                     "username" => $_SESSION['login'],
                 );
                 $tab_u=  ModelUtilisateur::selectWhere($data);
-                $view = "MyProfile";
+                $view = "monProfil";
                 $pagetitle = "Mon profil";
             }
 
             else{                         //Sinon on affiche la nouvelle liste des utilisateurs
                 $pagetitle = "Liste des utilisateurs";
-                $tab_user = ModelUtilisateur::selectAll();
-                $view="ListUtilisateur";
+                $tab_u = ModelUtilisateur::selectAll();
+                $view="listUtilisateur";
             }
         }
         else{
-            $view="Error";
+            $view="error";
             $message="Les modifications n'ont pas étaient pris en compte";
             $pagetitle="Erreur";
         }
         break;
-
+    case "reinitialiserMdp":
+        if( Session::is_admin())
+        {
+            $data = array("username" => myGet("user"));
+            $tab_u=  ModelUtilisateur::selectWhere($data);
+            $newMdp = hash('sha256', $tab_u[0]->username);
+            $data = array(
+                "userId" => $tab_u[0]->userId,
+                "password"=>$newMdp
+                );
+            ModelUtilisateur::update($data);
+            $pagetitle = "Liste des utilisateurs";
+            $tab_u = ModelUtilisateur::selectAll();
+            $view="listUtilisateur";
+        }
+        else{
+            $view="error";
+            $message="Les modifications n'ont pas étaient pris en compte";
+            $pagetitle="Erreur";
+        }
+        break;
     case "informations":
         $view = "informations";
         $pagetitle = "A Propos";
         break;
 
-    case "listJeux":
+    case "listerJeux":
        $tab_jeux = ModelJeux::selectAll();
-       $view='ListJeux';
+       $view='listJeux';
        $pagetitle='Liste des jeux';
        break;
 
@@ -290,10 +311,11 @@ switch ($action) {
             "word" => myGet("word"),
         );
         $tab_jeux = ModelJeux::search($data);
-        $view = 'ListJeux';
+        $view = 'listJeux';
         break;
 
-    case "saveUser":
+<<<<<<< HEAD
+    case "enregistrerUtilisateur":
         $admin = !is_null(myGet('admin'));
         $firstName = myGet('nickname');
         $lastName = myGet('name');
@@ -325,38 +347,38 @@ switch ($action) {
         );
 
         ModelUtilisateur::insert($data);
-        // Chargement de la vue
+
         $view = "AccueilUtilisateur";
         $pagetitle = "Accueil";
         break;
 
-    case "myProfile":
+    case "monProfil":
         $data = array(
             "username" => $_SESSION['login'],
         );
         $tab_u=  ModelUtilisateur::selectWhere($data);
-        $view = "MyProfile";
+        $view = "myProfile";
         $pagetitle = "Mon profil";
         break;
 
-    case "infoJeux":
+    case "infoJeu":
         $data=array(
-            "gameName" => myGet('jeux'),
+            "nomJeu" => myGet('jeux'),
         );
         $tab_jeux= ModelJeux::selectWhere($data);
-        $view = "InfoJeux";
+        $view = "infoJeux";
         $pagetitle= myGet('jeux');
         break;
 
-    case "deleteGame":/*Vérifier que le jeu n'est pas sous réservation à ce moment là*/
+    case "supprimerJeu":                      /*Vérifier que le jeu n'est pas sous réservation à ce moment là*/
         if( Session::is_admin())
         {
             $data = array(
-                "gameName" => myGet("jeu"),
+                "nomJeu" => myGet("jeu"),
             );
             $tab_jeux=ModelJeux::selectWhere($data);
             $data=array(
-                    "idGame" => $tab_jeux[0]->idGame,
+                    "idJeu" => $tab_jeux[0]->idJeu,
             );
             ModelJeux::delete($data);
             $tab_jeux = ModelJeux::selectAll(); //On met à jour le tableau
@@ -370,11 +392,11 @@ switch ($action) {
         }
         break;
 
-    case "modifyGame":
+    case "modifierJeu":
         if(Session::is_admin())
         {
             $data=array(
-                "gameName" => myGet('jeu'),
+                "nomJeu" => myGet('jeu'),
             );
             $tab_jeux= ModelJeux::selectWhere($data);
             $view = "modifyJeu";
@@ -387,26 +409,26 @@ switch ($action) {
             $pagetitle="Erreur";
         }
         break;
-    case "updateJeu":
+    case "mettreAjourJeu":
         if(Session::is_admin())
         {
             $data = array(
-                "gameName" => myGet("jeu"),
+                "nomJeu" => myGet("jeu"),
                 );
             $tab_jeux=ModelJeux::selectWhere($data);
             $data = array(
-                "idGame" => $tab_jeux[0]->idGame,
-                "gameName" => myGet("name"),
-                "editionYear" => myGet("annee"),
-                "editor" => myGet("editor"),
-                "age" => myGet("age"),
-                "players" => myGet("nbJoueur"),
-                "extension" => myGet("extension"),
-            );
+                    "idJeu" => $tab_jeux[0]->idJeu,
+                    "nomJeu" => myGet("name"),
+                    "anneeEdition" => myGet("annee"),
+                    "editeur" => myGet("editeur"),
+                    "age" => myGet("age"),
+                    "nbJoueur" => myGet("nbJoueur"),
+                    "extension" => myGet("extension"),
+                    );
             ModelJeux::update($data);
             $pagetitle = "Liste des jeux";
             $tab_jeux = ModelJeux::selectAll();
-            $view="ListJeux";
+            $view="listJeux";
             break;
         }
         else{
@@ -414,19 +436,19 @@ switch ($action) {
             $message="La modification n'a pas était pris en compte";
             $pagetitle="Erreur";
         }
-    case "addJeu":
-        $view = "addJeu";
+    case "ajouterJeu":
+        $view = "ajouterJeu";
         $pagetitle = "Ajouter un jeu";
         break;
 
-    case "saveJeu":
+    case "sauvegarderJeu":
         if(SESSION::is_admin()){
             $data = array(
-                "gameName" => myGet("name"),
-                "editionYear" => myGet("annee"),
-                "editor" => myGet("editor"),
+                "nomJeu" => myGet("name"),
+                "anneeEdition" => myGet("annee"),
+                "editeur" => myGet("editeur"),
                 "age" => myGet("age"),
-                "players" => myGet("nbJoueur"),
+                "nbJoueur" => myGet("nbJoueur"),
                 "extension" => myGet("extension"),
             );
             ModelJeux::insert($data);
@@ -439,7 +461,7 @@ switch ($action) {
             $pagetitle="Erreur";
         }
         break;
-    case "listResa":
+    case "listerReservation":
         if( Session::is_admin())
         {
             $view = "listResa";
@@ -447,7 +469,7 @@ switch ($action) {
             $tab_resa = ModelReservation::selectAll();
         }
         else{
-            $view="Error";
+            $view="error";
             $message="Seul l'administrateur peut voir le contenu de cette page";
             $pagetitle="Erreur";
         }
