@@ -9,6 +9,7 @@ function tabJeux($tab_jeux)
         $year = $u->anneeEdition;
         $editeur = $u->editeur;
         $age = $u->age;
+        $players = $u->players;
         $nbJoueur = $u->nbJoueur;
         
         // La syntaxe suivante permet de créer facilement des chaînes de caractères multi-lignes
@@ -40,8 +41,6 @@ EOT;
 tabJeux($tab_jeux);
     echo <<<EOT
     </table>
-EOT;
-echo <<<EOT
     </div>
 </div>
 <script>$(document).ready(function() { $('#tableJeux').DataTable(); } );</script>
