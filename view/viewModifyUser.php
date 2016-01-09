@@ -5,7 +5,7 @@ echo<<<EOT
     <div class="row">
         <div class="col-lg-12">
             <div class='row' style="text-align : center;">
-                <h1>Modifier l'utilisateur : <span style='color:red'>$user->username</span></h1>
+                <h1>Modifier l'utilisateur : <span style='color:red'>$user->nicknameUser $user->nameUser</span></h1>
         </div>
             <form class="form-horizontal" role="form" method="post" action=".">
                 <div class="row">
@@ -15,11 +15,13 @@ echo<<<EOT
                             <div class="col-sm-8">
                                 <select name="sex" class="form-control" id="id_sex" required="required">
 EOT;
-                                if($user->sexUser == "Homme"){
+                                if($user->sexUser == "Homme")
+                                {
                                     echo '<option value="Homme"selected>Homme</option>';
                                     echo '<option value="Femme">Femme</option>';
                                 }
-                                else{
+                                else
+                                {
                                     echo '<option value="Homme">Homme</option>';
                                     echo '<option value="Femme"selected>Femme</option>';
                                 }
@@ -85,7 +87,7 @@ echo<<<EOT
 EOT;
 if(Session::is_admin() && Session::is_user($user->username)){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
-    <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
+    <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label>
                             <div class="col-sm-8">
 EOT;
                             if($user->admin == 1){

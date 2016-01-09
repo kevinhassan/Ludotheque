@@ -10,7 +10,7 @@ function tabJeux($tab_jeux)
         $editor = $u->editor;
         $age = $u->age;
         $players = $u->players;
-        
+
         // La syntaxe suivante permet de créer facilement des chaînes de caractères multi-lignes
         echo <<< EOT
         <tr><td><a href="?action=infoJeux&jeux=$game">$game</a></td><td>$year</td><td>$editor</td><td>$age</td><td>$players</td></tr>
@@ -40,8 +40,6 @@ EOT;
 tabJeux($tab_jeux);
     echo <<<EOT
     </table>
-EOT;
-echo <<<EOT
     </div>
 </div>
 <script>$(document).ready(function() { $('#tableJeux').DataTable(); } );</script>
