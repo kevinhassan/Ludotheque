@@ -22,7 +22,7 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
 
     //On récupère la liste des jeux qui ont une extension
-    $reponse = $bdd->query('SELECT idGame, extension FROM jeux WHERE extension != ""');
+    $reponse = $bdd->query('SELECT idJeu, extension FROM jeux WHERE extension != ""');
     $donnees = $reponse->fetchAll();
     $reponse->closeCursor();
 
@@ -34,7 +34,7 @@
       {
           $req = $bdd->prepare('INSERT INTO extensions(idJeu, nomExtension) VALUES(:idJeu,:extension)'); //On insère l'extension avec un lien vers le jeu d'origine
           $req->execute(array(
-              'idJeu' => $entree['idGame'],
+              'idJeu' => $entree['idJeu'],
               'extension' => $extension
               ));
       }
