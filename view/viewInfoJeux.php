@@ -7,7 +7,7 @@ echo <<< EOT
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">$u->gameName</h3>
+              <h3 class="panel-title">$u->nomJeu</h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -16,11 +16,11 @@ echo <<< EOT
                     <tbody>
                       <tr>
                         <td>Année d'édition</td>
-                        <td>$u->editionYear</td>
+                        <td>$u->anneeEdition</td>
                       </tr>
                         <tr>
                         <td>Editeur</td>
-                        <td>$u->editor</td>
+                        <td>$u->editeur</td>
                       </tr>
                       <tr>
                         <td>Age</td>
@@ -28,7 +28,7 @@ echo <<< EOT
                       </tr>
                       <tr>
                         <td>Nombre de joueurs</td>
-                        <td>$u->players</td>
+                        <td>$u->nbJoueur</td>
                       </tr>
 EOT;
 if($u->extension!=null){
@@ -44,12 +44,12 @@ echo <<< EOT
                      
                     </tbody>
                   </table>
-                  <a href="?action=resa&jeu=$u->gameName" class="btn btn-primary">Réserver</a>  
+                  <a href="?action=resa&jeu=$u->nomJeu" class="btn btn-primary">Réserver</a>  
 EOT;
 if(Session::is_admin()){
 echo<<<EOT
-                  <a href="?action=modifyGame&jeu=$u->gameName" class="btn btn-success">Modifier</a>
-                  <a href="?action=deleteGame&jeu=$u->gameName" class="btn btn-danger">Supprimer</a>
+                  <a href="?action=modifierJeu&jeu=$u->nomJeu" class="btn btn-success">Modifier</a>
+                  <a href="?action=supprimerJeu&jeu=$u->nomJeu" class="btn btn-danger">Supprimer</a>
 EOT;
 }
 echo<<<EOT

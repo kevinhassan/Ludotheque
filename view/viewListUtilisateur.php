@@ -1,10 +1,10 @@
 <?php
-function tabUser($tab_user)
+function tabUser($tab_u)
 {
-    $max=sizeof($tab_user);
+    $max=sizeof($tab_u);
     $i=0;
     while($i<$max){
-    $u=$tab_user[$i];
+    $u=$tab_u[$i];
         $username = $u->username;
         $name = $u->nameUser;
         $nickname = $u->nicknameUser;
@@ -33,7 +33,7 @@ function tabUser($tab_user)
             $ban='Oui';
         }
         echo <<< EOT
-        <tr><td><a href="?action=modifyUser&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td>$email</td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
+        <tr><td><a href="?action=modifierUtilisateur&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td>$email</td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
 </div>
 EOT;
     $i++;
@@ -67,7 +67,7 @@ if(isset($_SESSION['login']) && $_SESSION['admin']==1){ //Il faut être admin po
           </tr>
         </thead>
 EOT;
-tabUser($tab_user);
+tabUser($tab_u);
     echo <<<EOT
     </table>
 EOT;

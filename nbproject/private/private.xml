@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Wamp/www/Ludotheque/view/header.php</file>
+            <file>file:/D:/wamp/www/ludotheque/controller/ControllerUtilisateur.php</file>
+            <file>file:/D:/wamp/www/ludotheque/view/viewCreateUtilisateur.php</file>
+            <file>file:/D:/wamp/www/ludotheque/view/viewAdmin.php</file>
         </group>
     </open-files>
 </project-private>
