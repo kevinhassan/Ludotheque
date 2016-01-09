@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 09 Janvier 2016 à 05:59
+-- Généré le :  Sam 09 Janvier 2016 à 19:23
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `ludotheque`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `emprunt`
+--
+
+CREATE TABLE IF NOT EXISTS `emprunt` (
+  `id_emprunt` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) NOT NULL,
+  `id_jeu` int(11) NOT NULL,
+  `date_debut` datetime NOT NULL,
+  `retard` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_emprunt`),
+  KEY `id_utilisateur` (`id_utilisateur`),
+  KEY `id_jeu` (`id_jeu`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -379,10 +396,14 @@ INSERT INTO `jeux` (`idGame`, `gameName`, `editionYear`, `editor`, `age`, `playe
 --
 
 CREATE TABLE IF NOT EXISTS `reservation` (
-  `idReservation` int(11) NOT NULL AUTO_INCREMENT,
+  `id_reservation` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) NOT NULL,
+  `id_jeu` int(11) NOT NULL,
   `dateDebut` date DEFAULT NULL,
   `duree` datetime DEFAULT NULL,
-  PRIMARY KEY (`idReservation`)
+  PRIMARY KEY (`id_reservation`),
+  KEY `id_utilisateur` (`id_utilisateur`),
+  KEY `id_jeu` (`id_jeu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -424,9 +445,27 @@ INSERT INTO `utilisateur` (`userId`, `username`, `password`, `admin`, `sexUser`,
 (1769568, 'test.test', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 0, 'Homme', 'test', 'test', 'hi@gmail.com', '0635534053', '0635534053', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (10488568, 'kévin.hassan', '2b430884074c174c9a324b6d3397e6f4cb4cb2cc9fa08b2208f82665a010a983', 1, 'Homme', 'hassan', 'kévin', 'hassan@yopmail.com', '0000000000', '0000000000', 'test', '3400', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (12753568, 'medhi.fakihani', 'fbdfc511fd5a9ee95605fa5c05b50280c7469e8fa8ef4829dab4e48e9e777ede', 1, 'Homme', 'fakihani', 'medhi', 'fakihani@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(12950568, 'anthony.borel', '3b7363ca96bb395cef1f669c2f284a46baf12a16d6c15711558bcc293927038f', 1, 'Homme', 'borel', 'anthony', 'borel@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(12950568, 'anthony.borel', '30b86b230569e4558aa2a5437d5a330427bf22885ef4a9b107516125fa258745', 1, 'Homme', 'borel', 'anthony', 'borel@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (16183568, 'nathanaël.rastout', '42f46266696f89caa6b332d489dc5cfa19115f8fc7cb244e573204fa48c20d9f', 1, 'Homme', 'rastout', 'nathanaël', 'rastout@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (23716568, 'nicolas.zambrano', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 'Homme', 'zambrano', 'nicolas', 'zambrano@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0);
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `emprunt`
+--
+ALTER TABLE `emprunt`
+  ADD CONSTRAINT `emprunt_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idGame`),
+  ADD CONSTRAINT `emprunt_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`);
+
+--
+-- Contraintes pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idGame`),
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

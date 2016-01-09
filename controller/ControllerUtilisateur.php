@@ -120,7 +120,7 @@ switch ($action) {
         }
         else{
           $pagetitle="Erreur";
-          $message="La modification n'a pas était pris en compte";
+          $message="La modification n'a pas était prise en compte";
           $view="Error";
         }
         break;
