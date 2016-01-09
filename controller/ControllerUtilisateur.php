@@ -147,7 +147,7 @@ switch ($action) {
           $view="Error";
         }
         break;
-    case "changeMdp":
+    case "changeMdp"://A utiliser aussi pour réinitialiser un mdp d'adhérent
         if(myGet("mdp")==myGet("confmdp")){
               $data = array(
               "userId" => $_SESSION['id'],
@@ -242,11 +242,6 @@ switch ($action) {
         }
         break;
 
-    case "addGame":
-        $view = "addGame";
-        $pagetitle = "Ajouter un jeu";
-        break;
-
     case "informations":
         $view = "informations";
         $pagetitle = "A Propos";
@@ -267,7 +262,7 @@ switch ($action) {
         $view = 'ListJeux';
         break;
 
-    case "save":
+    case "saveUser":
         if(!is_null(myGet('admin')))
             $admin=true;
         else
@@ -323,11 +318,102 @@ switch ($action) {
         $data=array(
             "gameName" => myGet('jeux'),
         );
-        $tab_j= ModelJeux::selectWhere($data);
+        $tab_jeux= ModelJeux::selectWhere($data);
         $view = "InfoJeux";
         $pagetitle= myGet('jeux');
         break;
-
+    
+    case "deleteGame":/*Vérifier que le jeu n'est pas sous réservation à ce moment là*/
+        if( Session::is_admin())
+        {
+            $data = array(
+                "gameName" => myGet("jeu"),
+            );
+            $tab_jeux=ModelJeux::selectWhere($data);
+            $data=array(
+                    "idGame" => $tab_jeux[0]->idGame,
+            );
+            ModelJeux::delete($data);
+            $tab_jeux = ModelJeux::selectAll(); //On met à jour le tableau
+            $pagetitle = "Liste des jeux";
+            $view="listJeux";
+        }
+        else{
+            $view="error";          
+            $message="La modification n'a pas était pris en compte";
+            $pagetitle="Erreur";
+        }    
+        break;
+        
+    case "modifyGame":
+        if(Session::is_admin())
+        {
+            $data=array(
+                "gameName" => myGet('jeu'),
+            );
+            $tab_jeux= ModelJeux::selectWhere($data);
+            $view = "modifyJeu";
+            $pagetitle = "Modifier un jeu";
+            break;
+        }
+        else{
+            $view="error";          
+            $message="La modification n'a pas était pris en compte";
+            $pagetitle="Erreur";  
+        }
+        break;
+    case "updateJeu":
+        if(Session::is_admin())
+        {
+            $data = array(
+                "gameName" => myGet("jeu"),
+                );
+            $tab_jeux=ModelJeux::selectWhere($data);
+            $data = array(
+                "idGame" => $tab_jeux[0]->idGame,                
+                "gameName" => myGet("name"),
+                "editionYear" => myGet("annee"),
+                "editor" => myGet("editor"),
+                "age" => myGet("age"),
+                "players" => myGet("nbJoueur"),
+                "extension" => myGet("extension"),
+            );
+            ModelJeux::update($data);
+            $pagetitle = "Liste des jeux";
+            $tab_jeux = ModelJeux::selectAll();
+            $view="ListJeux";
+            break;
+        }
+        else{
+            $view="error";          
+            $message="La modification n'a pas était pris en compte";
+            $pagetitle="Erreur";  
+        }      
+    case "addJeu":
+        $view = "addJeu";
+        $pagetitle = "Ajouter un jeu";
+        break;   
+    
+    case "saveJeu":
+        if(SESSION::is_admin()){
+            $data = array(
+                "gameName" => myGet("name"),
+                "editionYear" => myGet("annee"),
+                "editor" => myGet("editor"),
+                "age" => myGet("age"),
+                "players" => myGet("nbJoueur"),
+                "extension" => myGet("extension"),
+            );
+            ModelJeux::insert($data);
+            $view = "admin";
+            $pagetitle = "Administration";            
+        }
+        else{
+            $view="error";          
+            $message="La modification n'a pas était pris en compte";
+            $pagetitle="Erreur";             
+        }
+        break;
     case "listResa":
         if( Session::is_admin())
         {

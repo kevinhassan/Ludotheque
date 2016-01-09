@@ -9,9 +9,9 @@ echo<<<EOT
 					<a href="?action=accueil">Accueil</a>
 					·
 					<a href="?action=liste">Jeux</a>
-					·
-					<a href="#">Mes réservations</a>·
-					<a href="?action=informations">A propos</a>
+					· 
+					<a href="#">Mes réservations</a> ·
+					<a href="?action=informations">Informations</a>
 				</p>
 
 				<p class="footer-company-name">Homoludens &copy; 2015</p>

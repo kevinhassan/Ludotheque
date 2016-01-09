@@ -1,3 +1,4 @@
+<meta charset="UTF-8"/>
 <?php
     //Connexion à la BDD
     try
@@ -31,7 +32,7 @@
 
       foreach ($extensions as $extension)
       {
-          $req = $bdd->prepare('INSERT INTO extensions(idJeu, nomExtension) VALUES(\':idJeu\',\':extension\')'); //On insère l'extension avec un lien vers le jeu d'origine
+          $req = $bdd->prepare('INSERT INTO extensions(idJeu, nomExtension) VALUES(:idJeu,:extension)'); //On insère l'extension avec un lien vers le jeu d'origine
           $req->execute(array(
               'idJeu' => $entree['idGame'],
               'extension' => $extension

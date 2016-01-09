@@ -1,6 +1,6 @@
 <?php
 
-$u=$tab_j[0];
+$u=$tab_jeux[0];
 echo <<< EOT
 <div class="container">
       <div class="row">
@@ -44,12 +44,12 @@ echo <<< EOT
                      
                     </tbody>
                   </table>
-                  <a href="?action=resa" class="btn btn-primary">Réserver</a>  
+                  <a href="?action=resa&jeu=$u->gameName" class="btn btn-primary">Réserver</a>  
 EOT;
 if(Session::is_admin()){
 echo<<<EOT
-                  <a href="?action=modify" class="btn btn-success">Modifier</a>
-                  <a href="?action=suppr" class="btn btn-danger">Supprimer</a>
+                  <a href="?action=modifyGame&jeu=$u->gameName" class="btn btn-success">Modifier</a>
+                  <a href="?action=deleteGame&jeu=$u->gameName" class="btn btn-danger">Supprimer</a>
 EOT;
 }
 echo<<<EOT

@@ -5,13 +5,15 @@
         <link rel="icon" type="image/png" href="image/logo.png" />
         <?php echo "<title>".$pagetitle."</title>" ?>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">        
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cookie"/>
-        <link rel="stylesheet" href="css/font-awesome.min">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <script src="js/jquery.min.js"></script>        
+        <script src="js/bootstrap.min.js"></script>
 
-        <script src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     </head>
     <body>
