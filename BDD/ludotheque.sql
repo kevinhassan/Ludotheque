@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `jeux` (
   `nbrExemplaire` int(11) NOT NULL DEFAULT '1',
   `dispo` int(11) NOT NULL,
   PRIMARY KEY (`idJeu`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=223 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=225 ;
 
 --
 -- Contenu de la table `jeux`
@@ -457,14 +457,14 @@ INSERT INTO `utilisateur` (`userId`, `username`, `password`, `admin`, `sexUser`,
 -- Contraintes pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  ADD CONSTRAINT `emprunt_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idGame`),
+  ADD CONSTRAINT `emprunt_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idJeu`),
   ADD CONSTRAINT `emprunt_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`);
 
 --
 -- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idGame`),
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idJeu`),
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
