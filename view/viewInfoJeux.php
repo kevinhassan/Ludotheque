@@ -44,12 +44,12 @@ echo <<< EOT
                      
                     </tbody>
                   </table>
-                  <a href="?action=resa&jeu=$u->nomJeu" class="btn btn-primary">Réserver</a>  
+                  <a href="?action=reserverJeu&jeu=$u->nomJeu&controller=reservation" class="btn btn-primary">Réserver</a>  
 EOT;
 if(Session::is_admin()){
 echo<<<EOT
-                  <a href="?action=modifierJeu&jeu=$u->nomJeu" class="btn btn-success">Modifier</a>
-                  <a href="?action=supprimerJeu&jeu=$u->nomJeu" class="btn btn-danger">Supprimer</a>
+                  <a href="?action=modifierJeu&jeu=$u->nomJeu&controller=jeux" class="btn btn-success">Modifier</a>
+                  <a href="?action=supprimerJeu&jeu=$u->nomJeu&controller=jeux" class="btn btn-danger">Supprimer</a>
 EOT;
 }
 echo<<<EOT

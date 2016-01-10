@@ -26,19 +26,19 @@
                       </div>
                       <div>
                         <ul class="nav navbar-nav">
-                          <li><a href="?action=accueil">Accueil <span class="glyphicon glyphicon-home"></span></a></li>
-                          <li><a href="?action=listerJeux">Jeux <span class="glyphicon glyphicon-king"></a></li>
-                          <li><a href="?action=listerReservation">Mes réservations <span class="glyphicon glyphicon-th-list"></span></a></li>
-                          <li><a href="?action=informations">Informations <span class="glyphicon glyphicon-info-sign"></span></a></li>
+                          <li><a href="?action=accueil&controller=utilisateur">Accueil <span class="glyphicon glyphicon-home"></span></a></li>
+                          <li><a href="?action=listerJeux&controller=jeux">Jeux <span class="glyphicon glyphicon-king"></a></li>
+                          <li><a href="?action=listerReservation&controller=reservation">Mes réservations <span class="glyphicon glyphicon-th-list"></span></a></li>
+                          <li><a href="?action=informations&controller=utilisateur">Informations <span class="glyphicon glyphicon-info-sign"></span></a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 EOT;
             if(Session::is_admin())
-                echo '<li><a href="?action=administration">Administration <span class="glyphicon glyphicon-cog"></span></a></li>';
+                echo '<li><a href="?action=administration&controller=utilisateur">Administration <span class="glyphicon glyphicon-cog"></span></a></li>';
 
                 echo <<< EOT
-                          <li><a href="?action=monProfil">Mon Profil <span class="glyphicon glyphicon-user"></span></a></li>
-                          <li><a href="?action=deconnecte">Se déconnecter <span class="glyphicon glyphicon-log-out"></span></a></li>
+                          <li><a href="?action=monProfil&controller=utilisateur">Mon Profil <span class="glyphicon glyphicon-user"></span></a></li>
+                          <li><a href="?action=deconnecte&controller=utilisateur">Se déconnecter <span class="glyphicon glyphicon-log-out"></span></a></li>
                        </ul>
                       </div>
                     </div>

@@ -7,22 +7,22 @@ if(isset($_SESSION['login'])){
 
       <div class="row-img ">
         <div class="col-lg-4 ">
-            <a title="Afficher la liste des jeux" href="?action=listerJeux" role="button"><img class="img-circle" src="./image/jeux.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
+            <a title="Afficher la liste des jeux" href="?action=listerJeux&controller=jeux" role="button"><img class="img-circle" src="./image/jeux.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
           <h2>Jeux</h2>
-          <p><a title="Afficher la liste des jeux" href="?action=listerJeux" role="button">Voir »</a></p>
+          <p><a title="Afficher la liste des jeux" href="?action=listerJeux&controller=jeux" role="button">Voir »</a></p>
         </div>
         <div class="col-lg-4">
-            <a title="Afficher mes informations personnelles" href="?action=monProfil" role="button"><img class="img-circle" src="./image/informations.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
+            <a title="Afficher mes informations personnelles" href="?action=monProfil&controller=utilisateur" role="button"><img class="img-circle" src="./image/informations.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
           <h2>Informations Personnelles</h2>
-          <p><a title="Afficher mes informations personnelles" href="?action=monProfil" role="button">Voir »</a></p>
+          <p><a title="Afficher mes informations personnelles" href="?action=monProfil&controller=utilisateur" role="button">Voir »</a></p>
         </div>
 EOT;
 if(Session::is_admin()){
         echo <<< EOT
         <div class="col-lg-4">
-            <a title="Administrer la ludothéque" href="?action=administration" role="button"><img class="img-circle" src="./image/administration.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
+            <a title="Administrer la ludothéque" href="?action=administration&controller=utilisateur" role="button"><img class="img-circle" src="./image/administration.png" alt="Generic placeholder image" style="width: 140px; height: 140px;"></a>
           <h2>Administration</h2>
-          <p><a title="Administrer la ludothéque" href="?action=administration" role="button">Voir »</a></p>
+          <p><a title="Administrer la ludothéque" href="?action=administration&controller=utilisateur" role="button">Voir »</a></p>
         </div>
 EOT;
 }
