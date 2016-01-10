@@ -1,4 +1,5 @@
 <?php
+$login = $_SESSION['login'];
 echo<<<EOT
 <div class="container">
     <div class="row">
@@ -12,19 +13,19 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Mot de passe :</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" name="mdp" id="id_mdp" required="required" >
+                                <input type="password" class="form-control" name="mdp" id="id_mdp" required="required" pattern = "^((?!$login).)*\$"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="col-sm-3 control-label">Confirmation mot de passe :</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" name="confmdp" id="id_confmdp" required="required">
+                                <input type="password" class="form-control" name="confmdp" id="id_confmdp" required="required" />
                             </div>
                         </div>
                         <div class="pull-right">
                             <input type="hidden" name="action" value="changerMdp" />
                             <input type="hidden" name="controller" value="utilisateur" />
-                            <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        
+                            <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>
                         </div>
             	    </div>
                 </div>
