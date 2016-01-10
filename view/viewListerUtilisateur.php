@@ -33,7 +33,7 @@ function tabUser($tab_u)
             $ban='Oui';
         }
         echo <<< EOT
-        <tr><td><a href="?action=modifierUtilisateur&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td>$email</td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
+        <tr><td><a href="?action=modifierUtilisateur&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td><a href="mailto:$email">$email</a></td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
 </div>
 EOT;
     $i++;
@@ -75,6 +75,9 @@ echo <<<EOT
     </div>
 </div>
 <script>$(document).ready(function() { $('#tableUser').DataTable(); } );</script>
+<script>
+    $(#tableUser_info).innerHTML = "lol";
+</script>
 EOT;
 }
 echo '</div>';

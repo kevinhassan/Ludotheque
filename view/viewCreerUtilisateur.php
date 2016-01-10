@@ -45,13 +45,13 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="tel" class="col-sm-3 control-label">T&eacute;l&eacute;phone :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required="required">
+                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mobile" class="col-sm-3 control-label">Mobile :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required="required">
+                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" required="required">
                             </div>
                         </div>
                         <div class="form-group">
@@ -90,7 +90,7 @@ echo<<<EOT
     </div>
 </div>
 <div class="alert alert-info">
-  <strong>Info!</strong> Le mot de passe par défault et le nom d'utilisateur sont : "prénom.nom".
+  <strong>Info !</strong> Le mot de passe par défault et le nom d'utilisateur sont : "prénom.nom".
 </div>
 EOT;
 ?>

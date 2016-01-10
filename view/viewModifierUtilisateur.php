@@ -6,7 +6,7 @@ echo<<<EOT
         <div class="col-lg-12">
             <div class='row' style="text-align : center;">
                 <h1>Modifier l'utilisateur : <span style='color:red'>$user->username</span></h1>
-        </div>
+            </div>
             <form class="form-horizontal" role="form" method="post" action=".">
                 <div class="row">
                     <div class="col-lg-12">
@@ -54,13 +54,13 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="tel" class="col-sm-3 control-label">T&eacute;l&eacute;phone :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="$user->telUser" required="required">
+                                <input type="tel" class="form-control" name="tel" id="id_numTel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" value="$user->telUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mobile" class="col-sm-3 control-label">Mobile :</label>
                             <div class="col-sm-8">
-                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" value="$user->mobileUser" required="required">
+                                <input type="tel" class="form-control" name="mobile" id="id_mobile" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" value="$user->mobileUser" required="required">
                             </div>
                         </div>
                         <div class="form-group">
@@ -72,7 +72,7 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="cp" class="col-sm-3 control-label">Code Postal :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="cp" id="id_cp" value="$user->cpUser" required="required">
+                                <input type="text" class="form-control" name="cp" id="id_cp" value="$user->cpUser" pattern="[0-9]{5}" required="required">
                             </div>
                         </div>
                         <div class="form-group">
@@ -116,7 +116,8 @@ EOT;
                            }
                         }
 echo<<<EOT
-                            <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        </div>
+                            <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        
+                        </div>
             	    </div>
                 </div>
             </form>
