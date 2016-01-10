@@ -3,9 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/wamp/www/ludotheque/controller/ControllerUtilisateur.php</file>
-            <file>file:/D:/wamp/www/ludotheque/view/viewCreateUtilisateur.php</file>
-            <file>file:/D:/wamp/www/ludotheque/view/viewAdmin.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/BDD/ludotheque.sql</file>
+            <file>file:/C:/wamp/www/ludoth-que/view/viewListEmprunt.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/model/ModelReservation.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/controller/ControllerReservation.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/model/Model.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/controller/ControllerJeux.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/view/view.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/model/ModelJeux.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/view/viewAccueilUtilisateur.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/model/ModelEmprunt.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/controller/ControllerUtilisateur.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/view/viewAdmin.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/controller/ControllerEmprunt.php</file>
+            <file>file:/C:/wamp/www/ludoth-que/model/ModelUtilisateur.php</file>
         </group>
     </open-files>
 </project-private>
