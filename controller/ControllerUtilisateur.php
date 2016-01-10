@@ -267,7 +267,7 @@ switch ($action) {
         {
             $data = array("username" => myGet("user"));
             $tab_u=  ModelUtilisateur::selectWhere($data);
-            $newMdp = hash('sha256', $tab_u[0]->username);           
+            $newMdp = hash('sha256', $tab_u[0]->username);
             $data = array(
                 "userId" => $tab_u[0]->userId,
                 "password"=>$newMdp
@@ -275,14 +275,14 @@ switch ($action) {
             ModelUtilisateur::update($data);
             $pagetitle = "Liste des utilisateurs";
             $tab_u = ModelUtilisateur::selectAll();
-            $view="listerUtilisateur";      
-        }  
+            $view="listerUtilisateur";
+        }
         else{
             $view="erreur";
             $message="Les modifications n'ont pas étaient pris en compte";
             $pagetitle="Erreur";
-        }
-        break;
+         }
+         break;
     case "informations":
         $view = "informations";
         $pagetitle = "A Propos";
@@ -312,14 +312,14 @@ switch ($action) {
         $clearPassword = $username;
         $numberHomonym = ModelUtilisateur::getNumberHomonym($username) + 1;
 
-        if($numberHomonym > 0)
+        if($numberHomonym > 1)
           $clearPassword .= $numberHomonym;
 
         $cryptedPassword = hash('sha256', $clearPassword);
 
         $data = array(
             "username" => $username,
-            "password" => $mot_passe_crypte,
+            "password" => $cryptedPassword,
             "admin" => $admin,
             "sexUser" => myGet("sex"),
             "nameUser" => myGet("name"),
