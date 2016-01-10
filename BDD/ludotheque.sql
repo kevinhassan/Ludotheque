@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `userId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
   `admin` tinyint(1) NOT NULL,
@@ -445,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `userId` (`userId`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=9;
 
 --
 -- Contenu de la table `utilisateur`
@@ -454,12 +454,12 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`userId`, `username`, `password`, `admin`, `sexUser`, `nameUser`, `nicknameUser`, `emailUser`, `telUser`, `mobileUser`, `addressUser`, `cpUser`, `cityUser`, `banUser`, `dateNaissance`, `dateInscription`, `nbrRetard`) VALUES
 (1, 'admin', '6521bee1ee2dcfdc63fc2fa65baff33e04c2ffa84a546cece4d6bacc77cc6daf', 1, 'Homme', 'admin', 'admin', 'admin@gmail.com', '0467522245', '0675854528', '120 avenue paul bousquet', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (2, 'nonadmin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 0, 'Femme', ' Test', 'tes', 'test@gmail.com', '0656345354', '0656345354', 'chemin de la coccinelle', '34200', 'Sete', 0, '0000-00-00', '0000-00-00', 0),
-(1769568, 'test.test', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 0, 'Homme', 'test', 'test', 'hi@gmail.com', '0635534053', '0635534053', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(10488568, 'kévin.hassan', '2b430884074c174c9a324b6d3397e6f4cb4cb2cc9fa08b2208f82665a010a983', 1, 'Homme', 'hassan', 'kévin', 'hassan@yopmail.com', '0000000000', '0000000000', 'test', '3400', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(12753568, 'medhi.fakihani', 'fbdfc511fd5a9ee95605fa5c05b50280c7469e8fa8ef4829dab4e48e9e777ede', 1, 'Homme', 'fakihani', 'medhi', 'fakihani@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(12950568, 'anthony.borel', '30b86b230569e4558aa2a5437d5a330427bf22885ef4a9b107516125fa258745', 1, 'Homme', 'borel', 'anthony', 'borel@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(16183568, 'nathanaël.rastout', '42f46266696f89caa6b332d489dc5cfa19115f8fc7cb244e573204fa48c20d9f', 1, 'Homme', 'rastout', 'nathanaël', 'rastout@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(23716568, 'nicolas.zambrano', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 'Homme', 'zambrano', 'nicolas', 'zambrano@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0);
+(3, 'test.test', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 0, 'Homme', 'test', 'test', 'hi@gmail.com', '0635534053', '0635534053', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(4, 'kévin.hassan', '2b430884074c174c9a324b6d3397e6f4cb4cb2cc9fa08b2208f82665a010a983', 1, 'Homme', 'hassan', 'kévin', 'hassan@yopmail.com', '0000000000', '0000000000', 'test', '3400', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(5, 'medhi.fakihani', 'fbdfc511fd5a9ee95605fa5c05b50280c7469e8fa8ef4829dab4e48e9e777ede', 1, 'Homme', 'fakihani', 'medhi', 'fakihani@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(6, 'anthony.borel', '30b86b230569e4558aa2a5437d5a330427bf22885ef4a9b107516125fa258745', 1, 'Homme', 'borel', 'anthony', 'borel@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(7, 'nathanaël.rastout', '42f46266696f89caa6b332d489dc5cfa19115f8fc7cb244e573204fa48c20d9f', 1, 'Homme', 'rastout', 'nathanaël', 'rastout@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(8, 'nicolas.zambrano', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 'Homme', 'zambrano', 'nicolas', 'zambrano@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0);
 
 --
 -- Contraintes pour les tables exportées
