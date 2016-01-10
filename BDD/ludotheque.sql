@@ -158,23 +158,23 @@ INSERT INTO `extensions` (`idExtension`, `idJeu`, `nomExtension`, `nbExtension`,
 --
 
 CREATE TABLE IF NOT EXISTS `jeux` (
-  `idGame` int(11) NOT NULL AUTO_INCREMENT,
-  `gameName` varchar(57) DEFAULT NULL,
-  `editionYear` int(4) DEFAULT NULL,
-  `editor` varchar(29) DEFAULT NULL,
+  `idJeu` int(11) NOT NULL AUTO_INCREMENT,
+  `nomJeu` varchar(57) DEFAULT NULL,
+  `anneeEdition` int(4) DEFAULT NULL,
+  `editeur` varchar(29) DEFAULT NULL,
   `age` varchar(2) DEFAULT NULL,
-  `players` varchar(4) DEFAULT NULL,
+  `nbJoueur` varchar(4) DEFAULT NULL,
   `extension` varchar(335) DEFAULT NULL,
+  `nbrExemplaire` int(11) NOT NULL DEFAULT '1',
   `disponible` tinyint(4) NOT NULL DEFAULT '1',
-  `nbGame` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idGame`)
+  PRIMARY KEY (`idJeu`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=223 ;
 
 --
 -- Contenu de la table `jeux`
 --
 
-INSERT INTO `jeux` (`idGame`, `gameName`, `editionYear`, `editor`, `age`, `players`, `extension`, `disponible`, `nbGame`) VALUES
+INSERT INTO `jeux` (`idJeu`, `nomJeu`, `anneeEdition`, `editeur`, `age`, `nbJoueur`, `extension`, `disponible`, `nbrExemplaire`) VALUES
 (1, '1000 Bornes', 1954, 'Dujardin', '8', '2-6', '', 1, 1),
 (2, '1775, la Révolution Américaine !', 2013, 'Asynchron', '12', '14', '', 1, 1),
 (3, '6 qui prend !', 2009, 'Gigamic', '10', '2-10', '', 1, 1),
@@ -470,7 +470,7 @@ INSERT INTO `utilisateur` (`userId`, `username`, `password`, `admin`, `sexUser`,
 --
 ALTER TABLE `emprunt`
   ADD CONSTRAINT `emprunt_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`),
-  ADD CONSTRAINT `emprunt_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idGame`);
+  ADD CONSTRAINT `emprunt_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idJeu`);
 
 --
 -- Contraintes pour la table `reservation`
@@ -478,7 +478,7 @@ ALTER TABLE `emprunt`
 ALTER TABLE `reservation`
   ADD CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_emprunt`) REFERENCES `emprunt` (`id_emprunt`),
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`),
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idGame`);
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idJeu`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
