@@ -95,13 +95,13 @@ class ModelEmprunt extends Model {
     public static function updateNbJeuxDispo($modif, $idJeu) {//selectionne tous les emprunts concernant l'utilisateur concerné
         try
         {
-            $sql = "SELECT dispo FROM jeux WHERE idJeu Like " . $idJeu;
+            $sql = "SELECT disponible FROM jeux WHERE idJeu Like " . $idJeu;
             $req = self::$pdo->query($sql);
             $update = $req->fetch(PDO::FETCH_OBJ);
             
             $update = ($update + $modif);
                     
-            $sql = "UPDATE Jeux SET dispo TO " . $update . "WHERE 'id_Jeu' LIKE " . $idJeu;
+            $sql = "UPDATE Jeux SET disponible TO " . $update . "WHERE 'id_Jeu' LIKE " . $idJeu;
             $req = self::$pdo->prepare($sql);
             $req->execute($data);
         }
