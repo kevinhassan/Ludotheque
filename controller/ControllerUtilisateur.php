@@ -107,7 +107,7 @@ switch ($action) {
 
     case "modifierUtilisateur":
         $data=array(
-            "username" => myGet('user'),
+            "userId" => myGet('userId'),
         );
         $tab_u= ModelUtilisateur::selectWhere($data);
         $view = "modifierUtilisateur";
@@ -320,7 +320,7 @@ switch ($action) {
 
     case "monProfil":
         $data = array(
-            "username" => $_SESSION['login'],
+            "userId" => myGet("user"),
         );
         $tab_u=  ModelUtilisateur::selectWhere($data);
         $view = "monProfil";

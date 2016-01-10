@@ -5,6 +5,7 @@ function tabUser($tab_u)
     $i=0;
     while($i<$max){
     $u=$tab_u[$i];
+        $userId = $u->userId;
         $username = $u->username;
         $name = $u->nameUser;
         $nickname = $u->nicknameUser;
@@ -33,7 +34,7 @@ function tabUser($tab_u)
             $ban='Oui';
         }
         echo <<< EOT
-        <tr><td><a href="?action=modifierUtilisateur&user=$username">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td><a href="mailto:$email">$email</a></td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
+        <tr><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$userId">$username</a></td><td>$name</td><td>$nickname</td><td>$dateNais</td><td>$sex</td><td><a href="mailto:$email">$email</a></td><td>$tel</td><td>$mobile</td><td>$address</td><td>$cp</td><td>$city</td><td>$dateIns</td><td>$admin</td><td>$nbrRetard<td>$ban</td></tr>
 </div>
 EOT;
     $i++;
