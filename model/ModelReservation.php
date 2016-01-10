@@ -22,6 +22,22 @@ class ModelReservation extends Model {
         }
     }
     
+    public static function getIdEmprunt($id) {
+        try
+        {
+            $sql = "SELECT id_emprunt FROM " . static::$table . "WHERE 'id_reservation' LIKE " . $id;
+            $req = self::$pdo->query($sql);
+            // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
+            return $req->fetch(PDO::FETCH_OBJ);
+        }
+
+        catch (PDOException $e)
+        {
+            echo $e->getMessage();
+            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+    }
+    
     public static function checkIfUserActif($idUser) {//vérifie si un utilisateur a déjà un emprunt/une réservation en cours
         try
         {            

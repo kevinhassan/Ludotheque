@@ -6,6 +6,27 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 
 switch ($action) {
+    case "supprimerReservation":
+        if( Session::is_admin())
+        {
+            $data = array(
+                "id_reservation" => myGet("id_reservation"),
+            );
+            
+            ModelReservation::delete($data);
+            
+            $empruntLie = ModelReservation::getIdEmprunt(myGet("id_reservation"));
+            $data = array(
+                "id_emprunt" => $empruntLie,
+            );
+            ModelEmprunt::delete($data);
+        }
+        else
+        {
+            $view = "erreur";          
+            $message = "La modification n'a pas était prise en compte";
+            $pagetitle = "Erreur";
+        } 
     default:
     case "listerReservation":
         $id = $_SESSION['id'];
@@ -25,52 +46,61 @@ switch ($action) {
     break;
 
     case "reserver":
-        $today = new DateTime('now');
-        $date_debut = new DateTime('now');
-
-        $date = $date_debut;
-        $date = $date->format('w');
-
-        while ($date !=2 && $date !=4) {
-            $date_debut = strtotime("+1 day", $date_debut);
-            $date++;
+        if (!(ModelJeux::checkIfDispo(myGet("id_jeu"))))
+        {
+            $view = "erreur";
+            $message = "Ce jeu n'est plus disponible actuellement !";
+            $pagetitle = "Erreur";
         }
+        else {
+            $today = new DateTime('now');
+            $date_debut = new DateTime('now');
 
-        $date_fin_res = strtotime("+1 day", $date_debut); //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
-        $date_fin_res = date('Y-M-d h:i:s', $date_fin_res);
+            $date = $date_debut;
+            $date = $date->format('w');
 
-        $date_fin = $date_debut;
-        $date_fin = strtotime("+7 day", $date_fin);
-        $date_fin = date('Y-M-d h:i:s', $date_fin);
-        $date_debut = date('Y-M-d h:i:s', $date_debut);
+            while ($date !=2 && $date !=4) {
+                $date_debut = strtotime("+1 day", $date_debut);
+                $date++;
+            }
 
-        $data = array(
-            "id_utilisateur" => myGet("id_utilisateur"),
-            "id_jeu" => myGet("id_jeu"),
-            "date_debut" => $today,
-            "date_fin" => $date_fin_res,
-            "actif" => '1'
-        );
+            $date_fin_res = strtotime("+1 day", $date_debut); //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
+            $date_fin_res = date('Y-M-d h:i:s', $date_fin_res);
 
-        ModelReservation::insert($data);
-        
-        $data = array(
-            "id_utilisateur" => myGet("id_utilisateur"),
-            "id_jeu" => myGet("id_jeu"),
-            "date_debut" => $date_debut,
-            "date_fin" => $date_fin,
-            "retard" => '0',
-            "actif" => '1'
-        );
+            $date_fin = $date_debut;
+            $date_fin = strtotime("+7 day", $date_fin);
+            $date_fin = date('Y-M-d h:i:s', $date_fin);
+            $date_debut = date('Y-M-d h:i:s', $date_debut);
 
-        $modif = -1;
+            $data = array(
+                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_jeu" => myGet("id_jeu"),
+                "date_debut" => $today,
+                "date_fin" => $date_fin_res,
+                "actif" => '1'
+            );
 
-        ModelEmprunt::insert($data);
-        ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
+            ModelReservation::insert($data);
 
-        $view = "ListJeux";
-        $pagetitle = "Jeux";
+            $data = array(
+                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_jeu" => myGet("id_jeu"),
+                "date_debut" => $date_debut,
+                "date_fin" => $date_fin,
+                "retard" => '0',
+                "actif" => '1'
+            );
+
+            $modif = -1;
+
+            ModelEmprunt::insert($data);
+            ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
+
+            $view = "ListJeux";
+            $pagetitle = "Jeux";
+        }
         break;
+        
+    
 }
 require VIEW_PATH . "view.php";
-?>
