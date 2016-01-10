@@ -9,7 +9,7 @@ echo <<< EOT
                             <div class="row">
                             <div class="col-xs-12 col-sm-6 col-sm-offset-1 cadre">
 
-                                <h1>La ludothèque</h1>
+                                <h1>La Ludothèque</h1>
                                 <h2>Tous vos jeux en un seul endroit</h2>
                                 <form action="." name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                     <div class="form-group">

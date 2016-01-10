@@ -8,9 +8,9 @@ echo<<<EOT
 				<p class="footer-links">
 					<a href="?action=accueil">Accueil</a>
 					·
-					<a href="?action=liste">Jeux</a>
+					<a href="?action=listerJeux">Jeux</a>
 					· 
-					<a href="#">Mes réservations</a> ·
+					<a href="?action=listerReservation">Mes réservations</a> ·
 					<a href="?action=informations">Informations</a>
 				</p>
 
