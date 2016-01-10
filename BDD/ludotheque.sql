@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 10 Janvier 2016 à 02:19
+-- Généré le :  Dim 10 Janvier 2016 à 23:41
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `emprunt` (
   PRIMARY KEY (`id_emprunt`),
   KEY `id_utilisateur` (`id_utilisateur`),
   KEY `id_jeu` (`id_jeu`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `emprunt`
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `jeux` (
 -- Contenu de la table `jeux`
 --
 
-INSERT INTO `jeux` (`idJeu`, `nomJeu`, `anneeEdition`, `editeur`, `age`, `nbJoueur`, `extension`, `disponible`, `nbrExemplaire`) VALUES
+INSERT INTO `jeux` (`idJeu`, `nomJeu`, `anneeEdition`, `editeur`, `age`, `nbJoueur`, `extension`, `nbrExemplaire`, `disponible`) VALUES
 (1, '1000 Bornes', 1954, 'Dujardin', '8', '2-6', '', 1, 1),
 (2, '1775, la Révolution Américaine !', 2013, 'Asynchron', '12', '14', '', 1, 1),
 (3, '6 qui prend !', 2009, 'Gigamic', '10', '2-10', '', 1, 1),
@@ -416,7 +416,14 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   KEY `id_utilisateur` (`id_utilisateur`),
   KEY `id_jeu` (`id_jeu`),
   KEY `id_emprunt` (`id_emprunt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `reservation`
+--
+
+INSERT INTO `reservation` (`id_reservation`, `id_utilisateur`, `id_jeu`, `id_emprunt`, `date_debut`, `date_fin`, `actif`) VALUES
+(1, 6, 1, 1, '2016-01-10', '2016-01-17 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -445,16 +452,16 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `userId` (`userId`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=9;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`userId`, `username`, `password`, `admin`, `sexUser`, `nameUser`, `nicknameUser`, `emailUser`, `telUser`, `mobileUser`, `addressUser`, `cpUser`, `cityUser`, `banUser`, `dateNaissance`, `dateInscription`, `nbrRetard`) VALUES
-(1, 'admin', '6521bee1ee2dcfdc63fc2fa65baff33e04c2ffa84a546cece4d6bacc77cc6daf', 1, 'Homme', 'admin', 'admin', 'admin@gmail.com', '0467522245', '0675854528', '120 avenue paul bousquet', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(1, 'admin', '6521bee1ee2dcfdc63fc2fa65baff33e04c2ffa84a546cece4d6bacc77cc6daf', 1, 'Homme', 'admin', 'admin', 'admin@gmail.com', '0467500444', '0781415911', '120 avenue paul bousquet', '34000', 'Montpellier', 0, '1995-12-15', '0000-00-00', 0),
 (2, 'nonadmin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 0, 'Femme', ' Test', 'tes', 'test@gmail.com', '0656345354', '0656345354', 'chemin de la coccinelle', '34200', 'Sete', 0, '0000-00-00', '0000-00-00', 0),
-(3, 'test.test', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 0, 'Homme', 'test', 'test', 'hi@gmail.com', '0635534053', '0635534053', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(3, 'test.test', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'Homme', 'test', 'test', 'hi@gmail.com', '0635534053', '0635534053', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (4, 'kévin.hassan', '2b430884074c174c9a324b6d3397e6f4cb4cb2cc9fa08b2208f82665a010a983', 1, 'Homme', 'hassan', 'kévin', 'hassan@yopmail.com', '0000000000', '0000000000', 'test', '3400', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (5, 'medhi.fakihani', 'fbdfc511fd5a9ee95605fa5c05b50280c7469e8fa8ef4829dab4e48e9e777ede', 1, 'Homme', 'fakihani', 'medhi', 'fakihani@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (6, 'anthony.borel', '30b86b230569e4558aa2a5437d5a330427bf22885ef4a9b107516125fa258745', 1, 'Homme', 'borel', 'anthony', 'borel@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),

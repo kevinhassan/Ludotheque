@@ -319,8 +319,9 @@ switch ($action) {
         break;
 
     case "monProfil":
+    //Si on demande à voir le profil de quelqu'un
         $data = array(
-            "userId" => myGet("user"),
+            "username" => $_SESSION['login'],
         );
         $tab_u=  ModelUtilisateur::selectWhere($data);
         $view = "monProfil";

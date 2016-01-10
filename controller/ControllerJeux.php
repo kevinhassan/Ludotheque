@@ -36,11 +36,7 @@ switch ($action) {
         if( Session::is_admin())
         {
             $data = array(
-                "nomJeu" => myGet("jeu"),
-            );
-            $tab_jeux=ModelJeux::selectWhere($data);
-            $data=array(
-                    "idJeu" => $tab_jeux[0]->idJeu,
+                "idJeu" => myGet("idJeu"),
             );
             ModelJeux::delete($data);
             $tab_jeux = ModelJeux::selectAll(); //On met à jour le tableau
@@ -58,7 +54,7 @@ switch ($action) {
         if(Session::is_admin())
         {
             $data=array(
-                "nomJeu" => myGet('jeu'),
+                "idJeu" => myGet('idJeu'),
             );
             $tab_jeux= ModelJeux::selectWhere($data);
             $view = "modifierJeu";
@@ -75,11 +71,7 @@ switch ($action) {
         if(Session::is_admin())
         {
             $data = array(
-                "nomJeu" => myGet("jeu"),
-                );
-            $tab_jeux=ModelJeux::selectWhere($data);
-            $data = array(
-                "idJeu" => $tab_jeux[0]->idJeu,
+                "idJeu" => myGet("idJeu"),
                 "nomJeu" => myGet("name"),
                 "anneeEdition" => myGet("annee"),
                 "editeur" => myGet("editeur"),

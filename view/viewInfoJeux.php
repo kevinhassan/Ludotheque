@@ -54,8 +54,8 @@ EOT;
             echo'<button class="btn btn-primary" disabled="true">Réserver</button>';
 if(Session::is_admin()){
 echo<<<EOT
-                  <a href="?action=modifierJeu&controller=jeux&jeu=$u->idJeu" class="btn btn-success">Modifier</a>
-                  <a href="?action=supprimerJeu&controller=jeux&jeu=$u->idJeu" class="btn btn-danger">Supprimer</a>
+                  <a href="?action=modifierJeu&controller=jeux&idJeu=$u->idJeu" class="btn btn-success">Modifier</a>
+                  <a href="?action=supprimerJeu&controller=jeux&idJeu=$u->idJeu" class="btn btn-danger">Supprimer</a>
 EOT;
 }
 echo<<<EOT

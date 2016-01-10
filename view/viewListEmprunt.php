@@ -5,12 +5,12 @@ function tabEmp($tab_emprunts)
     $i=0;
     while($i<$max){
     $empU=$tab_emprunts[$i];
-        $idEmprunt = $resaU->id_emprunt;
-        $idUser = $resaU->id_utilisateur;
-        $idJeu = $resaU->id_jeu;
-        $dateDebut = $resaU->date_debut;
-        $dateFin = $resaU->date_fin;
-        $actif = $resaU->actif;
+        $idEmprunt = $empU->id_emprunt;
+        $idUser = $empU->id_utilisateur;
+        $idJeu = $empU->id_jeu;
+        $dateDebut = $empU->date_debut;
+        $dateFin = $empU->date_fin;
+        $actif = $empU->actif;
         if($actif==0){
             $actif='Non';
         }  
@@ -18,7 +18,7 @@ function tabEmp($tab_emprunts)
             $actif='Oui';
         }
         echo <<< EOT
-        <tr><td>$idEmprunt</td><td>$idUser</td><td>$idJeu</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
+        <tr><td>$idEmprunt</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
 </div>
 EOT;
     $i++;
