@@ -69,7 +69,7 @@ switch ($action) {
             $date_debut = date('Y-M-d h:i:s', $date_debut);
 
             $data = array(
-                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_utilisateur" => $_SESSION['id'],
                 "id_jeu" => myGet("id_jeu"),
                 "date_debut" => $today,
                 "date_fin" => $date_fin_res,
@@ -79,7 +79,7 @@ switch ($action) {
             ModelReservation::insert($data);
 
             $data = array(
-                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_utilisateur" => $_SESSION['id'],
                 "id_jeu" => myGet("id_jeu"),
                 "date_debut" => $date_debut,
                 "date_fin" => $date_fin,
