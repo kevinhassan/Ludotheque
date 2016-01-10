@@ -30,7 +30,7 @@ switch ($action) {
         $view = "infoJeux";
         $pagetitle= myGet('jeux');
         break;
-    
+
     case "supprimerJeu":/*Vérifier que le jeu n'est pas sous réservation à ce moment là*/
         if( Session::is_admin())
         {
@@ -47,12 +47,12 @@ switch ($action) {
             $view="listerJeux";
         }
         else{
-            $view="erreur";          
+            $view="erreur";
             $message="La modification n'a pas était prise en compte";
             $pagetitle="Erreur";
-        }    
+        }
         break;
-        
+
     case "modifierJeu":
         if(Session::is_admin())
         {
@@ -65,9 +65,9 @@ switch ($action) {
             break;
         }
         else{
-            $view="erreur";          
+            $view="erreur";
             $message="La modification n'a pas était prise en compte";
-            $pagetitle="Erreur";  
+            $pagetitle="Erreur";
         }
         break;
     case "mettreAjourJeu":
@@ -93,16 +93,16 @@ switch ($action) {
             break;
         }
         else{
-            $view="erreur";          
+            $view="erreur";
             $message="La modification n'a pas était prise en compte";
-            $pagetitle="Erreur";  
+            $pagetitle="Erreur";
         }
-        break;      
+        break;
     case "ajouterJeu":
         $view = "ajouterJeu";
         $pagetitle = "Ajouter un jeu";
-        break;   
-    
+        break;
+
     case "sauvegarderJeu":
         if(SESSION::is_admin()){
             $data = array(
@@ -115,12 +115,12 @@ switch ($action) {
             );
             ModelJeux::insert($data);
             $view = "admin";
-            $pagetitle = "Administration";            
+            $pagetitle = "Administration";
         }
         else{
-            $view="erreur";          
-            $message="La modification n'a pas était prise en compte";
-            $pagetitle="Erreur";             
+            $view="erreur";
+            $message="La modification n'a pas été prise en compte";
+            $pagetitle="Erreur";
         }
         break;
 }
