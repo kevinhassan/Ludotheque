@@ -40,7 +40,7 @@ echo<<<EOT
                         <div class="pull-right">
                             <input type="hidden" name="action" value="mettreAjourJeu" />
                             <input type="hidden" name="controller" value="jeux" />
-                            <input type="hidden" name="jeu" value="$jeu->nomJeu" />
+                            <input type="hidden" name="idJeu" value="$jeu->idJeu" />
                             <button class="btn btn-success btn btn-success" type="submit" value="Valider">Valider</button>                        
                         </div>
             	    </div>

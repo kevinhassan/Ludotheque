@@ -19,7 +19,7 @@ function tabResa($tab_resa)
             $actif='Oui';
         }
         echo <<< EOT
-        <tr><td>$idReservation</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td>$idJeu</td><td>$idEmprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
+        <tr><td>$idReservation</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$idEmprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
 </div>
 EOT;
     $i++;
