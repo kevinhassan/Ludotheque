@@ -18,7 +18,7 @@ function tabEmp($tab_emprunts)
             $actif='Oui';
         }
         echo <<< EOT
-        <tr><td>$idEmprunt</td><td>$idUser</td><td>$idJeu</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
+        <tr><td>$idEmprunt</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td>$idJeu</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
 </div>
 EOT;
     $i++;

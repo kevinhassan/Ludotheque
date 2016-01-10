@@ -49,7 +49,7 @@ echo <<< EOT
                         </tr>
                       </tbody>
                     </table>
-                    <a href="?action=modifierUtilisateur&user=$u->username&profile=1" class="btn btn-primary">Modifier mes informations</a>
+                    <a href="?action=modifierUtilisateur&userId=$u->userId&profile=1" class="btn btn-primary">Modifier mes informations</a>
                   </div>
               </div>
             </div>
@@ -59,4 +59,5 @@ echo <<< EOT
     </div>
 </div>
 EOT;
+echo $u->userId;
 ?>
