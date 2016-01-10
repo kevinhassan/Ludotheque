@@ -316,7 +316,6 @@ switch ($action) {
         $view = 'listJeux';
         break;
 
-<<<<<<< HEAD
     case "enregistrerUtilisateur":
         $admin = !is_null(myGet('admin'));
         $firstName = myGet('nickname');
@@ -463,7 +462,7 @@ switch ($action) {
             $pagetitle="Erreur";
         }
         break;
-    case "listerReservation":
+    /*case "listerReservation":
         if( Session::is_admin())
         {
             $view = "listResa";
@@ -475,6 +474,6 @@ switch ($action) {
             $message="Seul l'administrateur peut voir le contenu de cette page";
             $pagetitle="Erreur";
         }
-        break;
+        break;*/
 }
 require VIEW_PATH . "view.php";
