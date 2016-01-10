@@ -5,6 +5,7 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelEmprunt.php';
+require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
     case "supprimerReservation":
@@ -69,7 +70,7 @@ switch ($action) {
             $date_debut = date('Y-M-d h:i:s', $date_debut);
 
             $data = array(
-                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_utilisateur" => $_SESSION['id'],
                 "id_jeu" => myGet("id_jeu"),
                 "date_debut" => $today,
                 "date_fin" => $date_fin_res,
@@ -79,7 +80,7 @@ switch ($action) {
             ModelReservation::insert($data);
 
             $data = array(
-                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_utilisateur" => $_SESSION['id'],
                 "id_jeu" => myGet("id_jeu"),
                 "date_debut" => $date_debut,
                 "date_fin" => $date_fin,
@@ -93,6 +94,7 @@ switch ($action) {
             ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
             $view = "ListJeux";
             $pagetitle = "Jeux";
+            break;
         }
         $view = "ListJeux";
         $pagetitle = "Jeux";
