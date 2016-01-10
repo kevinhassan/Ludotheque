@@ -24,11 +24,12 @@ switch ($action) {
 
     case "infoJeu":
         $data=array(
-            "nomJeu" => myGet('jeux'),
+            "idJeu" => myGet('idJeu'),
         );
-        $tab_jeux= ModelJeux::selectWhere($data);
+        $tab_jeux = ModelJeux::selectWhere($data);
+        $dispo = $tab_jeux[0]->disponible != 0;
         $view = "infoJeux";
-        $pagetitle= myGet('jeux');
+        $pagetitle = $tab_jeux[0]->nomJeu;
         break;
     
     case "supprimerJeu":/*Vérifier que le jeu n'est pas sous réservation à ce moment là*/

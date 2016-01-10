@@ -15,12 +15,12 @@ switch ($action) {
         if( Session::is_admin())
         {
         // Initialisation des variables pour la vue
-        $tab_resa = ModelReservation::selectWhere($data);
+            $tab_resa = ModelReservation::selectWhere($data);
         }
-        // Initialisation des variables pour la vue
-        $tab_resa_user = ModelReservation::selectAllForUser($id);
+        else
+            $tab_resa = ModelReservation::selectAllForUser($id);
         // Chargement de la vue
-        $view = "ListResa";
+        $view = "ListerResa";
         $pagetitle = "Liste des réservations";
     break;
 
