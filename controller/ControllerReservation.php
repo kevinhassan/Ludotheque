@@ -5,6 +5,7 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelEmprunt.php';
+require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
     case "supprimerReservation":
@@ -93,6 +94,7 @@ switch ($action) {
             ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
             $view = "ListJeux";
             $pagetitle = "Jeux";
+            break;
         }
         $view = "ListJeux";
         $pagetitle = "Jeux";
