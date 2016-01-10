@@ -46,7 +46,7 @@ echo <<< EOT
                   </table>
 EOT;
         if($dispo)
-            echo'<a href="?action=reserverJeu&jeu=$u->nomJeu&controller=reservation" class="btn btn-primary">Réserver</a>';
+            echo'<a href="?action=reserver&jeu=$u->nomJeu&controller=reservation" class="btn btn-primary">Réserver</a>';
         else//On ne peut pas réserver s'il n'y a pas de jeu
             echo'<button class="btn btn-primary" disabled="true">Réserver</button>';
 if(Session::is_admin()){
