@@ -1,10 +1,10 @@
 <?php
-function tabResa($tab_emprunts)
+function tabEmp($tab_emprunts)
 {
     $max=sizeof($tab_emprunts);
     $i=0;
     while($i<$max){
-    $resaU=$tab_emprunts[$i];
+    $empU=$tab_emprunts[$i];
         $idEmprunt = $resaU->id_emprunt;
         $idUser = $resaU->id_utilisateur;
         $idJeu = $resaU->id_jeu;
@@ -27,12 +27,12 @@ EOT;
 ?>
 <?php
 echo '<div class="container">';
-if(isset($_SESSION['login']) && SESSION::is_admin()){ //Il faut être admin pour voir la liste des utilisateurs
+if(isset($_SESSION['login']) && SESSION::is_admin()){ 
 
     echo <<<EOT
     <h1>Liste des Emprunts :</h1>
     <div class="containt-Utilisateur">
-        <table class="table-striped tableUtilisateur" id="tabResa"><thead>
+        <table class="table-striped tableUtilisateur" id="tabEmp"><thead>
           <tr>
             <th>Numéro Emprunt</th>
             <th>ID Utilisateur</th>
@@ -43,14 +43,14 @@ if(isset($_SESSION['login']) && SESSION::is_admin()){ //Il faut être admin pour
           </tr>
         </thead>
 EOT;
-tabResa($tab_emprunts);
+tabEmp($tab_emprunts);
     echo <<<EOT
     </table>
 EOT;
 echo <<<EOT
     </div>
 </div>
-<script>$(document).ready(function() { $('#tabResa').DataTable(); } );</script>
+<script>$(document).ready(function() { $('#tabEmp').DataTable(); } );</script>
 EOT;
 }
 echo '</div>';
