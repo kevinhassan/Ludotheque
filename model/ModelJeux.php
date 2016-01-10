@@ -25,11 +25,12 @@ class ModelJeux extends Model {
     public static function checkIfDispo($idJeu) {
         try
         {
-          $sql = "SELECT disponible FROM " . static::$table." WHERE 'disponible' LIKE " . $idJeu;
+          $sql = "SELECT disponible FROM " . static::$table." WHERE idJeu=$idJeu";
           $req = self::$pdo->query($sql);
+          
           $check = $req->fetch(PDO::FETCH_OBJ);
           
-          if ($check > 0)
+          if ($check == '0')
           {
               return TRUE;
           }

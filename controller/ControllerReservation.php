@@ -42,7 +42,7 @@ switch ($action) {
     break;
 
     case "reserver":
-        if (!(ModelJeux::checkIfDispo(myGet("id_jeu"))))
+        if (!(ModelJeux::checkIfDispo(myGet("jeu"))))
         {
             $view = "erreur";
             $message = "Ce jeu n'est plus disponible actuellement !";
