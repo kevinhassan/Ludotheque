@@ -9,7 +9,9 @@ class ModelReservation extends Model {
     public static function selectAllForUser($idUser, $onlyActive = FALSE) {
         try
         {
-            $sql = "SELECT * FROM " . static::$table . "WHERE 'id_utilisateur' LIKE " . $idUser;
+            $sql = "SELECT * FROM " . static::$table . "WHERE 'id_utilisateur' LIKE '" . $idUser . "'";
+            
+            exit("TAMERE");
 
             if($onlyActive)
               $sql .= " AND 'actif' LIKE '1'";
@@ -17,6 +19,22 @@ class ModelReservation extends Model {
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             return $req->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        catch (PDOException $e)
+        {
+            echo $e->getMessage();
+            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+    }
+    
+    public static function getIdEmprunt($id) {
+        try
+        {
+            $sql = "SELECT id_emprunt FROM " . static::$table . "WHERE 'id_reservation' LIKE " . $id;
+            $req = self::$pdo->query($sql);
+            // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
+            return $req->fetch(PDO::FETCH_OBJ);
         }
 
         catch (PDOException $e)
