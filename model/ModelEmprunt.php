@@ -9,7 +9,7 @@ class ModelEmprunt extends Model {
     public static function selectAllForUser($idUser) {//selectionne tous les emprunts concernant l'utilisateur concerné
         try
         {
-            $sql = "SELECT * FROM " . static::$table . "WHERE 'id_utilisateur' LIKE " . $idUser . "AND 'actif' LIKE '1'";
+            $sql = "SELECT * FROM " . static::$table . " WHERE 'id_utilisateur' LIKE " . $idUser . " AND 'actif' LIKE '1'";
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             return $req->fetchAll(PDO::FETCH_OBJ);

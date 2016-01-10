@@ -49,7 +49,7 @@ switch ($action) {
     case "retournerEmprunt":
         $modif = 1;
         ModelEmprunt::retourJeu(myGet("id_emprunt"), myGet("id_jeu"));
-        ModelEmprunt::updateNbJeuxDispo($modif, $idJeu);
+        ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
 
         $view = "ListEmprunt";
         $pagetitle = "Emprunts";
