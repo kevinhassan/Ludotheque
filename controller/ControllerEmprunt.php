@@ -6,6 +6,20 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 
 switch ($action) {
+    case "supprimerEmprunt":
+        if( Session::is_admin())
+        {
+            $data = array(
+                "id_emprunt" => myGet("id_emprunt"),
+            );
+            ModelEmprunt::delete($data);
+        }
+        else
+        {
+            $view = "erreur";          
+            $message = "La modification n'a pas était prise en compte";
+            $pagetitle = "Erreur";
+        }        
     default:
     case "listerEmprunt":
         $id = $_SESSION['id'];
@@ -31,25 +45,28 @@ switch ($action) {
             $message = "Ce jeu n'est plus disponible actuellement !";
             $pagetitle = "Erreur";
         }
-        $date = myGet("date_debut");
-        $date = strtotime($date);
-        $date = strtotime("+7 day", $date);
-        $date = date('Y-M-d h:i:s', $date);
+        else
+        {
+            $date = myGet("date_debut");
+            $date = strtotime($date);
+            $date = strtotime("+7 day", $date);
+            $date = date('Y-M-d h:i:s', $date);
 
-        $data = array(
-            "id_utilisateur" => myGet("id_utilisateur"),
-            "id_jeu" => myGet("id_jeu"),
-            "date_debut" => myGet("date_debut"),
-            "date_fin" => $date,
-            "retard" => '0'
-        );
+            $data = array(
+                "id_utilisateur" => myGet("id_utilisateur"),
+                "id_jeu" => myGet("id_jeu"),
+                "date_debut" => myGet("date_debut"),
+                "date_fin" => $date,
+                "retard" => '0'
+            );
 
-        $modif = -1;
-        ModelEmprunt::insert($data);
-        ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
+            $modif = -1;
+            ModelEmprunt::insert($data);
+            ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
 
-        $view = "ListEmprunt";
-        $pagetitle = "Emprunts";
+            $view = "ListEmprunt";
+            $pagetitle = "Emprunts";
+        }
         break;
     
     case "retournerEmprunt":
