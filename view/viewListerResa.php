@@ -4,16 +4,22 @@ function tabResa($tab_resa)
     $max=sizeof($tab_resa);
     $i=0;
     while($i<$max){
-    $resaUsers=$tab_resa[$i];
-        $idReservation = $u->id_reservation;
-        $idUser = $u->idUser;
-        $idJeu = $u->$id_jeu;
-        $idEmprunt = $u->$id_emprunt;
-        $dateDebut = $u->$date_debut;
-        $dateFin = $u->$date_fin;
-        $actif = $u->$actif;
+    $resaU=$tab_resa[$i];
+        $idReservation = $resaU->id_reservation;
+        $idUser = $resaU->id_utilisateur;
+        $idJeu = $resaU->id_jeu;
+        $idEmprunt = $resaU->id_emprunt;
+        $dateDebut = $resaU->date_debut;
+        $dateFin = $resaU->date_fin;
+        $actif = $resaU->actif;
+        if($actif==0){
+            $actif='Non';
+        }  
+        else {
+            $actif='Oui';
+        }
         echo <<< EOT
-        <tr><td>$idReservation<td><td>$idUser<td><td>$idJeu<td>$idEMprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
+        <tr><td>$idReservation</td><td>$idUser</td><td>$idJeu</td><td>$idEmprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
 </div>
 EOT;
     $i++;
@@ -46,7 +52,7 @@ EOT;
 echo <<<EOT
     </div>
 </div>
-<script>$(document).ready(function() { $('#tableUser').DataTable(); } );</script>
+<script>$(document).ready(function() { $('#tabResa').DataTable(); } );</script>
 EOT;
 }
 echo '</div>';
