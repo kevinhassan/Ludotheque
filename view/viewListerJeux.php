@@ -5,15 +5,16 @@ function tabJeux($tab_jeux)
     $i=0;
     while($i<$max){
     $u=$tab_jeux[$i];
-        $game = $u->nomJeu;
-        $year = $u->anneeEdition;
+        $idJeu = $u->idJeu;
+        $jeu = $u->nomJeu;
+        $annee = $u->anneeEdition;
         $editeur = $u->editeur;
         $age = $u->age;
         $nbJoueur = $u->nbJoueur;
         
         // La syntaxe suivante permet de créer facilement des chaînes de caractères multi-lignes
         echo <<< EOT
-        <tr><td><a href="?action=infoJeu&jeux=$game&controller=jeux">$game</a></td><td>$year</td><td>$editeur</td><td>$age</td><td>$nbJoueur</td></tr>
+        <tr><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$jeu</a></td><td>$annee</td><td>$editeur</td><td>$age</td><td>$nbJoueur</td></tr>
 </div>
 EOT;
     $i++;

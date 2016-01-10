@@ -11,7 +11,7 @@ echo <<< EOT
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class=" col-md-9 col-lg-9 "> 
+                <div class=" col-md-9 col-lg-9 ">
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
@@ -36,20 +36,23 @@ if($u->extension!=null){
       <tr>
                         <td>Extension</td>
                         <td>$u->extension</td>
-                      </tr>  
+                      </tr>
 EOT;
 }
 echo <<< EOT
-                           
-                     
+
+
                     </tbody>
                   </table>
-                  <a href="?action=reserverJeu&jeu=$u->nomJeu&controller=reservation" class="btn btn-primary">Réserver</a>  
 EOT;
+        if($dispo)
+            echo'<a href="?action=reserverJeu&jeu=$u->nomJeu&controller=reservation" class="btn btn-primary">Réserver</a>';
+        else//On ne peut pas réserver s'il n'y a pas de jeu
+            echo'<button class="btn btn-primary" disabled="true">Réserver</button>';
 if(Session::is_admin()){
 echo<<<EOT
-                  <a href="?action=modifierJeu&jeu=$u->nomJeu&controller=jeux" class="btn btn-success">Modifier</a>
-                  <a href="?action=supprimerJeu&jeu=$u->nomJeu&controller=jeux" class="btn btn-danger">Supprimer</a>
+                  <a href="?action=modifierJeu&controller=jeux&jeu=$u->idJeu" class="btn btn-success">Modifier</a>
+                  <a href="?action=supprimerJeu&controller=jeux&jeu=$u->idJeu" class="btn btn-danger">Supprimer</a>
 EOT;
 }
 echo<<<EOT

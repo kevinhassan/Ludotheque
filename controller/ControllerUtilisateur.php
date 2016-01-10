@@ -54,8 +54,8 @@ switch ($action) {
         //Si le mot de passe est prénom.nom il faut le faire changer
         $name=$userFound->nameUser;
         $nickname=$userFound->nicknameUser;
-
-        if(myGet('password') == $nickname.'.'.$name)
+        $mdp = myGet('password');
+        if($mdp == $nickname.'.'.$name)
         {
             //Chargement de la vue pour lui faire changer de mot de passe
             $_SESSION['login'] = myGet('username');
@@ -313,8 +313,9 @@ switch ($action) {
 
         ModelUtilisateur::insert($data);
         // Chargement de la vue
-        $view = "AccueilUtilisateur";
-        $pagetitle = "Accueil";
+        $view = "resultat";
+        $message = "L'utilisateur ".$username." a été créé avec succès, le mot de passe est : ".$clearPassword;
+        $pagetitle = "Opération réussie !";
         break;
 
     case "monProfil":

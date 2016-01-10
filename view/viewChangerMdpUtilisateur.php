@@ -12,7 +12,7 @@ echo<<<EOT
                         <div class="form-group">
                             <label for="nom" class="col-sm-3 control-label">Mot de passe :</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" name="mdp" id="id_mdp" required="required">
+                                <input type="password" class="form-control" name="mdp" id="id_mdp" required="required" >
                             </div>
                         </div>
                         <div class="form-group">
@@ -41,6 +41,11 @@ echo<<<EOT
         }
         return identique;
     }
+  $(document).ready(function(){ //Permet d'empêcher un utilisateur de changer de page
+    $("a").hover(function () {
+      $(this).removeAttr("href");
+    });
+  });
 </script>
 EOT;
 ?>
