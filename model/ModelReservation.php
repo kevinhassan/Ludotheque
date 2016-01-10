@@ -9,7 +9,9 @@ class ModelReservation extends Model {
     public static function selectAllForUser($idUser, $onlyActive = FALSE) {
         try
         {
-            $sql = "SELECT * FROM " . static::$table . "WHERE 'id_utilisateur' LIKE " . $idUser;
+            $sql = "SELECT * FROM " . static::$table . "WHERE 'id_utilisateur' LIKE '" . $idUser . "'";
+            
+            exit("TAMERE");
 
             if($onlyActive)
               $sql .= " AND 'actif' LIKE '1'";

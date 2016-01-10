@@ -34,7 +34,7 @@ switch ($action) {
             $tab_resa = ModelReservation::selectAll();
 
         else//L'utilisateur peut voir ses réservations
-            $tab_resa = ModelReservation::selectAllForUser($_SESSION['id']);
+            $tab_resa = ModelReservation::selectAllForUser($_SESSION['id'], TRUE);
 
         $view = "listerResa";
         $pagetitle = "Liste des réservations";
