@@ -9,10 +9,13 @@ switch ($action) {
     default:
     case "listerEmprunt":
         $id = $_SESSION['id'];
+        $data = array(
+            "actif" => '1'
+        );
         if( Session::is_admin())
         {
         // Initialisation des variables pour la vue
-        $tab_emprunts = ModelEmprunt::selectAll();
+        $tab_emprunts = ModelEmprunt::selectWhere($data);
         }
         // Initialisation des variables pour la vue
         $tab_emprunts_user = ModelEmprunt::selectAllForUser($id);
@@ -37,7 +40,7 @@ switch ($action) {
         
         $modif = -1;
         ModelEmprunt::insert($data);
-        ModelEmprunt::updateNbJeuxDispo($modif, $idJeu);
+        ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
 
         $view = "ListEmprunt";
         $pagetitle = "Emprunts";

@@ -9,10 +9,13 @@ switch ($action) {
     default:
     case "listerReservation":
         $id = $_SESSION['id'];
+        $data = array(
+            "actif" => '1'
+        );
         if( Session::is_admin())
         {
         // Initialisation des variables pour la vue
-        $tab_resa = ModelReservation::selectAll();
+        $tab_resa = ModelReservation::selectWhere($data);
         }
         // Initialisation des variables pour la vue
         $tab_resa_user = ModelReservation::selectAllForUser($id);
@@ -22,8 +25,6 @@ switch ($action) {
     break;
     
     case "reserver":
-        $admin = !is_null(myGet('admin'));
-        
         $today = new DateTime('now');
         $date_debut = new DateTime('now');
         
@@ -63,7 +64,9 @@ switch ($action) {
             "actif" => '1'
         );
 
+        $modif = -1;
         ModelEmprunt::insert($data);
+        ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
 
         $view = "ListJeux";
         $pagetitle = "Jeux";
