@@ -9,7 +9,7 @@ function tabResa($tab_resa)
         $dateDebut = $u->dateDeb;
         $duree = $u->$duree;
         echo <<< EOT
-        <tr><td><a href="?action=infoEmpa&emp=$idResa">$idResa</a><td>$dateDeb</td><td>$duree</td></tr>
+        <tr><td><a href="?action=infoReservation&emp=$idResa&controller=reservation">$idResa</a><td>$dateDeb</td><td>$duree</td></tr>
 </div>
 EOT;
     $i++;

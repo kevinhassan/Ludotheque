@@ -1,7 +1,7 @@
 <?php
 
 // On va chercher le fichier de configuration dans "./config/Conf.php"
-require_once ROOT . DS . 'config' . DS . 'Conf.php';
+require_once ROOT . DS . 'config' . DS . 'Session.php';
 
 class Model {
 

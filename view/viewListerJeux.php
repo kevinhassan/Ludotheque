@@ -13,7 +13,7 @@ function tabJeux($tab_jeux)
         
         // La syntaxe suivante permet de créer facilement des chaînes de caractères multi-lignes
         echo <<< EOT
-        <tr><td><a href="?action=infoJeu&jeux=$game">$game</a></td><td>$year</td><td>$editeur</td><td>$age</td><td>$nbJoueur</td></tr>
+        <tr><td><a href="?action=infoJeu&jeux=$game&controller=jeux">$game</a></td><td>$year</td><td>$editeur</td><td>$age</td><td>$nbJoueur</td></tr>
 </div>
 EOT;
     $i++;

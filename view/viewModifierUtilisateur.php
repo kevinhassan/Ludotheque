@@ -83,9 +83,9 @@ echo<<<EOT
                         </div>
                         <div class="form-group">
 EOT;
-if(Session::is_admin() && !Session::is_user($user->username)){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
+                            if(Session::is_admin() && !Session::is_user($user->username)){ //Un administrateur ne devrait pas pouvoir s'enlever les droits
 echo<<<EOT
-    <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
+                            <label for="id_loueur" class="col-sm-3 control-label">Admin ? :</label> 
                             <div class="col-sm-8">
 EOT;
                             if($user->admin == 1){
@@ -107,12 +107,12 @@ EOT;
                                 echo '<input type="hidden" name="profile" value="1" /> ';
                             }
                         if(!Session::is_user($user->username)){//On ne peut pas se supprimer ou se bannir nous-même
-                            echo'<a href="?action=supprimerUtilisateur&user='.$user->username. '"class="btn btn-danger">Supprimer</a>';
-                            echo'<a href="?action=reinitialiserMdp&user='.$user->username.'"class="btn btn-info">Réinitialiser Mdp</a>';
+                            echo'<a href="?action=supprimerUtilisateur&user='.$user->username.'&controller=utilisateur"class="btn btn-danger">Supprimer</a>';
+                            echo'<a href="?action=reinitialiserMdp&user='.$user->username.'&controller=utilisateur"class="btn btn-info">Réinitialiser Mdp</a>';
                             
-                           if($user->banUser==0){ echo'<a href="?action=bannirUtilisateur&user='.$user->username.'"class="btn btn-warning">Bannir</a>';
+                           if($user->banUser==0){ echo'<a href="?action=bannirUtilisateur&user='.$user->username.'&controller=utilisateur"class="btn btn-warning">Bannir</a>';
                            }else{
-                               echo'<a href="?action=debannirUtilisateur&user='.$user->username.'"class="btn btn-warning">Débannir</a>';
+                               echo'<a href="?action=debannirUtilisateur&user='.$user->username.'&controller=utilisateur"class="btn btn-warning">Débannir</a>';
                            }
                         }
 echo<<<EOT

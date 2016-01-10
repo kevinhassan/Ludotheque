@@ -18,9 +18,9 @@ function myGet($nomvar){
 
 if (!is_null(myGet('controller')))
     $controller = myGet('controller'); //recupere le controlleur passe dans l'url
-else
-    $controller = "utilisateur";       //Par défaut, on charge celui de l'utilisateur
-
+else{
+    $controller = "utilisateur";
+}
 if (!is_null(myGet('action')))
     $action = myGet('action');    //recupere l'action  passee dans l'url
 else
@@ -33,6 +33,12 @@ switch ($controller) {
         break;
     case "jeux":
         require_once"ControllerJeux.php";
+        break;
+    case "reservation":
+        require_once"ControllerReservation.php";
+        break;
+    case "emprunt":
+        require_once"ControllerEmprunt.php";
         break;
 }
 ?>
