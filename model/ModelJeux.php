@@ -28,8 +28,15 @@ class ModelJeux extends Model {
           $sql = "SELECT disponible FROM " . static::$table." WHERE 'disponible' LIKE " . $idJeu;
           $req = self::$pdo->query($sql);
           $check = $req->fetch(PDO::FETCH_OBJ);
+          
+          if ($check > 0)
+          {
+              return TRUE;
+          }
+          
+          return FALSE;
         }
-
+        
         catch (PDOException $e)
         {
           echo $e->getMessage();

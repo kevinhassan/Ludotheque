@@ -25,6 +25,12 @@ switch ($action) {
     break;
     
     case "enregistrerEmprunt": 
+        if (!(ModelJeux::checkIfDispo(myGet("id_jeu"))))
+        {
+            $view = "erreur";
+            $message = "Ce jeu n'est plus disponible actuellement !";
+            $pagetitle = "Erreur";
+        }
         $date = myGet("date_debut");
         $date = strtotime($date);
         $date = strtotime("+7 day", $date);
@@ -37,7 +43,7 @@ switch ($action) {
             "date_fin" => $date,
             "retard" => '0'
         );
-        
+
         $modif = -1;
         ModelEmprunt::insert($data);
         ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
