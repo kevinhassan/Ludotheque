@@ -5,13 +5,13 @@
         <link rel="icon" type="image/png" href="image/logo.png" />
         <?php echo "<title>".$pagetitle."</title>" ?>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cookie"/>
         <link rel="stylesheet" href="css/font-awesome.min.css">
-        <script src="js/jquery.min.js"></script>        
+        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
 
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
@@ -29,6 +29,7 @@
                           <li><a href="?action=accueil&controller=utilisateur">Accueil <span class="glyphicon glyphicon-home"></span></a></li>
                           <li><a href="?action=listerJeux&controller=jeux">Jeux <span class="glyphicon glyphicon-king"></a></li>
                           <li><a href="?action=listerReservation&controller=reservation">Mes réservations <span class="glyphicon glyphicon-th-list"></span></a></li>
+                          <li><a href="?action=listerReservation&controller=emprunt">Mes Emprunts <span class="glyphicon glyphicon-th-list"></span></a></li>
                           <li><a href="?action=informations&controller=utilisateur">Informations <span class="glyphicon glyphicon-info-sign"></span></a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

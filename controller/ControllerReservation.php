@@ -4,23 +4,18 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
+require_once MODEL_PATH . 'ModelEmprunt.php';
 
 switch ($action) {
     default:
     case "listerReservation":
-        $id = $_SESSION['id'];
-        $data = array(
-            "actif" => '1'
-        );
-        if( Session::is_admin())
-        {
-        // Initialisation des variables pour la vue
-            $tab_resa = ModelReservation::selectWhere($data);
-        }
-        else
-            $tab_resa = ModelReservation::selectAllForUser($id);
-        // Chargement de la vue
-        $view = "ListerResa";
+        if(Session::is_admin())//l'admin peut voir toutes les réservations
+            $tab_resa = ModelReservation::selectAll();
+
+        else//L'utilisateur peut voir ses réservations
+            $tab_resa = ModelReservation::selectAllForUser($_SESSION['id']);
+
+        $view = "listerResa";
         $pagetitle = "Liste des réservations";
     break;
 
@@ -31,7 +26,8 @@ switch ($action) {
         $date = $date_debut;
         $date = $date->format('w');
 
-        while ($date !=2 && $date !=4) {
+        while ($date != 2 && $date !=4)
+        {
             $date_debut = strtotime("+1 day", $date_debut);
             $date++;
         }
@@ -53,7 +49,7 @@ switch ($action) {
         );
 
         ModelReservation::insert($data);
-        
+
         $data = array(
             "id_utilisateur" => myGet("id_utilisateur"),
             "id_jeu" => myGet("id_jeu"),
@@ -67,6 +63,23 @@ switch ($action) {
 
         ModelEmprunt::insert($data);
         ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
+
+//Code à garder: prémices pour la gestions des réservations d'extensions
+/*    case "reserverJeu":
+        if(ModelReservation::checkIfUserHasActiveReservation($_SESSION['id']) || ModelEmprunt::checkIfUserHasActiveEmprunt($_SESSION['id']))
+        {
+          $view = "erreur";
+          $pagetitle = "Réservation refusée";
+          $message = "Vous avez déjà une réservation où un emprunt en cours";
+        }
+
+        else
+        {
+          $view = "reserverJeu";
+          $pagetitle = "Réservation";
+          $jeu = ModelJeux::selectWhere(array('idJeu' => myGet('jeu')))[0];
+          $tabExtensions = ModelExtensions::getExtensionsFromGameId($tabJeu->idJeu);
+        }*/
 
         $view = "ListJeux";
         $pagetitle = "Jeux";
