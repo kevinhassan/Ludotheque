@@ -1,5 +1,5 @@
 <?php
-function tabResa($tab_resa,$estAdmin)
+function tabResa($tab_resa)
 {
     $max=sizeof($tab_resa);
     $i=0;
@@ -18,13 +18,8 @@ function tabResa($tab_resa,$estAdmin)
         else {
             $actif='Oui';
         }
-        echo <<< EOT
-        <tr><td>$idReservation</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$idEmprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td>
-EOT;
-        if ($estAdmin)
-            echo'<td><a href="?action=supprimerReservation&controller=reservation&idResa='.$idReservation.'" class="btn btn-danger">Supprimer</a><td>';
-
-echo"</tr></div>";
+        if($actif = 'Oui')
+            echo'<tr><td>'.$idReservation.'</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId='.$idUser.'">'.$idUser.'</a></td><td><a href="?action=infoJeu&idJeu='.$idJeu.'&controller=jeux">'.$idJeu.'</a></td><td>'.$idEmprunt.'</td><td>'.$dateDebut.'</td><td>'.$dateFin.'</td><td>'.$actif.'</td><td><a href="?action=supprimerReservation&controller=reservation&idResa='.$idReservation.'" class="btn btn-danger">Supprimer</a><td></tr></div>' ;
     $i++;
     }
 }
@@ -48,7 +43,7 @@ if(isset($_SESSION['login']) && SESSION::is_admin()){
         </thead>
 EOT;
 $estAdmin = SESSION::is_admin();
-tabResa($tab_resa,$estAdmin);
+tabResa($tab_resa);
     echo <<<EOT
     </table>
 EOT;

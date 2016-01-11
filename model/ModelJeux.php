@@ -30,7 +30,7 @@ class ModelJeux extends Model {
           
           $check = $req->fetch(PDO::FETCH_OBJ);
           
-          if ($check == '0')
+          if ($check != '0')
           {
               return TRUE;
           }

@@ -4,6 +4,7 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelEmprunt.php';
+require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
     case "supprimerReservation":
@@ -35,11 +36,18 @@ switch ($action) {
         else//L'utilisateur peut voir ses réservations
             $tab_resa = ModelReservation::selectAllForUser($_SESSION['id'], TRUE);
 
-        $view = "listerResa";
+        $view = "ListerResa";
         $pagetitle = "Liste des réservations";
     break;
 
     case "reserver":
+        //Un jeu ne peut être réservé que si l'utilisateur n'a pas d'autre réservation en cours
+        if(!ModelReservation::checkIfUserHasActiveReservation($_SESSION['id']))
+        {
+            $view = "erreur";
+            $message = "Vous avez déjà réservé un autre jeu !";
+            $pagetitle = "Erreur";     
+        }
         if (!(ModelJeux::checkIfDispo(myGet("jeu"))))
         {
             $view = "erreur";
@@ -55,18 +63,18 @@ switch ($action) {
             $date = $date->format('w');
 
             while ($date !=2 && $date !=4) {
-                $date_debut = strtotime("+1 day", $date_debut);
+                $date_debut->modify('+ 1 day');
                 $date++;
             }
-
-            $date_fin_res = strtotime("+1 day", $date_debut); //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
-            $date_fin_res = date('Y-M-d h:i:s', $date_fin_res);
+            
+            $date_fin_res = $date_debut; //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
+            $date_fin_res->modify('+ 1 day');
 
             $date_fin = $date_debut;
-            $date_fin = strtotime("+7 day", $date_fin);
-            $date_fin = date('Y-M-d h:i:s', $date_fin);
-            $date_debut = date('Y-M-d h:i:s', $date_debut);
-
+            $date_fin->modify('+ 1 week');
+            
+            $today = $today->format('Y-m-d H:i:s');
+            $date_fin_res = $date_fin_res->format('Y-m-d H:i:s');
             $data = array(
                 "id_utilisateur" => $_SESSION['id'],
                 "id_jeu" => myGet("id_jeu"),
@@ -76,7 +84,9 @@ switch ($action) {
             );
             
             ModelReservation::insert($data);
-
+            
+            $date_debut = $date_debut->format('Y-m-d H:i:s');
+            $date_fin = $date_fin->format('Y-m-d H:i:s');
             $data = array(
                 "id_utilisateur" => $_SESSION['id'],
                 "id_jeu" => myGet("id_jeu"),
@@ -96,13 +106,9 @@ switch ($action) {
         else//L'utilisateur peut voir ses réservations
             $tab_resa = ModelReservation::selectAllForUser($_SESSION['id'], TRUE);
 
-        $view = "listerResa";
+        $view = "ListerResa";
         $pagetitle = "Liste des réservations";
-    break;
-
         }
-        $view = "ListJeux";
-        $pagetitle = "Jeux";
         break;
         
     case "supprimerReservation":

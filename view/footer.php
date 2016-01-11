@@ -6,14 +6,13 @@ echo<<<EOT
 				<h3>Homo<span>ludens</span></h3>
 
 				<p class="footer-links">
-					<a href="?action=accueil&controller=utilisateur>Accueil</a>
+					<a href="?action=accueil&controller=utilisateur">Accueil</a>
 					·
 					<a href="?action=listerJeux&controller=jeux">Jeux</a>
 					· 
 					<a href="?action=listerReservation&controller=reservation">Mes réservations</a> ·
 					<a href="?action=informations&controller=utilisateur">Informations</a>
 				</p>
-
 				<p class="footer-company-name">Homoludens &copy; 2015</p>
 			</div>
 
