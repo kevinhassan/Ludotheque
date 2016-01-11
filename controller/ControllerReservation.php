@@ -10,13 +10,12 @@ switch ($action) {
     case "supprimerReservation":
         if( Session::is_admin())
         {
+            $empruntLie = ModelReservation::getIdEmprunt(myGet("idResa"));
             $data = array(
-                "id_reservation" => myGet("id_reservation"),
+                "id_reservation" => myGet("idResa"),
             );
-            
             ModelReservation::delete($data);
-            
-            $empruntLie = ModelReservation::getIdEmprunt(myGet("id_reservation"));
+        
             $data = array(
                 "id_emprunt" => $empruntLie,
             );
@@ -25,7 +24,7 @@ switch ($action) {
         else
         {
             $view = "erreur";          
-            $message = "La modification n'a pas était prise en compte";
+            $message = "La modification n'a pas été prise en compte";
             $pagetitle = "Erreur";
         } 
     default:
@@ -66,23 +65,11 @@ switch ($action) {
             $date_fin = $date_debut;
             $date_fin->modify('+ 1 week');
             
-            $today = $today->format('Y-m-d H:i:s');
-            $date_fin_res = $date_fin_res->format('Y-m-d H:i:s');
-            $data = array(
-                "id_utilisateur" => $_SESSION['id'],
-                "id_jeu" => myGet("id_jeu"),
-                "date_debut" => $today,
-                "date_fin" => $date_fin_res,
-                "actif" => '1'
-            );
-            
-            ModelReservation::insert($data);
-            
             $date_debut = $date_debut->format('Y-m-d H:i:s');
             $date_fin = $date_fin->format('Y-m-d H:i:s');
             $data = array(
                 "id_utilisateur" => $_SESSION['id'],
-                "id_jeu" => myGet("id_jeu"),
+                "id_jeu" => myGet("jeu"),
                 "date_debut" => $date_debut,
                 "date_fin" => $date_fin,
                 "retard" => '0',
@@ -92,15 +79,31 @@ switch ($action) {
             $modif = -1;
 
             ModelEmprunt::insert($data);
-            ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
-        if(Session::is_admin())//l'admin peut voir toutes les réservations
-            $tab_resa = ModelReservation::selectAll();
+            ModelEmprunt::updateNbJeuxDispo($modif, myGet("jeu"));
+            
+            $today = $today->format('Y-m-d H:i:s');
+            $date_fin_res = $date_fin_res->format('Y-m-d H:i:s');
+            $id_emprunt = ModelEmprunt::getIdForReservation($_SESSION['id']);
+            
+            $data = array(
+                "id_utilisateur" => $_SESSION['id'],
+                "id_jeu" => myGet("jeu"),
+                "id_emprunt" => $id_emprunt,
+                "date_debut" => $today,
+                "date_fin" => $date_fin_res,
+                "actif" => '1'
+            );
+            
+            ModelReservation::insert($data);
+            
+            if(Session::is_admin())//l'admin peut voir toutes les réservations
+                $tab_resa = ModelReservation::selectAll();
 
-        else//L'utilisateur peut voir ses réservations
-            $tab_resa = ModelReservation::selectAllForUser($_SESSION['id'], TRUE);
+            else//L'utilisateur peut voir ses réservations
+                $tab_resa = ModelReservation::selectAllForUser($_SESSION['id'], TRUE);
 
-        $view = "ListerResa";
-        $pagetitle = "Liste des réservations";
+            $view = "ListerResa";
+            $pagetitle = "Liste des réservations";
         }
         break;
         

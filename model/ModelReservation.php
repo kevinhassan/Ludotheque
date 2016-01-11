@@ -29,10 +29,12 @@ class ModelReservation extends Model {
     public static function getIdEmprunt($id) {
         try
         {
-            $sql = "SELECT id_emprunt FROM " . static::$table . "WHERE 'id_reservation' LIKE " . $id;
+            $sql = "SELECT id_emprunt FROM " . static::$table . " WHERE id_reservation = " . $id;
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
-            return $req->fetch(PDO::FETCH_OBJ);
+            $res = $req->fetch(PDO::FETCH_OBJ);
+            
+            return $res->id_emprunt;
         }
 
         catch (PDOException $e)

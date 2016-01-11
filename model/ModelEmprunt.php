@@ -99,11 +99,12 @@ class ModelEmprunt extends Model {
             $req = self::$pdo->query($sql);
             $update = $req->fetch(PDO::FETCH_OBJ);
             
-            $update = ($update + $modif);
+            $update = intval($update->disponible);
+            $update += $modif;
                     
-            $sql = "UPDATE Jeux SET disponible TO " . $update . "WHERE 'id_Jeu' LIKE " . $idJeu;
+            $sql = "UPDATE Jeux SET disponible = " . $update . " WHERE 'id_Jeu' = '" . $idJeu ."'";
             $req = self::$pdo->prepare($sql);
-            $req->execute($data);
+            $req->execute();
         }
 
         catch (PDOException $e)
@@ -119,6 +120,23 @@ class ModelEmprunt extends Model {
             $sql = "UPDATE emprunt SET actif TO '0' WHERE id_emprunt LIKE " . $idEmprunt;
             $req = self::$pdo->prepare($sql);
             $req->execute($data);
+        }
+
+        catch (PDOException $e)
+        {
+            echo $e->getMessage();
+            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+    }
+    
+    public static function getIdForReservation($idUser) {
+        try
+        {
+            $sql = "SELECT id_emprunt FROM emprunt WHERE id_utilisateur = " . $idUser . " ORDER BY id_emprunt DESC";
+            $req = self::$pdo->query($sql);
+            $res = $req->fetch(PDO::FETCH_OBJ);
+            
+            return intval($res->id_emprunt);
         }
 
         catch (PDOException $e)
