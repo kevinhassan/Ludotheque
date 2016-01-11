@@ -10,7 +10,7 @@ switch ($action) {
         if( Session::is_admin())
         {
             $data = array(
-                "id_emprunt" => myGet("id_emprunt"),
+                "id_emprunt" => myGet("idEmprunt"),
             );
             ModelEmprunt::delete($data);
         }
@@ -81,12 +81,6 @@ switch ($action) {
 
         $view = "ListEmprunt";
         $pagetitle = "Emprunts";
-        break;
-    case "supprimerEmprunt":
-        $data = array(
-            "id_emprunt" => myGet("idEmprunt")
-            );
-        ModelEmprunt::delete($data);
         break;
 }
 require VIEW_PATH . "view.php";

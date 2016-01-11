@@ -9,7 +9,7 @@ class ModelReservation extends Model {
     public static function selectAllForUser($idUser, $onlyActive = FALSE) {
         try
         {
-            $sql = "SELECT * FROM " . static::$table . "WHERE 'id_utilisateur' LIKE '" . $idUser . "'";
+            $sql = "SELECT * FROM " . static::$table . "WHERE id_utilisateur = " . $idUser;
 
             if($onlyActive)
               $sql .= " AND 'actif' LIKE '1'";
@@ -47,10 +47,12 @@ class ModelReservation extends Model {
     public static function checkIfUserHasActiveReservation($idUser) {//vérifie si un utilisateur a déjà une réservation en cours
         try
         {
-            $sql = "SELECT COUNT(id_user) FROM " . static::$table . " WHERE 'actif' LIKE '1' AND WHERE 'id_user' LIKE " . $idUser;
+            $sql = "SELECT COUNT(*)AS count FROM " . static::$table . " WHERE actif = 1 AND id_utilisateur = " . $idUser;
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             $check = $req->fetch(PDO::FETCH_OBJ);
+            
+            $check = intval($check->count);
 
             if ($check > 0) {
                 return TRUE;

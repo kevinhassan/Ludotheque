@@ -41,7 +41,7 @@ switch ($action) {
 
     case "reserver":
         //Un jeu ne peut être réservé que si l'utilisateur n'a pas d'autre réservation en cours
-        if(!ModelReservation::checkIfUserHasActiveReservation($_SESSION['id']))
+        if(ModelReservation::checkIfUserHasActiveReservation($_SESSION['id']))
         {
             $view = "erreur";
             $message = "Vous avez déjà réservé un autre jeu !";
@@ -59,18 +59,18 @@ switch ($action) {
             $date_debut = new DateTime('now');
 
             $date = $date_debut;
-            $date = $date->format('w');
+            $date = intval($date->format('w'));
 
             while ($date !=2 && $date !=4) {
-                $date_debut->modify('+ 1 day');
+                $date_debut = $date_debut->modify('+ 1 day');
                 $date++;
             }
             
             $date_fin_res = $date_debut; //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
-            $date_fin_res->modify('+ 1 day');
+            $date_fin_res = $date_fin_res->modify('+ 1 day');
 
             $date_fin = $date_debut;
-            $date_fin->modify('+ 1 week');
+            $date_fin = $date_fin->modify('+ 1 week');
             
             $date_debut = $date_debut->format('Y-m-d H:i:s');
             $date_fin = $date_fin->format('Y-m-d H:i:s');
