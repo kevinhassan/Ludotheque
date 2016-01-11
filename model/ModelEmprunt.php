@@ -100,7 +100,9 @@ class ModelEmprunt extends Model {
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             $res = $req->fetch(PDO::FETCH_OBJ);
             
-            return $res->id_reservation;
+            if($res)
+                return $res->id_reservation;
+            else return false;
         }
 
         catch (PDOException $e)
