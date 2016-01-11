@@ -9,7 +9,7 @@ class ModelEmprunt extends Model {
     public static function selectAllForUser($idUser) {//selectionne tous les emprunts concernant l'utilisateur concerné
         try
         {
-            $sql = "SELECT * FROM " . static::$table . " WHERE 'id_utilisateur' LIKE " . $idUser . " AND 'actif' LIKE '1'";
+            $sql = "SELECT * FROM " . static::$table . " WHERE id_utilisateur = " . $idUser . " AND actif = '1'";
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             return $req->fetchAll(PDO::FETCH_OBJ);
@@ -27,14 +27,14 @@ class ModelEmprunt extends Model {
         {
             $date = new DateTime('now');
             
-            $sql = "SELECT date_fin FROM " . static::$table . " WHERE 'id_emprunt' LIKE " . $id;
+            $sql = "SELECT date_fin FROM " . static::$table . " WHERE id_emprunt = " . $id;
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             $date_fin = $req->fetch(PDO::FETCH_OBJ);
             
             if ($date_fin > $date)
             {
-                $sql = "UPDATE " . static::$table . " SET retard='1' WHERE 'id_emprunt' LIKE " . $id;
+                $sql = "UPDATE " . static::$table . " SET retard='1' WHERE id_emprunt = " . $id;
                 $req = self::$pdo->query($sql);  
             }
         }
@@ -51,14 +51,14 @@ class ModelEmprunt extends Model {
         {
             $date = new DateTime('now');
             
-            $sql = "SELECT date_fin FROM " . static::$table . " WHERE 'id_jeu' LIKE " . $idJeu;
+            $sql = "SELECT date_fin FROM " . static::$table . " WHERE id_jeu = " . $idJeu;
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             $date_fin = $req->fetch(PDO::FETCH_OBJ);
             
             if ($date > $date_fin)
             {
-                $sql = "UPDATE " . static::$table . " SET actif='0' WHERE 'id_reservation' LIKE " . $id;
+                $sql = "UPDATE " . static::$table . " SET actif='0' WHERE id_reservation = " . $id;
                 $req = self::$pdo->query($sql);  
             }
         }
@@ -73,7 +73,7 @@ class ModelEmprunt extends Model {
     public static function checkIfUserActif($idUser) {//vérifie si un utilisateur a déjà un emprunt/une réservation en cours
         try
         {            
-            $sql = "SELECT COUNT(id_user) FROM " . static::$table . " WHERE 'actif' LIKE '1' AND WHERE 'id_user' LIKE " . $idUser;
+            $sql = "SELECT COUNT(id_user) FROM " . static::$table . " WHERE actif=1 AND WHERE id_user = " . $idUser;
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             $check = $req->fetch(PDO::FETCH_OBJ);
@@ -95,7 +95,7 @@ class ModelEmprunt extends Model {
     public static function updateNbJeuxDispo($modif, $idJeu) {//selectionne tous les emprunts concernant l'utilisateur concerné
         try
         {
-            $sql = "SELECT disponible FROM jeux WHERE idJeu Like " . $idJeu;
+            $sql = "SELECT disponible FROM jeux WHERE idJeu = " . $idJeu;
             $req = self::$pdo->query($sql);
             $update = $req->fetch(PDO::FETCH_OBJ);
             
@@ -117,7 +117,7 @@ class ModelEmprunt extends Model {
     public static function retourJeu($idEmprunt, $idJeu) {//selectionne tous les emprunts concernant l'utilisateur concerné
         try
         {
-            $sql = "UPDATE emprunt SET actif TO '0' WHERE id_emprunt LIKE " . $idEmprunt;
+            $sql = "UPDATE emprunt SET actif TO '0' WHERE id_emprunt = " . $idEmprunt;
             $req = self::$pdo->prepare($sql);
             $req->execute($data);
         }

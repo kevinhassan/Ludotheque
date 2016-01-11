@@ -44,7 +44,7 @@ switch ($action) {
     break;
     
     case "enregistrerEmprunt": 
-        if (!(ModelJeux::checkIfDispo(myGet("id_jeu"))))
+        if (!(ModelJeux::checkIfDispo(myGet("idJeu"))))
         {
             $view = "erreur";
             $message = "Ce jeu n'est plus disponible actuellement !";
@@ -59,7 +59,7 @@ switch ($action) {
 
             $data = array(
                 "id_utilisateur" => myGet("id_utilisateur"),
-                "id_jeu" => myGet("id_jeu"),
+                "id_jeu" => myGet("idJeu"),
                 "date_debut" => myGet("date_debut"),
                 "date_fin" => $date,
                 "retard" => '0'
@@ -67,7 +67,7 @@ switch ($action) {
 
             $modif = -1;
             ModelEmprunt::insert($data);
-            ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
+            ModelEmprunt::updateNbJeuxDispo($modif, myGet("idJeu"));
 
             $view = "ListerEmprunt";
             $pagetitle = "Emprunts";
@@ -76,8 +76,8 @@ switch ($action) {
     
     case "retournerEmprunt":
         $modif = 1;
-        ModelEmprunt::retourJeu(myGet("id_emprunt"), myGet("id_jeu"));
-        ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
+        ModelEmprunt::retourJeu(myGet("id_emprunt"), myGet("idJeu"));
+        ModelEmprunt::updateNbJeuxDispo($modif, myGet("idJeu"));
 
         $view = "ListEmprunt";
         $pagetitle = "Emprunts";

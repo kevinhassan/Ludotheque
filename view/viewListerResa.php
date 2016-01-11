@@ -26,7 +26,6 @@ function tabResa($tab_resa)
 ?>
 <?php
 echo '<div class="container">';
-if(isset($_SESSION['login']) && SESSION::is_admin()){ 
     echo <<<EOT
     <h1>Liste des Réservations :</h1>
     <div class="containt-Utilisateur">
@@ -52,5 +51,4 @@ echo <<<EOT
 </div>
 <script>$(document).ready(function() { $('#tabResa').DataTable(); } );</script>
 EOT;
-}
 echo '</div>';

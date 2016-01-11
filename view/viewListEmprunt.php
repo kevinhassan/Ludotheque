@@ -21,7 +21,7 @@ function tabEmp($tab_emprunts,$estAdmin)
         <tr><td>$idEmprunt</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td>
 EOT;
         if ($estAdmin)
-            echo'<td><a href="?action=supprimerEmprunt&controller=emprunt&idEmprunt='.$idEmprunt.'" class="btn btn-danger"">Supprimer</a><td>';
+            echo'<td><a href="?action=supprimerEmprunt&controller=emprunt&idEmprunt='.$idEmprunt.'&idJeu='.$idJeu.'" class="btn btn-danger"">Supprimer</a><td>';
 
 echo"</tr></div>";
     $i++;
@@ -30,9 +30,7 @@ echo"</tr></div>";
 ?>
 <?php
 echo '<div class="container">';
-if(isset($_SESSION['login']) && SESSION::is_admin()){ 
-
-    echo <<<EOT
+echo <<<EOT
     <h1>Liste des Emprunts :</h1>
     <div class="containt-Utilisateur">
         <table class="table-striped tableUtilisateur" id="tabEmp"><thead>
@@ -56,5 +54,4 @@ echo <<<EOT
 </div>
 <script>$(document).ready(function() { $('#tabEmp').DataTable(); } );</script>
 EOT;
-}
 echo '</div>';

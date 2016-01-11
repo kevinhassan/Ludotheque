@@ -8,8 +8,6 @@ require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
     case "supprimerReservation":
-        if( Session::is_admin())
-        {
             $empruntLie = ModelReservation::getIdEmprunt(myGet("idResa"));
             $data = array(
                 "id_reservation" => myGet("idResa"),
@@ -20,13 +18,6 @@ switch ($action) {
                 "id_emprunt" => $empruntLie,
             );
             ModelEmprunt::delete($data);
-        }
-        else
-        {
-            $view = "erreur";          
-            $message = "La modification n'a pas été prise en compte";
-            $pagetitle = "Erreur";
-        } 
     default:
     case "listerReservation":
         if(Session::is_admin())//l'admin peut voir toutes les réservations
@@ -45,13 +36,15 @@ switch ($action) {
         {
             $view = "erreur";
             $message = "Vous avez déjà réservé un autre jeu !";
-            $pagetitle = "Erreur";     
+            $pagetitle = "Erreur";
+            break;
         }
         if (!(ModelJeux::checkIfDispo(myGet("jeu"))))
         {
             $view = "erreur";
             $message = "Ce jeu n'est plus disponible actuellement !";
             $pagetitle = "Erreur";
+            break;
         }
         else 
         {

@@ -48,7 +48,7 @@ EOT;
         if($dispo)
             echo
             <<<EOT
-            '<a href="?action=reserver&jeu=$u->idJeu&controller=reservation" class="btn btn-primary">Réserver</a>';
+            <a href="?action=reserver&jeu=$u->idJeu&controller=reservation" class="btn btn-primary">Réserver</a>
 EOT;
         else//On ne peut pas réserver s'il n'y a pas de jeu
             echo'<button class="btn btn-primary" disabled="true">Réserver</button>';

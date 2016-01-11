@@ -9,10 +9,10 @@ class ModelReservation extends Model {
     public static function selectAllForUser($idUser, $onlyActive = FALSE) {
         try
         {
-            $sql = "SELECT * FROM " . static::$table . "WHERE id_utilisateur = " . $idUser;
+            $sql = "SELECT * FROM " . static::$table . " WHERE id_utilisateur = " . $idUser;
 
             if($onlyActive)
-              $sql .= " AND 'actif' LIKE '1'";
+              $sql .= " AND actif = 1";
 
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
@@ -73,14 +73,14 @@ class ModelReservation extends Model {
         {
             $date = new DateTime('now');
 
-            $sql = "SELECT date_fin FROM " . static::$table . " WHERE 'id_reservation' LIKE " . $id;
+            $sql = "SELECT date_fin FROM " . static::$table . " WHERE id_reservation = " . $id;
             $req = self::$pdo->query($sql);
             // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
             $date_fin = $req->fetch(PDO::FETCH_OBJ);
 
             if ($date > $date_fin)
             {
-                $sql = "UPDATE " . static::$table . " SET actif='0' WHERE 'id_reservation' LIKE " . $id;
+                $sql = "UPDATE " . static::$table . " SET actif='0' WHERE id_reservation = " . $id;
                 $req = self::$pdo->query($sql);
             }
         }
