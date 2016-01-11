@@ -40,7 +40,7 @@ switch ($action) {
     break;
 
     case "reserver":
-        if (!(ModelJeux::checkIfDispo(myGet("id_jeu"))))
+        if (!(ModelJeux::checkIfDispo(myGet("jeu"))))
         {
             $view = "erreur";
             $message = "Ce jeu n'est plus disponible actuellement !";
@@ -90,9 +90,16 @@ switch ($action) {
 
             ModelEmprunt::insert($data);
             ModelEmprunt::updateNbJeuxDispo($modif, myGet("id_jeu"));
-            $view = "ListJeux";
-            $pagetitle = "Jeux";
-            break;
+        if(Session::is_admin())//l'admin peut voir toutes les réservations
+            $tab_resa = ModelReservation::selectAll();
+
+        else//L'utilisateur peut voir ses réservations
+            $tab_resa = ModelReservation::selectAllForUser($_SESSION['id'], TRUE);
+
+        $view = "listerResa";
+        $pagetitle = "Liste des réservations";
+    break;
+
         }
         $view = "ListJeux";
         $pagetitle = "Jeux";
