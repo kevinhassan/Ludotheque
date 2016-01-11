@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 10 Janvier 2016 à 23:41
+-- Généré le :  Lun 11 Janvier 2016 à 12:43
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -37,14 +37,18 @@ CREATE TABLE IF NOT EXISTS `emprunt` (
   PRIMARY KEY (`id_emprunt`),
   KEY `id_utilisateur` (`id_utilisateur`),
   KEY `id_jeu` (`id_jeu`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Contenu de la table `emprunt`
 --
 
 INSERT INTO `emprunt` (`id_emprunt`, `id_utilisateur`, `id_jeu`, `date_debut`, `date_fin`, `retard`, `actif`) VALUES
-(1, 1, 1, '2016-01-09 23:10:50', '2016-01-29 00:00:00', 0, 0);
+(54, 6, 6, '2016-01-11 11:12:40', '0000-00-00 00:00:00', 0, 0),
+(55, 6, 6, '2016-01-11 11:25:55', '0000-00-00 00:00:00', 0, 0),
+(57, 8, 6, '2016-01-11 11:27:23', '0000-00-00 00:00:00', 0, 0),
+(58, 8, 6, '2016-01-11 11:27:23', '2016-01-18 11:27:23', 0, 0),
+(65, 6, 1, '2016-01-12 12:39:30', '2016-01-19 12:39:30', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -409,21 +413,21 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `id_utilisateur` int(11) NOT NULL,
   `id_jeu` int(11) NOT NULL,
   `id_emprunt` int(11) NOT NULL,
-  `date_debut` date DEFAULT NULL,
+  `date_debut` datetime DEFAULT NULL,
   `date_fin` datetime NOT NULL,
   `actif` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_reservation`),
   KEY `id_utilisateur` (`id_utilisateur`),
   KEY `id_jeu` (`id_jeu`),
   KEY `id_emprunt` (`id_emprunt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Contenu de la table `reservation`
 --
 
 INSERT INTO `reservation` (`id_reservation`, `id_utilisateur`, `id_jeu`, `id_emprunt`, `date_debut`, `date_fin`, `actif`) VALUES
-(1, 6, 1, 1, '2016-01-10', '2016-01-17 00:00:00', 1);
+(40, 6, 1, 65, '2016-01-11 12:39:30', '2016-01-13 12:39:30', 1);
 
 -- --------------------------------------------------------
 
@@ -452,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `userId` (`userId`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `utilisateur`
@@ -466,7 +470,8 @@ INSERT INTO `utilisateur` (`userId`, `username`, `password`, `admin`, `sexUser`,
 (5, 'medhi.fakihani', 'fbdfc511fd5a9ee95605fa5c05b50280c7469e8fa8ef4829dab4e48e9e777ede', 1, 'Homme', 'fakihani', 'medhi', 'fakihani@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (6, 'anthony.borel', '30b86b230569e4558aa2a5437d5a330427bf22885ef4a9b107516125fa258745', 1, 'Homme', 'borel', 'anthony', 'borel@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
 (7, 'nathanaël.rastout', '42f46266696f89caa6b332d489dc5cfa19115f8fc7cb244e573204fa48c20d9f', 1, 'Homme', 'rastout', 'nathanaël', 'rastout@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
-(8, 'nicolas.zambrano', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 'Homme', 'zambrano', 'nicolas', 'zambrano@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0);
+(8, 'nicolas.zambrano', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 'Homme', 'zambrano', 'nicolas', 'zambrano@yopmail.com', '0000000000', '0000000000', '125 cjuhcfyg', '34000', 'Montpellier', 0, '0000-00-00', '0000-00-00', 0),
+(21, 'user.user', '9eba281e905b5f6ab4462bb6679b8037818e6825d408a46b997891afd13a925c', 0, 'Homme', 'User', 'User', 'chiggity@check.fr', '0469696969', '0669696969', '51 rue du Pastis', '10001', 'Paname', 0, '0000-00-00', '2016-01-11', 0);
 
 --
 -- Contraintes pour les tables exportées
@@ -483,9 +488,9 @@ ALTER TABLE `emprunt`
 -- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_emprunt`) REFERENCES `emprunt` (`id_emprunt`),
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`userId`),
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idJeu`);
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_jeu`) REFERENCES `jeux` (`idJeu`),
+  ADD CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_emprunt`) REFERENCES `emprunt` (`id_emprunt`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
