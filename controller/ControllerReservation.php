@@ -50,19 +50,22 @@ switch ($action) {
         {
             $today = new DateTime('now');
             $date_debut = new DateTime('now');
+            $date_fin_res = new DateTime('now');
+            $date_fin = new DateTime('now');
 
             $date = $date_debut;
             $date = intval($date->format('w'));
 
             while ($date !=2 && $date !=4) {
                 $date_debut = $date_debut->modify('+ 1 day');
+                $date_fin_res = $date_fin_res->modify('+ 1 day');
+                $date_fin = $date_fin->modify('+ 1 day');
                 $date++;
             }
             
-            $date_fin_res = $date_debut; //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
+            //la réservation se termine à la fin de la journée qui marque le début de l'emprunt
             $date_fin_res = $date_fin_res->modify('+ 1 day');
-
-            $date_fin = $date_debut;
+            
             $date_fin = $date_fin->modify('+ 1 week');
             
             $date_debut = $date_debut->format('Y-m-d H:i:s');
