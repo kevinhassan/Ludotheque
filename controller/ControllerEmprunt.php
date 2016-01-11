@@ -81,8 +81,11 @@ switch ($action) {
             $modif = -1;
             ModelEmprunt::insert($data);
             ModelEmprunt::updateNbJeuxDispo($modif, myGet("idJeu"));
-
-            $view = "ListerEmprunt";
+            $data = array(
+                "actif" => '1'
+            );            
+            $tab_emprunts = ModelEmprunt::selectWhere($data);
+            $view = "ListEmprunt";
             $pagetitle = "Emprunts";
         }
         break;
