@@ -40,6 +40,13 @@ switch ($action) {
     break;
 
     case "reserver":
+        //Un jeu ne peut être réservé que si l'utilisateur n'a pas d'autre réservation en cours
+        if(!ModelReservation::checkIfUserHasActiveReservation($_SESSION['id']))
+        {
+            $view = "erreur";
+            $message = "Vous avez déjà réservé un autre jeu !";
+            $pagetitle = "Erreur";     
+        }
         if (!(ModelJeux::checkIfDispo(myGet("jeu"))))
         {
             $view = "erreur";
