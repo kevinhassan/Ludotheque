@@ -2,10 +2,8 @@
 
 define('VIEW_PATH', ROOT . DS . 'view' . DS);
 
-// On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
 require_once MODEL_PATH . 'ModelEmprunt.php';
-require_once MODEL_PATH . 'ModelJeux.php';
 
 switch ($action) {
     case "supprimerReservation":
@@ -98,6 +96,13 @@ switch ($action) {
         }
         $view = "ListJeux";
         $pagetitle = "Jeux";
+        break;
+        
+    case "supprimerReservation":
+        $data = array(
+            "id_reservation" => myGet("idResa")
+            );
+        ModelReservation::delete($data);
         break;
 //Code à garder: prémices pour la gestions des réservations d'extensions
 /*    case "reserverJeu":

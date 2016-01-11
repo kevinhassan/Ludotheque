@@ -1,5 +1,5 @@
 <?php
-function tabEmp($tab_emprunts)
+function tabEmp($tab_emprunts,$estAdmin)
 {
     $max=sizeof($tab_emprunts);
     $i=0;
@@ -18,9 +18,12 @@ function tabEmp($tab_emprunts)
             $actif='Oui';
         }
         echo <<< EOT
-        <tr><td>$idEmprunt</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
-</div>
+        <tr><td>$idEmprunt</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td>
 EOT;
+        if ($estAdmin)
+            echo'<td><a href="?action=supprimerEmprunt&controller=emprunt&idEmprunt='.$idEmprunt.'" class="btn btn-danger"">Supprimer</a><td>';
+
+echo"</tr></div>";
     $i++;
     }
 }
@@ -43,7 +46,8 @@ if(isset($_SESSION['login']) && SESSION::is_admin()){
           </tr>
         </thead>
 EOT;
-tabEmp($tab_emprunts);
+$estAdmin = SESSION::is_admin();
+tabEmp($tab_emprunts,$estAdmin);
     echo <<<EOT
     </table>
 EOT;

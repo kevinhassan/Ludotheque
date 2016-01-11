@@ -1,5 +1,5 @@
 <?php
-function tabResa($tab_resa)
+function tabResa($tab_resa,$estAdmin)
 {
     $max=sizeof($tab_resa);
     $i=0;
@@ -19,17 +19,19 @@ function tabResa($tab_resa)
             $actif='Oui';
         }
         echo <<< EOT
-        <tr><td>$idReservation</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$idEmprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td></tr>
-</div>
+        <tr><td>$idReservation</td><td><a href="?action=modifierUtilisateur&controller=utilisateur&userId=$idUser">$idUser</a></td><td><a href="?action=infoJeu&idJeu=$idJeu&controller=jeux">$idJeu</a></td><td>$idEmprunt</td><td>$dateDebut</td><td>$dateFin</td><td>$actif</td>
 EOT;
+        if ($estAdmin)
+            echo'<td><a href="?action=supprimerReservation&controller=reservation&idResa='.$idReservation.'" class="btn btn-danger">Supprimer</a><td>';
+
+echo"</tr></div>";
     $i++;
     }
 }
 ?>
 <?php
 echo '<div class="container">';
-if(isset($_SESSION['login']) && SESSION::is_admin()){ //Il faut être admin pour voir la liste des utilisateurs
-
+if(isset($_SESSION['login']) && SESSION::is_admin()){ 
     echo <<<EOT
     <h1>Liste des Réservations :</h1>
     <div class="containt-Utilisateur">
@@ -45,7 +47,8 @@ if(isset($_SESSION['login']) && SESSION::is_admin()){ //Il faut être admin pour
           </tr>
         </thead>
 EOT;
-tabResa($tab_resa);
+$estAdmin = SESSION::is_admin();
+tabResa($tab_resa,$estAdmin);
     echo <<<EOT
     </table>
 EOT;

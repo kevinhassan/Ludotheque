@@ -22,6 +22,7 @@ switch ($action) {
         }        
     default:
     case "listerEmprunt":
+        $estAdmin = SESSION::is_admin();
         $id = $_SESSION['id'];
         $data = array(
             "actif" => '1'
@@ -80,6 +81,12 @@ switch ($action) {
 
         $view = "ListEmprunt";
         $pagetitle = "Emprunts";
+        break;
+    case "supprimerEmprunt":
+        $data = array(
+            "id_emprunt" => myGet("idEmprunt")
+            );
+        ModelEmprunt::delete($data);
         break;
 }
 require VIEW_PATH . "view.php";
