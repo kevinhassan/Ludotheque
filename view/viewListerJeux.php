@@ -4,7 +4,7 @@ function tabJeux($tab_jeux)
     $max=sizeof($tab_jeux);
     $i=0;
     while($i<$max){
-    $u=$tab_jeux[$i];
+        $u=$tab_jeux[$i];
         $idJeu = $u->idJeu;
         $jeu = $u->nomJeu;
         $annee = $u->anneeEdition;
@@ -20,9 +20,6 @@ EOT;
     $i++;
     }
 }
-?>
-<?php
-
 if(isset($_SESSION['login'])){
     echo <<<EOT
   <div class="container">
