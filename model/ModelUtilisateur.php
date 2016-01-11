@@ -44,5 +44,20 @@ class ModelUtilisateur extends Model {
         }
 
       }
+      
+      public static function getChoices()
+      {
+        try
+        {
+          $sql = "SELECT userId, username FROM " . static::$table;
+          $req = self::$pdo->query($sql);
+          return $req->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+      }
     }
 ?>

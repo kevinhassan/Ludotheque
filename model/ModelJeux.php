@@ -44,5 +44,20 @@ class ModelJeux extends Model {
           die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
         }
     }
+    
+    public static function getChoices()
+      {
+        try
+        {
+          $sql = "SELECT idJeu, nomJeu FROM " . static::$table;
+          $req = self::$pdo->query($sql);
+          return $req->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        }
+      }
 }
 ?>

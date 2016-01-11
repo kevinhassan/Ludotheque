@@ -92,6 +92,24 @@ class ModelEmprunt extends Model {
         }
     }
     
+    public static function checkIfReservation($idEmprunt) {
+       try
+        {
+            $sql = "SELECT id_reservation FROM reservation WHERE id_emprunt = " . $idEmprunt . " AND actif = 1";
+            $req = self::$pdo->query($sql);
+            // fetchAll retoure un tableau d'objets représentant toutes les lignes du jeu d'enregistrements
+            $res = $req->fetch(PDO::FETCH_OBJ);
+            
+            return $res->id_reservation;
+        }
+
+        catch (PDOException $e)
+        {
+            echo $e->getMessage();
+            die("Erreur lors de la recherche de tous les objets de la BDD " . static::$table);
+        } 
+    }
+
     public static function updateNbJeuxDispo($modif, $idJeu) {//selectionne tous les emprunts concernant l'utilisateur concerné
         try
         {

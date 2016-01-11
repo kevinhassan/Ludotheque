@@ -4,11 +4,23 @@ define('VIEW_PATH', ROOT . DS . 'view' . DS);
 
 // On va chercher le modele dans "./model/ModelUtilisateur.php"
 require_once MODEL_PATH . 'Model' . ucfirst($controller) . '.php';
+require_once MODEL_PATH . 'ModelUtilisateur.php';
+require_once MODEL_PATH . 'ModelJeux.php';
+require_once MODEL_PATH . 'ModelReservation.php';
 
 switch ($action) {
     case "supprimerEmprunt":
         if( Session::is_admin())
         {
+            $test = ModelEmprunt::checkIfReservation(myGet("idEmprunt"));
+            if($test)
+            {
+                $data = array(
+                "id_reservation" => $test,
+                );
+                ModelReservation::delete($data);
+            }
+            
             $data = array(
                 "id_emprunt" => myGet("idEmprunt"),
             );
@@ -55,16 +67,17 @@ switch ($action) {
             $date = myGet("date_debut");
             $date = strtotime($date);
             $date = strtotime("+7 day", $date);
-            $date = date('Y-M-d h:i:s', $date);
+            $date = date('Y-m-d h:i:s', $date);
 
             $data = array(
                 "id_utilisateur" => myGet("id_utilisateur"),
                 "id_jeu" => myGet("idJeu"),
                 "date_debut" => myGet("date_debut"),
                 "date_fin" => $date,
-                "retard" => '0'
+                "retard" => '0',
+                "actif" => '1',
             );
-
+            
             $modif = -1;
             ModelEmprunt::insert($data);
             ModelEmprunt::updateNbJeuxDispo($modif, myGet("idJeu"));
@@ -81,6 +94,13 @@ switch ($action) {
 
         $view = "ListEmprunt";
         $pagetitle = "Emprunts";
+        break;
+    
+    case "creerEmprunt":
+        $choix = ModelUtilisateur::getChoices();
+        $jeux = ModelJeux::getChoices();
+        $view = "creerEmprunt";
+        $pagetitle = "Ajouter un emprunt";
         break;
 }
 require VIEW_PATH . "view.php";

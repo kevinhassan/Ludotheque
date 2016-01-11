@@ -49,6 +49,9 @@ tabEmp($tab_emprunts,$estAdmin);
     echo <<<EOT
     </table>
 EOT;
+    if ($estAdmin) {
+        echo'<div style="text-align:center;"><a href="?action=creerEmprunt&controller=emprunt" class="btn btn-success"">Enregistrer nouvel emprunt</a></div>';
+    }
 echo <<<EOT
     </div>
 </div>
