@@ -1,12 +1,12 @@
 # Ludotheque
-But: Site internet pour la gestion des emprunts dans une Ludothèque. Les adhérents pouvaient empruntés selon des régles
-de gestion clairement définies
 
-Réalisé par :
+**Goal:** Website to manage borrowing of board games in a real association. We create 2 profiles Administrator and members. 
+Moreover, website is follow borrowing rules: all games aren't borrowable and borrowing time is limited respecting opening date.  
 
-Kévin Hassan
-Nicolas Zambrano
-Mehdi Fakihani
-Anthony Borel
+###Composition: 
+* Source code in PHP 
+* Design with bootstrap 3 Css
 
-Polytech IG3 2016
+
+#####Written by Kévin Hassan | Nicolas Zambrano | Mehdi Fakihani | Anthony Borel
+2015-2016:copyright: :octopus: :fire:
